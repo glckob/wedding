@@ -10,6 +10,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 <!-- ប្រើ Local file qrcode.min.js ដែលនៅទីតាំងជាមួយគ្នា ដើម្បី Support អក្សរខ្មែរបានល្អតាមការស្នើសុំ -->
 <script src="./qrcode.min.js"></script>
+<!-- បណ្ណាល័យសម្រាប់អាន QR តាមកាមេរ៉ា -->
+<script src="https://unpkg.com/html5-qrcode"></script>
 <style>
 :root {
   --bg: #f8f9fa;
@@ -268,6 +270,23 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   #page-qr .qr-card { border: 1px solid #000; padding: 4px; margin-bottom: 0; }
 }
 
+/* ─── CAM SCAN PAGE (MOBILE LAYOUT) ─── */
+/* Layout សម្រាប់កាមេរ៉ានៅខាងលើ បញ្ជីនៅខាងក្រោម */
+#page-cam-scan { display: flex; flex-direction: column; gap: 12px; padding: 10px 14px; overflow-y: auto; }
+.mobile-cam-section { flex-shrink: 0; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: var(--rl); padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; align-items: center; }
+#mobile-reader { width: 100%; max-width: 400px; border-radius: var(--r); overflow: hidden; border: 2px solid var(--border); background: #000; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+.mobile-cam-actions { display: flex; gap: 10px; width: 100%; max-width: 400px; margin-top: 12px; }
+.mobile-cam-btn { flex: 1; padding: 12px; border-radius: var(--r); font-family: 'Battambang', sans-serif; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all .2s; }
+.mobile-cam-btn.start { background: var(--gold); color: #fff; }
+.mobile-cam-btn.start:active { transform: scale(0.98); }
+.mobile-cam-btn.stop { background: var(--surface); color: var(--err); border: 1px solid rgba(234,67,53,.3); }
+.mobile-cam-status { margin-top: 8px; font-size: 13px; color: var(--muted); text-align: center; font-family: 'Battambang', sans-serif; min-height: 20px; }
+
+/* ផ្នែកស្វែងរក និងបញ្ជីភ្ញៀវនៅខាងក្រោមនៅលើទំព័រ Cam Scan */
+.mobile-list-section { flex: 1; display: flex; flex-direction: column; gap: 8px; min-height: 300px; }
+.mobile-list-wrap { flex: 1; overflow-y: auto; padding-right: 4px; }
+
+
 /* ─── INVITER SUMMARY ─── */
 .inviter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px;}
 .inviter-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;}
@@ -278,7 +297,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .inviter-lbl{font-size:11px;color:var(--muted);}
 .inviter-count{font-size:11px;color:var(--muted);text-align:center;margin-top:8px;}
 
-/* Recording page 2-column layout - 70/30 split */
+/* Recording page 2-column layout - 70/30 split (សម្រាប់កុំព្យូទ័រ/iPad) */
 .rec-layout{display:flex;flex:1;gap:0;overflow:hidden;}
 .rec-left{flex:0 0 70%;display:flex;flex-direction:column;min-width:0;padding:16px;}
 .rec-right{flex:0 0 30%;display:flex;flex-direction:column;padding:0px;background:#fff;border-left:0px solid var(--border);align-items:center;justify-content:center;overflow:hidden;}
@@ -294,7 +313,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   position:absolute;left:10px;top:50%;transform:translateY(-50%);
   font-size:18px;pointer-events:none;
 }
-#qr-scan-input{
+#qr-scan-input, #mobile-qr-scan-input {
   width:100%;padding:12px 12px 12px 38px;
   background:var(--card);border:2px solid var(--border);
   border-radius:var(--r);color:var(--text);
@@ -302,16 +321,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   outline:none;transition:border-color .2s, box-shadow .2s;
   text-align:left;
 }
-#qr-scan-input:focus{
+#qr-scan-input:focus, #mobile-qr-scan-input:focus {
   border-color:var(--gold);
   box-shadow:0 0 0 3px rgba(212,160,58,.15);
 }
-#qr-scan-input.flash-ok{
+.flash-ok{
   border-color:var(--ok)!important;
   box-shadow:0 0 0 3px rgba(52,168,83,.2)!important;
   background:rgba(52,168,83,.06)!important;
 }
-#qr-scan-input.flash-err{
+.flash-err{
   border-color:var(--err)!important;
   box-shadow:0 0 0 3px rgba(234,67,53,.2)!important;
   background:rgba(234,67,53,.06)!important;
@@ -321,7 +340,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   text-align:center;min-height:18px;transition:all .2s;
   width:100%;
 }
-/* Desktop */
+
+/* Desktop Styles */
 @media(min-width:481px){
   #app{border-left:1px solid var(--border);border-right:1px solid var(--border);max-width:100%;}
   .page{padding:20px 40px 24px;}
@@ -361,21 +381,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <!-- PAGES -->
   <div id="pages">
 
-    <!-- PAGE: RECORDING -->
+    <!-- PAGE: RECORDING (PC/USB Scanner) -->
     <div class="page active" id="page-recording">
       <div class="rec-layout">
         <div class="rec-left">
           <div class="srch-wrap">
             <span class="srch-ico">🔍</span>
-            <input type="text" id="rec-srch" placeholder="ស្វែងរកភ្ញៀវ..." oninput="filterRec(this.value)">
+            <input type="text" id="rec-srch" placeholder="ស្វែងរកភ្ញៀវ..." oninput="filterRec(this.value, 'rec-list')">
           </div>
           <div class="scan-input-wrap" style="margin-top:8px;">
             <span class="scan-ico">▦</span>
             <input type="text" id="qr-scan-input"
               placeholder="ស្កេន QR ភ្ញៀវ (USB Scanner)..."
               autocomplete="off" autocorrect="off" spellcheck="false"
-              onkeydown="handleScanKey(event)"
-              oninput="handleScanInput(this.value)">
+              onkeydown="handleScanKey(event, 'qr-scan-input', 'scan-status')"
+              oninput="handleScanInput(this.value, 'qr-scan-input', 'scan-status')">
           </div>
           <div class="scan-status" id="scan-status"></div>
           <div class="rec-list-wrap">
@@ -387,6 +407,35 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
             <img src="QR.PNG" alt="QR Code" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="qr-placeholder" style="display:none;">📱</div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: CAM SCAN (Phone Camera) -->
+    <div class="page" id="page-cam-scan">
+      <!-- ផ្នែកកាមេរ៉ាខាងលើ -->
+      <div class="mobile-cam-section">
+        <div id="mobile-reader"><span style="color:#666; font-size:12px;">កាមេរ៉ានឹងបង្ហាញនៅទីនេះ</span></div>
+        <div class="mobile-cam-status" id="mobile-cam-status-text">សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ</div>
+        <div class="mobile-cam-actions">
+          <button class="mobile-cam-btn start" id="btn-start-mobile-cam" onclick="startMobileCamera()">▶️ បើកកាមេរ៉ា</button>
+          <button class="mobile-cam-btn stop" id="btn-stop-mobile-cam" onclick="stopMobileCamera()" style="display:none;">⏹ បិទកាមេរ៉ា</button>
+        </div>
+      </div>
+
+      <!-- ផ្នែកបញ្ជីភ្ញៀវខាងក្រោម -->
+      <div class="mobile-list-section">
+        <div class="srch-wrap">
+          <span class="srch-ico">🔍</span>
+          <input type="text" id="mobile-rec-srch" placeholder="ស្វែងរកភ្ញៀវ..." oninput="filterRec(this.value, 'mobile-rec-list')">
+        </div>
+        <!-- លាក់ប្រអប់ Scan Input ព្រោះប្រើកាមេរ៉ាហើយ តែទុកសម្រាប់ Fallback -->
+        <div class="scan-input-wrap" style="display: none;">
+          <input type="text" id="mobile-qr-scan-input" autocomplete="off">
+        </div>
+        <div class="scan-status" id="mobile-scan-status"></div>
+        <div class="mobile-list-wrap">
+          <div id="mobile-rec-list"><div class="empty"><div class="empty-ic">🔍</div>សូមវាយឈ្មោះភ្ញៀវដើម្បីស្វែងរក</div></div>
         </div>
       </div>
     </div>
@@ -482,13 +531,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <span class="sub-title">❧ Sem Mardy & Vong Bophol ❧</span>
     </div>
     <button class="nb active" onclick="nav('recording')" id="nb-recording">
-      <span class="ni">💝</span><span class="nl">កត់ចំណង</span>
+      <span class="ni">💻</span><span class="nl">កត់ចំណង(PC)</span>
+    </button>
+    <button class="nb" onclick="nav('cam-scan')" id="nb-cam-scan">
+      <span class="ni">📱</span><span class="nl">កត់ចំណង(Phone)</span>
     </button>
     <button class="nb" onclick="nav('guests')" id="nb-guests">
       <span class="ni">👥</span><span class="nl">ភ្ញៀវ</span>
     </button>
     <button class="nb" onclick="nav('qr')" id="nb-qr">
-      <span class="ni">📱</span><span class="nl">QR ភ្ញៀវ</span>
+      <span class="ni">🔲</span><span class="nl">QR ភ្ញៀវ</span>
     </button>
     <button class="nb" onclick="nav('summary')" id="nb-summary">
       <span class="ni">📊</span><span class="nl">សង្ខេប</span>
@@ -691,6 +743,11 @@ function initFS(){
 //  NAVIGATION
 // ═══════════════════════════════════════════════
 function nav(page){
+  // បិទកាមេរ៉ាស្វ័យប្រវត្តិពេលចាកចេញពីទំព័រស្កេនកាមេរ៉ា
+  if(S.page === 'cam-scan' && page !== 'cam-scan' && typeof stopMobileCamera === 'function'){
+    stopMobileCamera();
+  }
+
   S.page=page;
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const target=document.getElementById('page-'+page);
@@ -709,23 +766,38 @@ function renderAll(){
   if(S.page==='print') renderPrintPage();
 }
 
-// ── Recording Page ──
+// ── Recording Page (Render បញ្ជីភ្ញៀវសម្រាប់ទាំង 2 ទំព័រ) ──
 function renderRec(){
   const guests=allGuests();
-  const q=S.recQ.toLowerCase();
   const gaveSet=new Set(S.gifts.map(g=>g.guestId));
   const total=guests.length;
   const gave=gaveSet.size;
   const remaining=total-gave;
+  
+  // Update Header Stats
   document.getElementById('hdr-stats').innerHTML=`
     <div class="hdr-stat" onclick="filterGuestsByStatus('all')"><div class="num">${toKhmerNum(total)}</div><div class="lbl">សរុប</div></div>
     <div class="hdr-stat" onclick="filterGuestsByStatus('gave')"><div class="num">${toKhmerNum(gave)}</div><div class="lbl">បានចំណង</div></div>
     <div class="hdr-stat" onclick="filterGuestsByStatus('remaining')"><div class="num">${toKhmerNum(remaining)}</div><div class="lbl">មិនទាន់</div></div>
   `;
-  const c=document.getElementById('rec-list');
+
+  // Update បញ្ជីសម្រាប់ទំព័រ PC
+  updateListUI('rec-list', S.recQ, guests);
+  
+  // Update បញ្ជីសម្រាប់ទំព័រ Phone
+  updateListUI('mobile-rec-list', S.recQ, guests);
+}
+
+function updateListUI(containerId, queryText, guests) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+
+  const q = queryText.toLowerCase();
   if(!q){c.innerHTML='<div class="empty"><div class="empty-ic">🔍</div>សូមវាយឈ្មោះភ្ញៀវដើម្បីស្វែងរក</div>';return;}
+  
   let filtered=guests.filter(g=>(g.fullName+g.title+g.org+g.inviter+g.companion).toLowerCase().includes(q));
   if(!filtered.length){c.innerHTML='<div class="empty"><div class="empty-ic">😕</div>រកមិនឃើញ</div>';return;}
+  
   c.innerHTML=filtered.map(g=>{
     const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
     const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
@@ -750,32 +822,39 @@ function filterGuestsByStatus(status){
   const gaveSet=new Set(S.gifts.map(g=>g.guestId));
   document.querySelectorAll('.hdr-stat').forEach(s=>s.classList.remove('active'));
   event.currentTarget.classList.add('active');
+  
   let filtered=[];
   if(status==='all') filtered=guests;
   else if(status==='gave') filtered=guests.filter(g=>gaveSet.has(g.id));
   else if(status==='remaining') filtered=guests.filter(g=>!gaveSet.has(g.id));
-  const c=document.getElementById('rec-list');
-  if(!filtered.length){c.innerHTML='<div class="empty"><div class="empty-ic">📋</div>គ្មានទិន្នន័យ</div>';return;}
-  c.innerHTML=filtered.map(g=>{
-    const t=guestTotals(g.id);
-    const has=t.khr>0||t.usd>0;
-    let badge=has
-      ? `<div class="g-amt">${t.khr>0?fmtKHR(t.khr)+'៛':''}${t.khr>0&&t.usd>0?'<br>':''}${t.usd>0?'$'+fmtUSD(t.usd):''}</div>`
-      : `<div class="g-empty">＋</div>`;
-    const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
-    const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
-    const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
-    return `<div class="gi" onclick="openGiftSheet('${g.id}')">
-      <div class="gi-no">${g.no||'—'}</div>
-      <div class="gi-info">
-        <div class="gi-full">
-          <div class="gi-name">${displayName(g)}</div>
-          <div class="gi-details">${cp}${org}${inv}</div>
-        </div>
-      </div>
-      <div class="gi-badge">${badge}</div>
-    </div>`;
-  }).join('');
+  
+  const generateHTML = (list) => {
+      if(!list.length) return '<div class="empty"><div class="empty-ic">📋</div>គ្មានទិន្នន័យ</div>';
+      return list.map(g=>{
+        const t=guestTotals(g.id);
+        const has=t.khr>0||t.usd>0;
+        let badge=has
+          ? `<div class="g-amt">${t.khr>0?fmtKHR(t.khr)+'៛':''}${t.khr>0&&t.usd>0?'<br>':''}${t.usd>0?'$'+fmtUSD(t.usd):''}</div>`
+          : `<div class="g-empty">＋</div>`;
+        const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
+        const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
+        const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
+        return `<div class="gi" onclick="openGiftSheet('${g.id}')">
+          <div class="gi-no">${g.no||'—'}</div>
+          <div class="gi-info">
+            <div class="gi-full">
+              <div class="gi-name">${displayName(g)}</div>
+              <div class="gi-details">${cp}${org}${inv}</div>
+            </div>
+          </div>
+          <div class="gi-badge">${badge}</div>
+        </div>`;
+      }).join('');
+  };
+
+  const html = generateHTML(filtered);
+  document.getElementById('rec-list').innerHTML = html;
+  document.getElementById('mobile-rec-list').innerHTML = html;
 }
 
 // ── Guests Page ──
@@ -873,7 +952,13 @@ function renderInviterSummary(){
 }
 
 // ── Search ──
-function filterRec(q){S.recQ=q;renderRec();}
+function filterRec(q, targetListId){
+  S.recQ=q; 
+  // Update inputs in both pages to match
+  document.getElementById('rec-srch').value = q;
+  document.getElementById('mobile-rec-srch').value = q;
+  renderRec();
+}
 function filterGst(q){S.gstQ=q;renderGst();}
 
 // ═══════════════════════════════════════════════
@@ -896,8 +981,11 @@ function closeGiftSheet(){
   document.getElementById('g-overlay').classList.remove('open');
   S.selId=null;
   setTimeout(()=>{
-    const s=document.getElementById('qr-scan-input');
-    if(s && S.page==='recording') s.focus();
+    // ដាក់ Focus លើប្រអប់ Scan តែនៅពេលដែលយើងនៅទំព័រ Recording ប៉ុណ្ណោះ
+    if (S.page === 'recording') {
+        const s=document.getElementById('qr-scan-input');
+        if(s) s.focus();
+    }
   },200);
 }
 function overlayClickGift(e){if(e.target===document.getElementById('g-overlay'))closeGiftSheet();}
@@ -947,8 +1035,16 @@ async function saveGift(){
     showToast(`សូមថ្លែងអំណរគុណ ចំណងដៃ ${guestName} បានរក្សាទុករួចរាល់! សូមជូនពរសុខភាពល្អ និងសុខសុវត្ថិភាព`);
     setTimeout(()=>{
       closeGiftSheet();
-      const searchInput=document.getElementById('rec-srch');
-      if(searchInput) searchInput.focus();
+      // Clear search and refocus
+      document.getElementById('rec-srch').value = '';
+      document.getElementById('mobile-rec-srch').value = '';
+      S.recQ = '';
+      renderRec();
+      
+      if(S.page === 'recording'){
+        const s = document.getElementById('qr-scan-input');
+        if(s) s.focus();
+      }
     },2500);
   }catch(e){showToast('❌ '+e.message);}
 }
@@ -1228,30 +1324,38 @@ async function generateAllQRs() {
 }
 
 // ═══════════════════════════════════════════════
-//  USB QR SCANNER INPUT
+//  SCANNER INPUT (USB & CAMERA)
 // ═══════════════════════════════════════════════
 let _scanTimer=null;
 
-function handleScanKey(e){
+function handleScanKey(e, inputId, statusId){
   if(e.key==='Enter'){
     e.preventDefault();
-    const val=document.getElementById('qr-scan-input').value.trim();
-    if(val) processQRScan(val);
+    const val=document.getElementById(inputId).value.trim();
+    if(val) processQRScan(val, inputId, statusId);
   }
 }
 
-function handleScanInput(val){
+function handleScanInput(val, inputId, statusId){
   clearTimeout(_scanTimer);
   if(!val) return;
   _scanTimer=setTimeout(()=>{
-    const cur=document.getElementById('qr-scan-input').value.trim();
-    if(cur) processQRScan(cur);
+    const cur=document.getElementById(inputId).value.trim();
+    if(cur) processQRScan(cur, inputId, statusId);
   }, 120);
 }
 
-function processQRScan(text){
-  const input=document.getElementById('qr-scan-input');
-  const status=document.getElementById('scan-status');
+function processQRScan(text, inputId = null, statusId = null){
+  const input = inputId ? document.getElementById(inputId) : null;
+  
+  // បើអត់បញ្ជាក់ Status យកតាមទំព័រដែលកំពុងបើក
+  let status;
+  if (statusId) {
+      status = document.getElementById(statusId);
+  } else {
+      status = S.page === 'cam-scan' ? document.getElementById('mobile-cam-status-text') : document.getElementById('scan-status');
+  }
+
   const guests=allGuests();
   let found=null;
 
@@ -1278,23 +1382,34 @@ function processQRScan(text){
     const name=displayName(found);
     status.textContent='✅ '+name;
     status.style.color='var(--ok)';
-    input.classList.add('flash-ok');
+    
+    if(input) input.classList.add('flash-ok');
+    
     setTimeout(()=>{
-      input.classList.remove('flash-ok');
-      input.value='';
+      if(input) {
+          input.classList.remove('flash-ok');
+          input.value='';
+      }
       status.textContent='';
+      if (S.page === 'cam-scan') status.textContent = 'សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ'; // Reset status for cam
       openGiftSheet(found.id);
     },400);
   }else{
-    status.textContent='⚠️ រកមិនឃើញ';
+    status.textContent='⚠️ រកមិនឃើញ: ' + text;
     status.style.color='var(--err)';
-    input.classList.add('flash-err');
+    
+    if(input) input.classList.add('flash-err');
+    
     setTimeout(()=>{
-      input.classList.remove('flash-err');
-      input.value='';
+      if(input) {
+          input.classList.remove('flash-err');
+          input.value='';
+      }
       status.textContent='';
-      input.focus();
-    },1500);
+      if (S.page === 'cam-scan') status.textContent = 'សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ'; // Reset status for cam
+      // Focus តែនៅពេលនៅទំព័រ Recording
+      if (S.page === 'recording' && input) input.focus(); 
+    },2000);
   }
 }
 
@@ -1309,15 +1424,72 @@ function keepScanFocus(){
 }
 
 // ═══════════════════════════════════════════════
+//  CAMERA QR SCANNER (MOBILE)
+// ═══════════════════════════════════════════════
+let html5QrCodeMobile;
+
+async function startMobileCamera() {
+  if(!html5QrCodeMobile) {
+    html5QrCodeMobile = new Html5Qrcode("mobile-reader");
+  }
+  
+  document.getElementById('btn-start-mobile-cam').style.display = 'none';
+  document.getElementById('btn-stop-mobile-cam').style.display = 'block';
+  document.getElementById('mobile-cam-status-text').textContent = 'កំពុងស្វែងរក QR Code...';
+  document.getElementById('mobile-cam-status-text').style.color = 'var(--gold)';
+
+  // កំណត់ទំហំស៊ុមស្កេន និងល្បឿន
+  const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+  
+  try {
+    // ប្រើកាមេរ៉ាក្រោយ (environment) ជាជម្រើសដំបូង
+    await html5QrCodeMobile.start({ facingMode: "environment" }, config, onMobileCamScanSuccess);
+  } catch (err) {
+    console.error(err);
+    document.getElementById('mobile-cam-status-text').textContent = '⚠️ មិនអាចបើកកាមេរ៉ាបានទេ សូមពិនិត្យ Permission របស់ Browser';
+    document.getElementById('mobile-cam-status-text').style.color = 'var(--err)';
+    stopMobileCamera();
+  }
+}
+
+async function stopMobileCamera() {
+  if (html5QrCodeMobile && html5QrCodeMobile.isScanning) {
+    try {
+      await html5QrCodeMobile.stop();
+    } catch(e) { console.warn("Stop error", e); }
+  }
+  document.getElementById('btn-start-mobile-cam').style.display = 'block';
+  document.getElementById('btn-stop-mobile-cam').style.display = 'none';
+  document.getElementById('mobile-cam-status-text').textContent = 'បានបិទកាមេរ៉ា';
+  document.getElementById('mobile-cam-status-text').style.color = 'var(--muted)';
+}
+
+function onMobileCamScanSuccess(decodedText, decodedResult) {
+  // ១. បិទកាមេរ៉ាសិនពេលស្កេនត្រូវ ដើម្បីកុំឲ្យវាស្កេនផ្ទួនៗ
+  stopMobileCamera();
+  
+  // ២. លេងសំឡេងរំញ័រ (ប្រសិនបើទូរស័ព្ទ Support)
+  if ("vibrate" in navigator) navigator.vibrate(200);
+
+  document.getElementById('mobile-cam-status-text').textContent = '✅ បានស្កេន...';
+  document.getElementById('mobile-cam-status-text').style.color = 'var(--ok)';
+  
+  // ៣. បញ្ជូនទិន្នន័យអក្សរទៅកាន់អនុគមន៍ស្វែងរកភ្ញៀវមានស្រាប់ (មិនបាច់បញ្ជាក់ input ID)
+  processQRScan(decodedText);
+}
+
+// ═══════════════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════════════
 async function init(){
-  nav('recording');
+  nav('recording'); // Default start on PC recording
   fetchCSV(false);
   initFS();
   setTimeout(()=>{
-    const searchInput=document.getElementById('rec-srch');
-    if(searchInput) searchInput.focus();
+    if(S.page === 'recording'){
+        const searchInput=document.getElementById('rec-srch');
+        if(searchInput) searchInput.focus();
+    }
   },300);
   setupAutoFocus();
 }
