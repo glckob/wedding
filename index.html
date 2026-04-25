@@ -12,6 +12,9 @@
 <script src="./qrcode.min.js"></script>
 <!-- បណ្ណាល័យសម្រាប់អាន QR តាមកាមេរ៉ា -->
 <script src="https://unpkg.com/html5-qrcode"></script>
+<!-- បណ្ណាល័យសម្រាប់គូរក្រាប Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
 :root {
   --bg: #f8f9fa;
@@ -84,7 +87,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .gi-full .gi-details span{white-space:nowrap;}
 .gi-full .gi-details .val{color:var(--gold-dk);font-weight:600;}
 .gi-badge{flex-shrink:0;text-align:right;}
-.g-amt{font-size:11px;font-weight:700;color:var(--gold);background:rgba(201,150,58,.12);border:1px solid rgba(201,150,58,.28);border-radius:8px;padding:3px 8px;line-height:1.5;}
+.g-amt{font-size:13px;font-weight:700;color:var(--gold);background:rgba(212,160,58,0.1);border:1px solid rgba(212,160,58,0.2);border-radius:8px;padding:4px 10px;line-height:1.5; white-space:nowrap;}
 .g-empty{width:28px;height:28px;border-radius:50%;border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:16px;}
 .edit-btn{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:6px;flex-shrink:0;transition:color .2s;}
 .edit-btn:active{color:var(--gold);}
@@ -93,7 +96,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .src-custom{background:rgba(201,150,58,.2);color:var(--gold);}
 
 /* ─── TOP NAV ─── */
-#bnav{display:flex;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;order:-1;padding:8px 12px;gap:8px;align-items:center;flex-wrap:nowrap;overflow-x:auto;}
+#bnav{display:flex;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;order:-1;padding:8px 12px;gap:8px;align-items:center;flex-wrap:nowrap;overflow-x:auto; transition:all .3s;}
 .nav-brand{flex:1;padding-right:12px;}
 .nav-brand .main-title{font-family:'Khmer OS Muol Light','Muol Light','Khmer OS Muol',serif;font-size:16px;color:var(--gold);padding:6px 10px;border-right:1px solid var(--border);white-space:nowrap;}
 .nb{background:none;border:none;font-family:'Battambang',sans-serif;font-size:14px;padding:10px 12px;cursor:pointer;color:var(--text);transition:all .15s;white-space:nowrap;touch-action:manipulation;flex-shrink:0;}
@@ -157,17 +160,33 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .btn-save{flex:2;padding:12px;background:var(--gold);border:none;border-radius:var(--r);color:var(--bg);font-family:'Battambang',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
 .del-guest-btn{width:100%;padding:10px;background:none;border:1px solid rgba(192,64,64,.3);border-radius:var(--r);color:var(--err);font-family:'Battambang',sans-serif;font-size:12px;cursor:pointer;margin-top:8px;}
 
-/* ─── SUMMARY ─── */
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;flex-shrink:0;}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 14px;text-align:center;}
-.stat-lbl{font-size:11px;color:var(--muted);margin-bottom:6px;}
-.stat-val{font-size:26px;font-weight:700;color:var(--gold-lt);font-family:'Cormorant Garamond',serif;word-break:break-all;}
-.stat-unit{font-size:12px;color:var(--gold-dk);margin-top:3px;}
-.sec-ttl{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;padding:6px 0 2px;flex-shrink:0;}
-.gr-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px 13px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
-.gr-name{font-size:13px;color:var(--cream);font-weight:700;}
-.gr-meta{font-size:10px;color:var(--muted);margin-top:2px;}
-.gr-amt{font-size:14px;font-weight:700;color:var(--gold);text-align:right;white-space:nowrap;}
+/* ─── SUMMARY NEW STYLE ─── */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex-shrink:0;margin-bottom: 20px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:20px 14px;text-align:center;box-shadow: 0 4px 12px rgba(0,0,0,0.03);}
+.stat-lbl{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700;}
+.stat-val{font-size:28px;font-weight:700;color:var(--gold-lt);font-family:'Cormorant Garamond',serif;word-break:break-all;line-height:1.2;}
+.stat-unit{font-size:12px;color:var(--gold-dk);margin-top:4px;}
+.sec-ttl{font-size:13px;color:var(--text);font-weight:700;letter-spacing:0.5px;padding:12px 0 8px;flex-shrink:0;}
+
+.chart-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--rl);
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 320px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.inviter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:20px;}
+.inviter-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;box-shadow: 0 2px 6px rgba(0,0,0,0.02);}
+.inviter-name{font-size:15px;font-weight:700;color:var(--gold-dk);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;font-family:'Khmer OS Muol Light','Battambang',sans-serif;}
+.inviter-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.inviter-stat{text-align:center;padding:10px 8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;}
+.inviter-val{font-size:18px;font-weight:700;color:var(--gold);font-family:'Cormorant Garamond',serif;}
+.inviter-lbl{font-size:11px;color:var(--muted);}
+.inviter-count{font-size:12px;color:var(--text);text-align:center;margin-top:12px;padding-top:8px;border-top: 1px dashed var(--border);}
 
 /* ─── UTILS ─── */
 .ld{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;gap:10px;color:var(--muted);font-size:13px;}
@@ -252,11 +271,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   #bnav,#hdr,#login-overlay,.nb,.edit-btn,.del-btn,.pill-btn,#reload-csv-btn,.st-btn,
   .print-btn-row,.qr-action-bar,.srch-wrap,.phdr{display:none!important;}
   #app{height:auto;overflow:visible;}
-  .page{position:static;overflow:visible;}
+  .page{position:static;overflow:visible; display:none!important;}
   body{height:auto;overflow:visible;background:#fff;}
 
   /* Show only active page */
-  .page{display:none!important;}
   .page.active{display:block!important;}
 
   /* A4 Print page (List) */
@@ -270,58 +288,34 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   #page-qr .qr-card { border: 1px solid #000; padding: 4px; margin-bottom: 0; }
 }
 
-/* ─── CAM SCAN PAGE (MOBILE LAYOUT) ─── */
-/* Layout សម្រាប់កាមេរ៉ានៅខាងលើ បញ្ជីនៅខាងក្រោម */
-#page-cam-scan { display: flex; flex-direction: column; gap: 12px; padding: 10px 14px; overflow-y: auto; }
-.mobile-cam-section { flex-shrink: 0; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: var(--rl); padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; align-items: center; }
-#mobile-reader { width: 100%; max-width: 400px; border-radius: var(--r); overflow: hidden; border: 2px solid var(--border); background: #000; min-height: 200px; display: flex; align-items: center; justify-content: center; }
-.mobile-cam-actions { display: flex; gap: 10px; width: 100%; max-width: 400px; margin-top: 12px; }
-.mobile-cam-btn { flex: 1; padding: 12px; border-radius: var(--r); font-family: 'Battambang', sans-serif; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all .2s; }
-.mobile-cam-btn.start { background: var(--gold); color: #fff; }
-.mobile-cam-btn.start:active { transform: scale(0.98); }
-.mobile-cam-btn.stop { background: var(--surface); color: var(--err); border: 1px solid rgba(234,67,53,.3); }
-.mobile-cam-status { margin-top: 8px; font-size: 13px; color: var(--muted); text-align: center; font-family: 'Battambang', sans-serif; min-height: 20px; }
-
-/* ផ្នែកស្វែងរក និងបញ្ជីភ្ញៀវនៅខាងក្រោមនៅលើទំព័រ Cam Scan */
-.mobile-list-section { flex: 1; display: flex; flex-direction: column; gap: 8px; min-height: 300px; }
-.mobile-list-wrap { flex: 1; overflow-y: auto; padding-right: 4px; }
-
-
-/* ─── INVITER SUMMARY ─── */
-.inviter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px;}
-.inviter-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;}
-.inviter-name{font-size:14px;font-weight:700;color:var(--gold-lt);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;}
-.inviter-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.inviter-stat{text-align:center;padding:8px;background:var(--surface);border-radius:8px;}
-.inviter-val{font-size:18px;font-weight:700;color:var(--gold);font-family:'Cormorant Garamond',serif;}
-.inviter-lbl{font-size:11px;color:var(--muted);}
-.inviter-count{font-size:11px;color:var(--muted);text-align:center;margin-top:8px;}
-
-/* Recording page 2-column layout - 70/30 split (សម្រាប់កុំព្យូទ័រ/iPad) */
+/* ─── RECORDING PC (Original Clean Layout with Smart Input & Live Feed) ─── */
 .rec-layout{display:flex;flex:1;gap:0;overflow:hidden;}
 .rec-left{flex:0 0 70%;display:flex;flex-direction:column;min-width:0;padding:16px;}
 .rec-right{flex:0 0 30%;display:flex;flex-direction:column;padding:0px;background:#fff;border-left:0px solid var(--border);align-items:center;justify-content:center;overflow:hidden;}
-.rec-list-wrap{flex:1;overflow-y:auto;margin-top:12px;padding-right:8px;}
+.rec-list-wrap{flex:1;overflow-y:auto;margin-top:8px;padding-right:8px;}
+
+/* ការពាររូប QR កុំអោយរីកធំខុសខ្នាតនៅលើ PC (Original Right Column) */
 .qr-box{width:100%;display:flex;align-items:center;justify-content:center;}
 .qr-box img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;}
 
-/* Scan input box below search in rec-left */
-.scan-input-wrap{
-  position:relative;width:100%;
+/* Smart Input Box */
+.smart-input-wrap{
+  position:relative;width:100%;flex-shrink:0;
 }
-.scan-input-wrap .scan-ico{
-  position:absolute;left:10px;top:50%;transform:translateY(-50%);
-  font-size:18px;pointer-events:none;
+.smart-input-wrap .scan-ico{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  font-size:20px;pointer-events:none;color:var(--gold);
 }
-#qr-scan-input, #mobile-qr-scan-input {
-  width:100%;padding:12px 12px 12px 38px;
-  background:var(--card);border:2px solid var(--border);
+#smart-input{
+  width:100%;padding:16px 16px 16px 44px;
+  background:var(--surface);border:2px solid var(--border);
   border-radius:var(--r);color:var(--text);
-  font-family:'Battambang',sans-serif;font-size:15px;
+  font-family:'Battambang',sans-serif;font-size:18px;font-weight:600;
   outline:none;transition:border-color .2s, box-shadow .2s;
   text-align:left;
 }
-#qr-scan-input:focus, #mobile-qr-scan-input:focus {
+#smart-input::placeholder{color:var(--muted);font-weight:400;}
+#smart-input:focus{
   border-color:var(--gold);
   box-shadow:0 0 0 3px rgba(212,160,58,.15);
 }
@@ -338,10 +332,51 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .scan-status{
   font-size:12px;font-family:'Battambang',sans-serif;
   text-align:center;min-height:18px;transition:all .2s;
-  width:100%;
+  width:100%; margin-top: 4px;
 }
 
-/* Desktop Styles */
+/* Live Feed Header & Tray */
+.live-feed-header {
+  display: flex; justify-content: space-between; align-items: center; margin-top: 12px;
+}
+.lf-title { font-size: 13px; font-weight: 700; color: var(--gold-dk); font-family: 'Battambang', sans-serif; }
+.lf-toggle { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; font-size: 11px; cursor: pointer; color: var(--muted); font-family: 'Battambang', sans-serif; transition: all .2s;}
+.lf-toggle:active { background: var(--card2); }
+
+/* Live Feed (Horizontal Tray below Search Box) */
+.recent-gifts-tray {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+.recent-gifts-tray::-webkit-scrollbar { height: 6px; }
+.recent-gifts-tray::-webkit-scrollbar-thumb { background: var(--gold-lt); border-radius: 4px; border: none; }
+.recent-gifts-tray::-webkit-scrollbar-track { background: transparent; }
+
+.rg-chip {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--ok);
+  border-radius: 8px;
+  padding: 8px 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  animation: popIn 0.3s ease;
+}
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.rg-chip-name { font-size: 13px; font-weight: 700; color: var(--text); font-family: 'Khmer OS Muol Light', sans-serif;}
+.rg-chip-amt { font-size: 14px; font-weight: 700; color: var(--gold); margin-top: 2px; display: flex; align-items: center; gap: 4px;}
+
+/* Desktop Styles General */
 @media(min-width:481px){
   #app{border-left:1px solid var(--border);border-right:1px solid var(--border);max-width:100%;}
   .page{padding:20px 40px 24px;}
@@ -353,6 +388,54 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 ::-webkit-scrollbar{width:30px;}
 ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:5px;border:2px solid var(--bg);}
 ::-webkit-scrollbar-track{background:var(--card);border-radius:5px;}
+
+/* ─── CAM SCAN PAGE (MOBILE SCANNER IMMERSIVE MODE) ─── */
+body.mode-cam-scan #hdr { display: none !important; }
+body.mode-cam-scan .nav-brand { display: none !important; }
+body.mode-cam-scan #bnav { justify-content: center; }
+
+body.mode-cam-scan #page-cam-scan.active { 
+  display: flex; 
+  flex-direction: column; 
+  padding: 0; 
+  background: #111; /* Dark Background for scanner */
+  overflow: hidden; /* Prevent scrolling */
+}
+body.mode-cam-scan .mobile-list-section { display: none !important; }
+body.mode-cam-scan .mobile-cam-section { 
+  flex-shrink: 0; 
+  width: 100%; 
+  background: transparent; 
+  border: none; 
+  border-radius: 0; 
+  padding: 20px; 
+  box-shadow: none; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  height: 100%;
+}
+body.mode-cam-scan #mobile-reader { 
+  width: 100%; 
+  max-width: 400px; 
+  border-radius: 20px; 
+  overflow: hidden; 
+  border: 2px solid var(--gold); 
+  background: #000; 
+  aspect-ratio: 1/1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  box-shadow: 0 0 30px rgba(212,160,58,0.2);
+}
+body.mode-cam-scan .mobile-cam-actions { display: flex; gap: 10px; width: 100%; max-width: 400px; margin-top: 24px; }
+body.mode-cam-scan .mobile-cam-btn { flex: 1; padding: 14px; border-radius: var(--r); font-family: 'Battambang', sans-serif; font-size: 16px; font-weight: 700; border: none; cursor: pointer; transition: all .2s; }
+body.mode-cam-scan .mobile-cam-btn.start { background: var(--gold); color: #fff; }
+body.mode-cam-scan .mobile-cam-btn.start:active { transform: scale(0.98); }
+body.mode-cam-scan .mobile-cam-btn.stop { background: #333; color: #ff6b6b; border: 2px solid rgba(255,107,107,0.3); }
+body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color: #fff; text-align: center; font-family: 'Battambang', sans-serif; min-height: 20px; line-height: 1.5; }
+
 </style>
 </head>
 <body>
@@ -381,27 +464,36 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <!-- PAGES -->
   <div id="pages">
 
-    <!-- PAGE: RECORDING (PC/USB Scanner) -->
+    <!-- PAGE: RECORDING (PC Layout with Smart Input & Horizontal Live Feed) -->
     <div class="page active" id="page-recording">
       <div class="rec-layout">
         <div class="rec-left">
-          <div class="srch-wrap">
-            <span class="srch-ico">🔍</span>
-            <input type="text" id="rec-srch" placeholder="ស្វែងរកភ្ញៀវ..." oninput="filterRec(this.value, 'rec-list')">
-          </div>
-          <div class="scan-input-wrap" style="margin-top:8px;">
-            <span class="scan-ico">▦</span>
-            <input type="text" id="qr-scan-input"
-              placeholder="ស្កេន QR ភ្ញៀវ (USB Scanner)..."
+          <!-- ប្រអប់បញ្ចូលឆ្លាតវៃ (Search + Scan) រួមបញ្ចូលគ្នាតែមួយ -->
+          <div class="smart-input-wrap">
+            <span class="scan-ico">🔍</span>
+            <input type="text" id="smart-input"
+              placeholder="វាយឈ្មោះស្វែងរក ឬស្កេន QR ក៏បាន..."
               autocomplete="off" autocorrect="off" spellcheck="false"
-              onkeydown="handleScanKey(event, 'qr-scan-input', 'scan-status')"
-              oninput="handleScanInput(this.value, 'qr-scan-input', 'scan-status')">
+              onkeydown="handleSmartKey(event)"
+              oninput="handleSmartInput(this.value)">
           </div>
           <div class="scan-status" id="scan-status"></div>
+          
+          <!-- កំណត់ត្រាចំណងដៃថ្មីៗ បង្ហាញនៅពីក្រោមប្រអប់ស្វែងរក -->
+          <div class="live-feed-header">
+             <span class="lf-title">🔔 ចំណងដៃថ្មីៗ</span>
+             <button class="lf-toggle" id="lf-toggle-btn" onclick="toggleLiveFeedAmt()">🙈 បង្ហាញទឹកប្រាក់</button>
+          </div>
+          <div class="recent-gifts-tray" id="recent-gifts-tray">
+             <!-- ទិន្នន័យចំណងដៃថ្មីៗនឹងលោតមកទីនេះ -->
+          </div>
+
           <div class="rec-list-wrap">
             <div id="rec-list"><div class="empty"><div class="empty-ic">🔍</div>សូមវាយឈ្មោះភ្ញៀវដើម្បីស្វែងរក</div></div>
           </div>
         </div>
+        
+        <!-- រក្សា QR.PNG នៅខាងស្តាំដូចដើម -->
         <div class="rec-right">
           <div class="qr-box">
             <img src="QR.PNG" alt="QR Code" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
@@ -411,9 +503,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       </div>
     </div>
 
-    <!-- PAGE: CAM SCAN (Phone Camera) -->
+    <!-- PAGE: CAM SCAN (Phone Camera Immersive Scanner) -->
     <div class="page" id="page-cam-scan">
-      <!-- ផ្នែកកាមេរ៉ាខាងលើ -->
       <div class="mobile-cam-section">
         <div id="mobile-reader"><span style="color:#666; font-size:12px;">កាមេរ៉ានឹងបង្ហាញនៅទីនេះ</span></div>
         <div class="mobile-cam-status" id="mobile-cam-status-text">សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ</div>
@@ -423,15 +514,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         </div>
       </div>
 
-      <!-- ផ្នែកបញ្ជីភ្ញៀវខាងក្រោម -->
       <div class="mobile-list-section">
+        <!-- ផ្នែកនេះត្រូវបានលាក់នៅក្នុង Scanner Mode (មើល CSS) -->
         <div class="srch-wrap">
           <span class="srch-ico">🔍</span>
-          <input type="text" id="mobile-rec-srch" placeholder="ស្វែងរកភ្ញៀវ..." oninput="filterRec(this.value, 'mobile-rec-list')">
-        </div>
-        <!-- លាក់ប្រអប់ Scan Input ព្រោះប្រើកាមេរ៉ាហើយ តែទុកសម្រាប់ Fallback -->
-        <div class="scan-input-wrap" style="display: none;">
-          <input type="text" id="mobile-qr-scan-input" autocomplete="off">
+          <input type="text" id="mobile-rec-srch" placeholder="ស្វែងរកភ្ញៀវ..." oninput="filterRec(this.value)">
         </div>
         <div class="scan-status" id="mobile-scan-status"></div>
         <div class="mobile-list-wrap">
@@ -445,7 +532,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div class="st-section">
         <div class="st-title">⚙️ ការកំណត់</div>
         <button class="st-btn" onclick="doLogout()">🚪 ចាកចេញ</button>
-        <button class="st-btn" onclick="window.print()">🖨️ បោះពុម្ពបញ្ជី A4</button>
         <div class="st-info">
           <div>📱 កម្មវិធីកត់ចំណងដៃ</div>
           <div>សម្រាប់កត់ត្រាចំណងដៃអាពាហ៍ពិពាហ៍</div>
@@ -466,43 +552,40 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
       <div id="gst-list"><div class="ld"><div class="spin"></div><span>...</span></div></div>
     </div>
 
-    <!-- PAGE: SUMMARY -->
+    <!-- PAGE: SUMMARY (Bar Chart) -->
     <div class="page" id="page-summary">
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-lbl">💰 សរុបរៀល</div>
+          <div class="stat-lbl">💰 សរុបរៀល (៛)</div>
           <div class="stat-val" id="s-khr">0</div>
-          <div class="stat-unit">រៀល ៛</div>
         </div>
         <div class="stat-card">
-          <div class="stat-lbl">💵 សរុបដុល្លា</div>
+          <div class="stat-lbl">💵 សរុបដុល្លា ($)</div>
           <div class="stat-val" id="s-usd">0</div>
-          <div class="stat-unit">ដុល្លា $</div>
         </div>
         <div class="stat-card">
-          <div class="stat-lbl">👥 ភ្ញៀវសរុប</div>
+          <div class="stat-lbl">👥 ភ្ញៀវសរុបអញ្ជើញ</div>
           <div class="stat-val" id="s-total">0</div>
-          <div class="stat-unit">នាក់</div>
         </div>
         <div class="stat-card">
-          <div class="stat-lbl">✅ ចំណងហើយ</div>
+          <div class="stat-lbl">✅ ចំណងដៃហើយ</div>
           <div class="stat-val" id="s-gave">0</div>
-          <div class="stat-unit">នាក់</div>
         </div>
       </div>
       
-      <!-- INVITER SUMMARY -->
-      <div class="sec-ttl">👤 សង្ខេបតាមអ្នកហៅភ្ញៀវ</div>
-      <div id="inviter-grid" class="inviter-grid"></div>
+      <div class="sec-ttl">📊 ក្រាបប្រៀបធៀបចំណងដៃតាមអ្នកហៅភ្ញៀវ</div>
+      <div class="chart-container">
+        <canvas id="summaryChart"></canvas>
+      </div>
       
-      <div class="sec-ttl">📋 កំណត់ត្រាចំណង</div>
-      <div id="s-list"></div>
+      <div class="sec-ttl" style="padding-top:10px;">👤 ព័ត៌មានលម្អិតតាមអ្នកហៅភ្ញៀវ</div>
+      <div id="inviter-grid" class="inviter-grid"></div>
     </div>
 
     <!-- PAGE: PRINT A4 -->
     <div class="page" id="page-print">
       <div class="print-btn-row">
-        <button class="print-action-btn" onclick="window.print()">🖨️ បោះពុម្ពបញ្ជី A4</button>
+        <button class="print-action-btn" onclick="renderPrintPage(); setTimeout(() => window.print(), 500);">🖨️ បោះពុម្ពបញ្ជី A4</button>
         <button class="print-action-btn outline" onclick="renderPrintPage()">↺ ធ្វើបច្ចុប្បន្នភាព</button>
       </div>
       <div id="print-content"></div>
@@ -600,6 +683,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 <div id="toast"></div>
 
 <script>
+// កំណត់ Font សម្រាប់ Chart.js
+Chart.defaults.font.family = "'Battambang', sans-serif";
+
 // ═══════════════════════════════════════════════
 //  FIREBASE INIT
 // ═══════════════════════════════════════════════
@@ -629,11 +715,12 @@ const S = {
   recQ:'', gstQ:'',
   selId:null,
   curr:'KHR',
+  showLiveAmt: false, // លំនាំដើមគឺលាក់ទឹកប្រាក់
   ld:{ csv:true, cg:true, edits:true, gifts:true }
 };
 
 // ═══════════════════════════════════════════════
-//  COMPUTED HELPERS
+//  COMPUTED HELPERS & NUMBER FORMATTING
 // ═══════════════════════════════════════════════
 function allGuests(){
   const csvEdited = S.csvGuests.map(g => S.edits[g.id] ? {...g,...S.edits[g.id]} : g);
@@ -649,12 +736,25 @@ function guestTotals(id){
     usd: gs.filter(g=>g.currency==='USD').reduce((s,g)=>s+Number(g.amount||0),0)
   };
 }
+
+// ទម្រង់លេខជាអក្សរខ្មែរ
 function toKhmerNum(n){
   const khmerDigits = ['០','១','២','៣','៤','៥','៦','៧','៨','៩'];
   return n.toString().split('').map(c => c.match(/[0-9]/) ? khmerDigits[parseInt(c)] : c).join('');
 }
-function fmtKHR(n){ if(!n)return'០'; if(n>=1e6)return toKhmerNum((n/1e6).toFixed(1).replace('.0',''))+'M'; if(n>=1e3)return toKhmerNum((n/1e3).toFixed(0))+'K'; return toKhmerNum(n.toLocaleString()); }
-function fmtUSD(n){ if(!n)return'០'; return toKhmerNum(n.toLocaleString()); }
+
+// ទម្រង់ប្រាក់រៀល (ឧទាហរណ៍ ១,០០០,០០០)
+function fmtKHR(n){ 
+  if(!n) return '០'; 
+  return toKhmerNum(Number(n).toLocaleString('en-US')); 
+}
+
+// ទម្រង់ប្រាក់ដុល្លារ (ឧទាហរណ៍ 1,000.00) 
+function fmtUSD(n){ 
+  if(!n) return '0.00'; 
+  return Number(n).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); 
+}
+
 function fmtTS(ts){
   if(!ts)return'';
   try{const d=ts.toDate?ts.toDate():new Date(ts);return d.toLocaleDateString('km-KH',{month:'short',day:'numeric'})+' '+d.toLocaleTimeString('km-KH',{hour:'2-digit',minute:'2-digit'});}
@@ -708,7 +808,7 @@ async function fetchCSV(manual=false){
       S.csvGuests=parseCSV(txt);
       S.ld.csv=false;
       renderAll();
-      if(manual)showToast('✅ ទាញ CSV បាន '+S.csvGuests.length+' ជួរ');
+      if(manual)showToast('✅ ទាញ CSV បាន '+toKhmerNum(S.csvGuests.length)+' ជួរ');
       return;
     }catch(e){continue;}
   }
@@ -734,7 +834,8 @@ function initFS(){
 
   db.collection('gifts').orderBy('recordedAt','desc').onSnapshot(snap=>{
     S.gifts=snap.docs.map(d=>({id:d.id,...d.data()}));
-    S.ld.gifts=false;renderAll();
+    S.ld.gifts=false;
+    renderAll();
     if(S.selId)renderPrev(S.selId);
   },e=>{S.ld.gifts=false;renderAll();console.warn(e);});
 }
@@ -749,26 +850,35 @@ function nav(page){
   }
 
   S.page=page;
+  // កំណត់ Class នៅលើ body ដើម្បីងាយស្រួលគ្រប់គ្រង CSS តាមទំព័រនីមួយៗ (ពិសេសសម្រាប់ Scanner Mode)
+  document.body.className = 'mode-' + page;
+
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const target=document.getElementById('page-'+page);
   if(target) target.classList.add('active');
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
   const nb=document.getElementById('nb-'+page);
   if(nb) nb.classList.add('active');
-  renderAll();
+  
+  if(page === 'summary') renderSum(); // Render chart only when visiting summary
+  if(page === 'print') renderPrintPage();
 }
 
 // ═══════════════════════════════════════════════
 //  RENDER
 // ═══════════════════════════════════════════════
 function renderAll(){
-  renderRec(); renderGst(); renderSum();
+  renderRec(); 
+  renderGst(); 
+  if(S.page==='summary') renderSum();
   if(S.page==='print') renderPrintPage();
+  renderRecentGifts();
 }
 
-// ── Recording Page (Render បញ្ជីភ្ញៀវសម្រាប់ទាំង 2 ទំព័រ) ──
+// ── Recording Page (Render បញ្ជីភ្ញៀវ) ──
 function renderRec(){
   const guests=allGuests();
+  const q=S.recQ.toLowerCase();
   const gaveSet=new Set(S.gifts.map(g=>g.guestId));
   const total=guests.length;
   const gave=gaveSet.size;
@@ -781,38 +891,37 @@ function renderRec(){
     <div class="hdr-stat" onclick="filterGuestsByStatus('remaining')"><div class="num">${toKhmerNum(remaining)}</div><div class="lbl">មិនទាន់</div></div>
   `;
 
-  // Update បញ្ជីសម្រាប់ទំព័រ PC
-  updateListUI('rec-list', S.recQ, guests);
-  
-  // Update បញ្ជីសម្រាប់ទំព័រ Phone
-  updateListUI('mobile-rec-list', S.recQ, guests);
-}
+  const c = document.getElementById('rec-list');
+  const mc = document.getElementById('mobile-rec-list');
+  let html = '';
 
-function updateListUI(containerId, queryText, guests) {
-  const c = document.getElementById(containerId);
-  if (!c) return;
-
-  const q = queryText.toLowerCase();
-  if(!q){c.innerHTML='<div class="empty"><div class="empty-ic">🔍</div>សូមវាយឈ្មោះភ្ញៀវដើម្បីស្វែងរក</div>';return;}
+  if(!q){
+    html = '<div class="empty"><div class="empty-ic">🔍</div>សូមវាយឈ្មោះភ្ញៀវដើម្បីស្វែងរក</div>';
+  } else {
+    let filtered=guests.filter(g=>(g.fullName+g.title+g.org+g.inviter+g.companion).toLowerCase().includes(q));
+    if(!filtered.length){
+      html = '<div class="empty"><div class="empty-ic">😕</div>រកមិនឃើញ</div>';
+    } else {
+      html = filtered.map(g=>{
+        const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
+        const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
+        const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
+        return `<div class="gi" onclick="openGiftSheet('${g.id}')">
+          <div class="gi-no">${toKhmerNum(g.no||'—')}</div>
+          <div class="gi-info">
+            <div class="gi-full">
+              <div class="gi-name">${displayName(g)}</div>
+              <div class="gi-details">${cp}${org}${inv}</div>
+            </div>
+          </div>
+          <div class="gi-badge"><div class="g-empty">＋</div></div>
+        </div>`;
+      }).join('');
+    }
+  }
   
-  let filtered=guests.filter(g=>(g.fullName+g.title+g.org+g.inviter+g.companion).toLowerCase().includes(q));
-  if(!filtered.length){c.innerHTML='<div class="empty"><div class="empty-ic">😕</div>រកមិនឃើញ</div>';return;}
-  
-  c.innerHTML=filtered.map(g=>{
-    const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
-    const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
-    const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
-    return `<div class="gi" onclick="openGiftSheet('${g.id}')">
-      <div class="gi-no">${g.no||'—'}</div>
-      <div class="gi-info">
-        <div class="gi-full">
-          <div class="gi-name">${displayName(g)}</div>
-          <div class="gi-details">${cp}${org}${inv}</div>
-        </div>
-      </div>
-      <div class="gi-badge"><div class="g-empty">＋</div></div>
-    </div>`;
-  }).join('');
+  if(c) c.innerHTML = html;
+  if(mc) mc.innerHTML = html;
 }
 
 let currentFilter='all';
@@ -834,13 +943,13 @@ function filterGuestsByStatus(status){
         const t=guestTotals(g.id);
         const has=t.khr>0||t.usd>0;
         let badge=has
-          ? `<div class="g-amt">${t.khr>0?fmtKHR(t.khr)+'៛':''}${t.khr>0&&t.usd>0?'<br>':''}${t.usd>0?'$'+fmtUSD(t.usd):''}</div>`
+          ? `<div class="g-amt">${t.khr>0?fmtKHR(t.khr)+' ៛':''}${t.khr>0&&t.usd>0?'<br>':''}${t.usd>0?fmtUSD(t.usd)+' $':''}</div>`
           : `<div class="g-empty">＋</div>`;
         const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
         const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
         const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
         return `<div class="gi" onclick="openGiftSheet('${g.id}')">
-          <div class="gi-no">${g.no||'—'}</div>
+          <div class="gi-no">${toKhmerNum(g.no||'—')}</div>
           <div class="gi-info">
             <div class="gi-full">
               <div class="gi-name">${displayName(g)}</div>
@@ -853,8 +962,45 @@ function filterGuestsByStatus(status){
   };
 
   const html = generateHTML(filtered);
-  document.getElementById('rec-list').innerHTML = html;
-  document.getElementById('mobile-rec-list').innerHTML = html;
+  const c = document.getElementById('rec-list');
+  const mc = document.getElementById('mobile-rec-list');
+  if(c) c.innerHTML = html;
+  if(mc) mc.innerHTML = html;
+}
+
+// ── ទំព័រកត់ចំណង(PC) : បង្ហាញបញ្ជីចំណងដៃថ្មីៗ (Live Feed Horizontal) ──
+function toggleLiveFeedAmt() {
+  S.showLiveAmt = !S.showLiveAmt;
+  const btn = document.getElementById('lf-toggle-btn');
+  if (btn) {
+    btn.innerHTML = S.showLiveAmt ? '👁️ លាក់ទឹកប្រាក់' : '🙈 បង្ហាញទឹកប្រាក់';
+  }
+  renderRecentGifts();
+}
+
+function renderRecentGifts() {
+  const c = document.getElementById('recent-gifts-tray');
+  if(!c) return;
+
+  if(S.gifts.length === 0) {
+    c.innerHTML = '';
+    return;
+  }
+
+  // បង្ហាញ ១៥ នាក់ចុងក្រោយដែលទើបនឹងកត់ចំណង ជួរដេក ព្រមទាំងមានសញ្ញាធីកពណ៌បៃតង
+  c.innerHTML = S.gifts.slice(0, 15).map(g => {
+    const guest = guestById(g.guestId);
+    const role = (guest && guest.org) ? guest.org : 'ភ្ញៀវកិត្តិយស';
+    const amtStr = S.showLiveAmt 
+        ? (g.currency === 'KHR' ? fmtKHR(g.amount) + ' ៛' : fmtUSD(g.amount) + ' $')
+        : role;
+
+    return `
+    <div class="rg-chip">
+      <div class="rg-chip-name">${g.guestName || 'ភ្ញៀវ'}</div>
+      <div class="rg-chip-amt">${amtStr} <span style="color:var(--ok); font-size:12px; margin-left:4px;">✅</span></div>
+    </div>`;
+  }).join('');
 }
 
 // ── Guests Page ──
@@ -873,7 +1019,7 @@ function renderGst(){
     const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
     const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
     return `<div class="gi">
-      <div class="gi-no" onclick="openGiftSheet('${g.id}')" style="cursor:pointer">${g.no||'—'}</div>
+      <div class="gi-no" onclick="openGiftSheet('${g.id}')" style="cursor:pointer">${toKhmerNum(g.no||'—')}</div>
       <div class="gi-info" onclick="openGiftSheet('${g.id}')">
         <div class="gi-full">
           <div class="gi-name">${displayName(g)}<span class="src-badge ${sc}">${sl}</span></div>
@@ -885,38 +1031,25 @@ function renderGst(){
   }).join('');
 }
 
-// ── Summary Page ──
+// ── Summary Page (New Redesign with Chart) ──
+let summaryChartInstance = null;
+
 function renderSum(){
   const guests=allGuests();
   const totKHR=S.gifts.filter(g=>g.currency==='KHR').reduce((s,g)=>s+Number(g.amount||0),0);
   const totUSD=S.gifts.filter(g=>g.currency==='USD').reduce((s,g)=>s+Number(g.amount||0),0);
   const gave=new Set(S.gifts.map(g=>g.guestId));
-  document.getElementById('s-khr').textContent=toKhmerNum(totKHR.toLocaleString());
-  document.getElementById('s-usd').textContent=toKhmerNum(totUSD.toLocaleString());
+  
+  // Update Top Stats
+  document.getElementById('s-khr').textContent=fmtKHR(totKHR);
+  document.getElementById('s-usd').textContent=fmtUSD(totUSD);
   document.getElementById('s-total').textContent=toKhmerNum(guests.length);
   document.getElementById('s-gave').textContent=toKhmerNum(gave.size);
-  renderInviterSummary();
-  const c=document.getElementById('s-list');
-  const list=S.gifts.slice(0,50);
-  if(!list.length){c.innerHTML='<div class="empty"><div class="empty-ic">💝</div>មិនទាន់មានកំណត់ត្រា</div>';return;}
-  c.innerHTML=list.map(g=>{
-    const astr=g.currency==='KHR'?toKhmerNum(g.amount.toLocaleString())+' ៛':'$'+toKhmerNum(Number(g.amount).toLocaleString());
-    return `<div class="gr-item">
-      <div>
-        <div class="gr-name">${g.guestName||'ភ្ញៀវ'}</div>
-        <div class="gr-meta">${fmtTS(g.recordedAt)}${g.note?' · '+g.note:''}</div>
-      </div>
-      <div class="gr-amt">${astr}</div>
-    </div>`;
-  }).join('');
-}
-
-// ── Inviter Summary ──
-function renderInviterSummary(){
-  const guests=allGuests();
+  
+  // Calculate Data for Chart and Grid
   const inviterMap={};
   guests.forEach(g=>{
-    const inv=g.inviter||'មិនមានអ្នកហៅ';
+    const inv=g.inviter||'ផ្សេងៗ';
     if(!inviterMap[inv]){
       inviterMap[inv]={khr:0,usd:0,count:0,gaveCount:0};
     }
@@ -930,33 +1063,115 @@ function renderInviterSummary(){
       });
     }
   });
+
+  const sortedInviters = Object.entries(inviterMap).sort((a,b)=>b[1].count - a[1].count);
+
+  // Render Grid
   const c=document.getElementById('inviter-grid');
-  const inviters=Object.entries(inviterMap).sort((a,b)=>b[1].khr-a[1].khr);
-  if(inviters.length===0){c.innerHTML='';return;}
-  c.innerHTML=inviters.map(([name,stats])=>{
-    return `<div class="inviter-card">
-      <div class="inviter-name">${name}</div>
-      <div class="inviter-stats">
-        <div class="inviter-stat">
-          <div class="inviter-val">${toKhmerNum(stats.khr.toLocaleString())}</div>
-          <div class="inviter-lbl">រៀល ៛</div>
-        </div>
-        <div class="inviter-stat">
-          <div class="inviter-val">$${toKhmerNum(stats.usd.toLocaleString())}</div>
-          <div class="inviter-lbl">ដុល្លា</div>
-        </div>
-      </div>
-      <div class="inviter-count">${toKhmerNum(stats.count)} ភ្ញៀវ · ${toKhmerNum(stats.gaveCount)} នាក់ចំណង</div>
-    </div>`;
-  }).join('');
+  if(sortedInviters.length===0){
+      c.innerHTML='<div class="empty">គ្មានទិន្នន័យ</div>';
+  } else {
+      c.innerHTML=sortedInviters.map(([name,stats])=>{
+        return `<div class="inviter-card">
+          <div class="inviter-name">${name}</div>
+          <div class="inviter-stats">
+            <div class="inviter-stat">
+              <div class="inviter-val">${fmtKHR(stats.khr)}</div>
+              <div class="inviter-lbl">រៀល ៛</div>
+            </div>
+            <div class="inviter-stat">
+              <div class="inviter-val">${fmtUSD(stats.usd)} $</div>
+              <div class="inviter-lbl">ដុល្លា</div>
+            </div>
+          </div>
+          <div class="inviter-count">ភ្ញៀវអញ្ជើញ: <b>${toKhmerNum(stats.count)}</b> · ចំណងហើយ: <b>${toKhmerNum(stats.gaveCount)}</b></div>
+        </div>`;
+      }).join('');
+  }
+
+  // Render Chart
+  renderChart(sortedInviters);
+}
+
+function renderChart(sortedInviters) {
+    const ctx = document.getElementById('summaryChart');
+    if (!ctx) return;
+    
+    if (summaryChartInstance) {
+        summaryChartInstance.destroy();
+    }
+
+    const labels = [];
+    const dataTotal = [];
+    const dataGave = [];
+
+    // Limit to top 10 for cleaner chart
+    const topInviters = sortedInviters.slice(0, 10);
+
+    topInviters.forEach(([name, stats]) => {
+        labels.push(name);
+        dataTotal.push(stats.count);
+        dataGave.push(stats.gaveCount);
+    });
+
+    summaryChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'ចំនួនភ្ញៀវអញ្ជើញសរុប',
+                    data: dataTotal,
+                    backgroundColor: 'rgba(95, 99, 104, 0.2)', // Muted Gray
+                    borderColor: 'rgba(95, 99, 104, 0.8)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                },
+                {
+                    label: 'ចំនួនភ្ញៀវដែលបានចំណង',
+                    data: dataGave,
+                    backgroundColor: 'rgba(212, 160, 58, 0.85)', // Gold
+                    borderColor: 'rgba(184, 134, 11, 1)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { precision: 0, font: { family: "'Battambang', sans-serif" } }
+                },
+                x: {
+                    ticks: { font: { family: "'Battambang', sans-serif", size: 11 } }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: { font: { family: "'Battambang', sans-serif", size: 13 } }
+                },
+                tooltip: {
+                    titleFont: { family: "'Battambang', sans-serif" },
+                    bodyFont: { family: "'Battambang', sans-serif" }
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            }
+        }
+    });
 }
 
 // ── Search ──
-function filterRec(q, targetListId){
+function filterRec(q){
   S.recQ=q; 
-  // Update inputs in both pages to match
-  document.getElementById('rec-srch').value = q;
-  document.getElementById('mobile-rec-srch').value = q;
+  const mbInput = document.getElementById('mobile-rec-srch');
+  if (mbInput && mbInput.value !== q) mbInput.value = q;
   renderRec();
 }
 function filterGst(q){S.gstQ=q;renderGst();}
@@ -983,7 +1198,7 @@ function closeGiftSheet(){
   setTimeout(()=>{
     // ដាក់ Focus លើប្រអប់ Scan តែនៅពេលដែលយើងនៅទំព័រ Recording ប៉ុណ្ណោះ
     if (S.page === 'recording') {
-        const s=document.getElementById('qr-scan-input');
+        const s=document.getElementById('smart-input');
         if(s) s.focus();
     }
   },200);
@@ -1002,14 +1217,13 @@ function setCurr(c){
 }
 function setQ(v,displayVal){
   document.getElementById('amtIn').value=v;
-  document.getElementById('amtDisplay').textContent=displayVal||toKhmerNum(v);
+  document.getElementById('amtDisplay').textContent=displayVal||fmtKHR(v);
 }
 function updateKhmerDisplay(val){
-  const num=parseInt(val)||0;
+  const num=parseFloat(val)||0;
   const display=document.getElementById('amtDisplay');
   if(num>0){
-    const khmerNum=toKhmerNum(num.toLocaleString());
-    display.textContent=S.curr==='KHR'?khmerNum+' ៛':'$'+khmerNum;
+    display.textContent=S.curr==='KHR'?fmtKHR(num)+' ៛':fmtUSD(num)+' $';
   }else{
     display.textContent='';
   }
@@ -1020,6 +1234,10 @@ async function saveGift(){
   if(!amt||amt<=0){showToast('⚠️ សូមបញ្ចូលចំនួនទឹកប្រាក់');return;}
   const g=guestById(S.selId);if(!g)return;
   const guestName=displayName(g);
+  
+  // រៀបចំអត្ថបទសម្រាប់បង្ហាញ
+  const amtStr = S.curr === 'KHR' ? fmtKHR(amt) + ' ៛' : fmtUSD(amt) + ' $';
+
   try{
     await db.collection('gifts').add({
       guestId:S.selId,
@@ -1029,23 +1247,31 @@ async function saveGift(){
       note:document.getElementById('noteIn').value.trim(),
       recordedAt:firebase.firestore.FieldValue.serverTimestamp()
     });
+    
+    // Reset values
     document.getElementById('amtIn').value='';
     document.getElementById('amtDisplay').textContent='';
     document.getElementById('noteIn').value='';
-    showToast(`សូមថ្លែងអំណរគុណ ចំណងដៃ ${guestName} បានរក្សាទុករួចរាល់! សូមជូនពរសុខភាពល្អ និងសុខសុវត្ថិភាព`);
-    setTimeout(()=>{
-      closeGiftSheet();
-      // Clear search and refocus
-      document.getElementById('rec-srch').value = '';
-      document.getElementById('mobile-rec-srch').value = '';
-      S.recQ = '';
-      renderRec();
-      
-      if(S.page === 'recording'){
-        const s = document.getElementById('qr-scan-input');
-        if(s) s.focus();
+    
+    // បិទផ្ទាំងភ្លាមៗដោយគ្មានការរង់ចាំ និងមិនបង្ហាញសារអរគុណ ដើម្បីភាពរហ័ស
+    closeGiftSheet();
+    
+    // Clear search and refocus
+    if (document.getElementById('smart-input')) document.getElementById('smart-input').value = '';
+    if (document.getElementById('mobile-rec-srch')) document.getElementById('mobile-rec-srch').value = '';
+    S.recQ = '';
+    renderRec();
+    
+    if(S.page === 'recording'){
+      const s = document.getElementById('smart-input');
+      if(s) s.focus();
+    } else if (S.page === 'cam-scan') {
+      // បង្ហាញសារ ឈ្មោះ និងទឹកប្រាក់ ជាមួយនឹងសញ្ញា ✅ ឲ្យឃើញច្បាស់ៗលើទំព័រ Mobile
+      const mobStatus = document.getElementById('mobile-cam-status-text');
+      if (mobStatus) {
+        mobStatus.innerHTML = `✅ បានរក្សាទុកជោគជ័យ<br><span style="color:var(--gold); font-size:18px; font-family:'Khmer OS Muol Light', sans-serif; display:inline-block; margin-top:6px;">${guestName}</span><br><span style="color:var(--ok); font-size:20px; font-weight:bold;">${amtStr}</span>`;
       }
-    },2500);
+    }
   }catch(e){showToast('❌ '+e.message);}
 }
 
@@ -1055,7 +1281,7 @@ function renderPrev(id){
   if(!gs.length){c.innerHTML='';return;}
   c.innerHTML=`<div class="prev-ttl">📋 ចំណងដៃបានកត់ (${toKhmerNum(gs.length)})</div>`+
   gs.map(g=>{
-    const a=g.currency==='KHR'?toKhmerNum(Number(g.amount).toLocaleString())+' ៛':'$'+toKhmerNum(Number(g.amount).toLocaleString());
+    const a=g.currency==='KHR'?fmtKHR(g.amount)+' ៛':fmtUSD(g.amount)+' $';
     return `<div class="prev-item">
       <div>
         <div class="prev-amt">${a}</div>
@@ -1164,8 +1390,8 @@ function renderPrintPage(){
   let rows='';
   guests.forEach((g,i)=>{
     const t=guestTotals(g.id);
-    const khrStr=t.khr>0?toKhmerNum(t.khr.toLocaleString())+' ៛':'—';
-    const usdStr=t.usd>0?'$ '+toKhmerNum(t.usd.toLocaleString()):'—';
+    const khrStr=t.khr>0?fmtKHR(t.khr)+' ៛':'—';
+    const usdStr=t.usd>0?fmtUSD(t.usd)+' $':'—';
     rows+=`<tr>
       <td class="td-no">${toKhmerNum(g.no||String(i+1))}</td>
       <td class="td-name">${displayName(g)}</td>
@@ -1200,11 +1426,11 @@ function renderPrintPage(){
     <div class="print-total">
       <div class="print-total-item">
         <div class="print-total-lbl">💰 សរុបរៀល</div>
-        <div class="print-total-val">${toKhmerNum(totKHR.toLocaleString())} ៛</div>
+        <div class="print-total-val">${fmtKHR(totKHR)} ៛</div>
       </div>
       <div class="print-total-item">
         <div class="print-total-lbl">💵 សរុបដុល្លា</div>
-        <div class="print-total-val">$ ${toKhmerNum(totUSD.toLocaleString())}</div>
+        <div class="print-total-val">${fmtUSD(totUSD)} $</div>
       </div>
       <div class="print-total-item">
         <div class="print-total-lbl">✅ ចំណងហើយ</div>
@@ -1238,8 +1464,8 @@ async function generateAllQRs() {
   const hasConstructorApi = (typeof QRCode === 'function') && !hasModernApi;
 
   for (const g of guests) {
-    // លុបដកឃ្លា (spaces) ចេញពីឈ្មោះដើម្បីកុំឲ្យ Error ពេលអាន QR
-    const qrValue = displayName(g).replace(/\s+/g, '');
+    // ប្តូរមកប្រើលេខរៀងភ្ញៀវវិញ (WG:លេខរៀង ឬ WG:ID បើគ្មានលេខរៀង)
+    const qrValue = g.no ? `WG:${g.no}` : `WG:${g.id}`;
     let qrUrl = '';
 
     try {
@@ -1324,97 +1550,92 @@ async function generateAllQRs() {
 }
 
 // ═══════════════════════════════════════════════
-//  SCANNER INPUT (USB & CAMERA)
+//  SMART SCANNER & SEARCH INPUT (USB PC)
 // ═══════════════════════════════════════════════
-let _scanTimer=null;
+function handleSmartInput(val) {
+  // ត្រងបញ្ជីភ្ញៀវភ្លាមៗនៅពេលវាយបញ្ចូលឈ្មោះ
+  filterRec(val);
+}
 
-function handleScanKey(e, inputId, statusId){
-  if(e.key==='Enter'){
+function handleSmartKey(e) {
+  // ប្រសិនបើចុច Enter (ឬ USB Scanner បាញ់បញ្ចូលហើយលោត Enter)
+  if (e.key === 'Enter') {
     e.preventDefault();
-    const val=document.getElementById(inputId).value.trim();
-    if(val) processQRScan(val, inputId, statusId);
+    const val = e.target.value.trim();
+    if (val) processScanOrSearch(val, 'smart-input', 'scan-status', false);
   }
 }
 
-function handleScanInput(val, inputId, statusId){
-  clearTimeout(_scanTimer);
-  if(!val) return;
-  _scanTimer=setTimeout(()=>{
-    const cur=document.getElementById(inputId).value.trim();
-    if(cur) processQRScan(cur, inputId, statusId);
-  }, 120);
-}
-
-function processQRScan(text, inputId = null, statusId = null){
+// អនុគមន៍កណ្តាលសម្រាប់ដំណើរការពេលស្កេន ឬពេល Enter
+function processScanOrSearch(text, inputId = null, statusId = null, isMobile = false) {
   const input = inputId ? document.getElementById(inputId) : null;
-  
-  // បើអត់បញ្ជាក់ Status យកតាមទំព័រដែលកំពុងបើក
-  let status;
-  if (statusId) {
-      status = document.getElementById(statusId);
-  } else {
-      status = S.page === 'cam-scan' ? document.getElementById('mobile-cam-status-text') : document.getElementById('scan-status');
-  }
+  const status = statusId ? document.getElementById(statusId) : null;
 
-  const guests=allGuests();
-  let found=null;
+  const guests = allGuests();
+  let found = null;
 
-  // លុបចន្លោះប្រហោង (Space) ទាំងអស់ចេញពីអត្ថបទដែល Scan បាន
+  // លុបចន្លោះប្រហោង (Space) ទាំងអស់ចេញពីអត្ថបទដែលបានបញ្ចូល
   const cleanScanText = text.replace(/\s+/g, '');
 
-  // រកតាមលេខរៀង (ករណីចាស់ៗ)
-  if(cleanScanText.startsWith('WG:')){
-    const no=cleanScanText.slice(3);
-    found=guests.find(g=>(g.no||'')===no);
+  // 1. ស្វែងរកតាមការគិតថាជាកូដស្កេនចំៗ (WG: លេខរៀង, ឬលេខរៀងចំៗ)
+  if (cleanScanText.startsWith('WG:')) {
+    found = guests.find(g => (g.no || '') === cleanScanText.slice(3));
+  } else if (cleanScanText.includes(':')) {
+    found = guests.find(g => (g.no || '') === cleanScanText.split(':')[0]);
+  } else {
+    found = guests.find(g => (g.no || '') === cleanScanText);
   }
-  if(!found && cleanScanText.includes(':')){
-    const no=cleanScanText.split(':')[0];
-    found=guests.find(g=>(g.no||'')===no);
-  }
-  // រកតាមលេខរៀងផ្ទាល់
-  if(!found) found=guests.find(g=>(g.no||'')===cleanScanText);
   
-  // បន្ថែមការស្វែងរកតាមឈ្មោះផ្ទាល់ ពីព្រោះ QR Code ថ្មីពេលនេះផ្ទុកឈ្មោះភ្ញៀវ
-  // ធ្វើការលុប space ពីឈ្មោះភ្ញៀវក្នុងប្រព័ន្ធដែរ មុននឹងប្រៀបធៀប
-  if(!found) found=guests.find(g=>displayName(g).replace(/\s+/g, '')===cleanScanText);
+  // 2. ស្វែងរកតាមការផ្គូផ្គងឈ្មោះពេញ (ពិតប្រាកដ១០០%)
+  if (!found) {
+    found = guests.find(g => displayName(g).replace(/\s+/g, '') === cleanScanText);
+  }
 
-  if(found){
-    const name=displayName(found);
-    status.textContent='✅ '+name;
-    status.style.color='var(--ok)';
+  // 3. (មុខងារឆ្លាតវៃ) ប្រសិនបើអត់មានទិន្នន័យផ្គូផ្គងចំៗទេ យើងឆែកមើលបញ្ជីដែលទើបនឹងវាយអក្សរត្រង
+  // ប្រសិនបើវាសល់តែភ្ញៀវ ១ នាក់គត់ នោះប្រព័ន្ធនឹងចាប់យកភ្ញៀវនោះតែម្តង!
+  if (!found) {
+    const q = text.toLowerCase();
+    const filtered = guests.filter(g => (g.fullName + g.title + g.org + g.inviter + g.companion).toLowerCase().includes(q));
+    if (filtered.length === 1) {
+      found = filtered[0];
+    }
+  }
+
+  // ឆ្លើយតបទៅនឹងលទ្ធផល
+  if (found) {
+    const name = displayName(found);
+    if (status) {
+      status.textContent = '✅ ' + name;
+      status.style.color = 'var(--ok)';
+    }
+    if (input) input.classList.add('flash-ok');
     
-    if(input) input.classList.add('flash-ok');
-    
-    setTimeout(()=>{
-      if(input) {
-          input.classList.remove('flash-ok');
-          input.value='';
+    setTimeout(() => {
+      if (input) {
+        input.classList.remove('flash-ok');
+        input.value = '';
       }
-      status.textContent='';
-      if (S.page === 'cam-scan') status.textContent = 'សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ'; // Reset status for cam
+      if (status) status.textContent = isMobile ? 'សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ' : '';
+      filterRec(''); // Reset បញ្ជីត្រឡប់មកដើមវិញពេលលោតផ្ទាំង
       openGiftSheet(found.id);
-    },400);
-  }else{
-    status.textContent='⚠️ រកមិនឃើញ: ' + text;
-    status.style.color='var(--err)';
+    }, 400);
+  } else {
+    if (status) {
+      status.textContent = '⚠️ រកមិនឃើញ ឬមានឈ្មោះស្ទួនគ្នា';
+      status.style.color = 'var(--err)';
+    }
+    if (input) input.classList.add('flash-err');
     
-    if(input) input.classList.add('flash-err');
-    
-    setTimeout(()=>{
-      if(input) {
-          input.classList.remove('flash-err');
-          input.value='';
-      }
-      status.textContent='';
-      if (S.page === 'cam-scan') status.textContent = 'សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ'; // Reset status for cam
-      // Focus តែនៅពេលនៅទំព័រ Recording
-      if (S.page === 'recording' && input) input.focus(); 
-    },2000);
+    setTimeout(() => {
+      if (input) input.classList.remove('flash-err');
+      if (status) status.textContent = isMobile ? 'សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ' : '';
+      if (!isMobile && input) input.focus(); 
+    }, 2000);
   }
 }
 
 function keepScanFocus(){
-  const scanInput=document.getElementById('qr-scan-input');
+  const scanInput=document.getElementById('smart-input');
   if(!scanInput) return;
   const active=document.activeElement;
   const isTyping=active&&(active.tagName==='INPUT'||active.tagName==='TEXTAREA')&&active!==scanInput;
@@ -1474,8 +1695,8 @@ function onMobileCamScanSuccess(decodedText, decodedResult) {
   document.getElementById('mobile-cam-status-text').textContent = '✅ បានស្កេន...';
   document.getElementById('mobile-cam-status-text').style.color = 'var(--ok)';
   
-  // ៣. បញ្ជូនទិន្នន័យអក្សរទៅកាន់អនុគមន៍ស្វែងរកភ្ញៀវមានស្រាប់ (មិនបាច់បញ្ជាក់ input ID)
-  processQRScan(decodedText);
+  // ៣. បញ្ជូនទិន្នន័យអក្សរទៅកាន់អនុគមន៍ Process ទូទៅ (បញ្ជាក់ថាជា Mobile)
+  processScanOrSearch(decodedText, null, 'mobile-cam-status-text', true);
 }
 
 // ═══════════════════════════════════════════════
@@ -1487,7 +1708,7 @@ async function init(){
   initFS();
   setTimeout(()=>{
     if(S.page === 'recording'){
-        const searchInput=document.getElementById('rec-srch');
+        const searchInput=document.getElementById('smart-input');
         if(searchInput) searchInput.focus();
     }
   },300);
@@ -1496,16 +1717,15 @@ async function init(){
 
 let activityTimer;
 function setupAutoFocus(){
-  const searchInput=document.getElementById('rec-srch');
-  if(!searchInput) return;
+  const scanInput=document.getElementById('smart-input');
+  if(!scanInput) return;
   function resetTimer(){
     clearTimeout(activityTimer);
     activityTimer=setTimeout(()=>{
       if(S.page!=='recording') return;
       if(document.getElementById('g-overlay').classList.contains('open')) return;
       const active=document.activeElement;
-      const scanInput=document.getElementById('qr-scan-input');
-      const isOtherInput=active&&(active.tagName==='INPUT'||active.tagName==='TEXTAREA')&&active!==scanInput&&active!==searchInput;
+      const isOtherInput=active&&(active.tagName==='INPUT'||active.tagName==='TEXTAREA')&&active!==scanInput;
       if(!isOtherInput && scanInput) scanInput.focus();
     },3000);
   }
