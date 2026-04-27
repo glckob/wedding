@@ -109,11 +109,40 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 /* ─── GIFT & EXPENSE SLIDE-UP SHEET ─── */
 #g-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-end;backdrop-filter:blur(2px);}
 #g-overlay.open{display:flex;}
-#g-sheet{width:100%;max-width:480px;margin:0 auto;background:var(--surface);border-top-left-radius:24px;border-top-right-radius:24px;border-top:1px solid var(--border2);padding:18px 20px 24px;animation:slideUp .28s ease;max-height:92vh;overflow-y:auto;}
+
+/* ធ្វើឲ្យទំព័រនេះរីកធំពេលនៅកុំព្យូទ័រ ដើម្បីដាក់ Numpad */
+#g-sheet{width:100%;max-width:480px;margin:0 auto;background:var(--surface);border-top-left-radius:24px;border-top-right-radius:24px;border-top:1px solid var(--border2);padding:18px 20px 24px;animation:slideUp .28s ease;max-height:92vh;overflow-y:auto; transition: max-width 0.3s;}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+
 .sh-handle{width:38px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
 .sh-name{font-size:19px;color:var(--gold-lt);text-align:center;font-family:'Cormorant Garamond',serif;line-height:1.3;}
 .sh-sub{font-size:12px;color:var(--muted);text-align:center;margin-top:4px;margin-bottom:18px;}
+
+/* ការកំណត់រចនាសម្ព័ន្ធបែងចែកជា ២ (Numpad ស្តាំ និង Form ឆ្វេង) */
+.g-sheet-content { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+.g-sheet-left { display: none; } /* លាក់ Numpad នៅលើទូរស័ព្ទ */
+.g-sheet-right { flex: 1; min-width: 0; }
+
+/* PC & Tablet Layout (បង្ហាញ Numpad ខាងឆ្វេង) */
+@media(min-width: 650px) {
+    #g-sheet { max-width: 800px; }
+    .g-sheet-content { flex-direction: row; align-items: flex-start; gap: 24px; }
+    .g-sheet-left { display: block; flex: 0 0 280px; border-right: 1px dashed var(--border); padding-right: 24px; }
+}
+
+/* រចនាប័ទ្មរបស់ Number Pad ថ្មី */
+.numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.np-btn { 
+    background: var(--card); border: 2px solid var(--border); border-radius: var(--r); 
+    padding: 16px 0; font-size: 22px; font-family: 'Battambang', sans-serif; 
+    color: var(--text); cursor: pointer; transition: all .15s; 
+    display: flex; align-items: center; justify-content: center; user-select: none; 
+}
+.np-btn:active { background: rgba(212,160,58,0.1); border-color: var(--gold); transform: scale(0.95); color: var(--gold); }
+.np-btn.np-del { color: var(--err); font-size: 20px;}
+.np-btn.np-clear { color: var(--err); font-size: 18px; font-weight: bold; }
+.np-btn-wide { grid-column: span 2; }
+
 
 /* Currency toggle */
 .curr-tog{display:flex;background:var(--card);border-radius:var(--r);padding:4px;margin-bottom:14px;border:1px solid var(--border);}
@@ -775,31 +804,57 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
 
 </div><!-- /app -->
 
-<!-- GIFT SHEET OVERLAY -->
+<!-- GIFT SHEET OVERLAY (With Numpad implementation) -->
 <div id="g-overlay" onclick="overlayClickGift(event)">
   <div id="g-sheet">
     <div class="sh-handle"></div>
     <div class="sh-name" id="sh-name">—</div>
     <div class="sh-sub" id="sh-sub"></div>
-    <div class="curr-tog">
-      <button class="cBtn active" id="cBtnKHR" onclick="setCurr('KHR')">រៀល ៛</button>
-      <button class="cBtn" id="cBtnUSD" onclick="setCurr('USD')">ដុល្លា $</button>
-    </div>
-    <div class="amt-wrap">
-      <span class="curr-sym" id="cSym">៛</span>
-      <input type="number" id="amtIn" placeholder="0" min="0" inputmode="numeric" oninput="updateKhmerDisplay(this.value)" onkeyup="handleAmtEnter(event)">
-    </div>
-    <div id="amtDisplay" style="text-align:center;font-size:20px;color:var(--gold);margin-bottom:12px;font-family:'Khmer OS Muol Light',sans-serif;"></div>
-    <div class="quick-row" id="quickRow"></div>
     
-    <div class="quick-note-row">
-      <button class="qnBtn" onclick="setNote('សាច់ប្រាក់')">💵 សាច់ប្រាក់</button>
-      <button class="qnBtn" onclick="setNote('KH-QR')">📱 KH-QR</button>
+    <div class="g-sheet-content">
+      <!-- ផ្នែកខាងឆ្វេង: Number Pad (បង្ហាញតែលើ PC) -->
+      <div class="g-sheet-left">
+        <div class="numpad">
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('1')">1</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('2')">2</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('3')">3</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('4')">4</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('5')">5</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('6')">6</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('7')">7</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('8')">8</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('9')">9</button>
+          <button class="np-btn np-clear" onmousedown="event.preventDefault()" onclick="npClear()">C</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('0')">0</button>
+          <button class="np-btn np-del" onmousedown="event.preventDefault()" onclick="npDel()">⌫</button>
+          <button class="np-btn" onmousedown="event.preventDefault()" onclick="np('00')">00</button>
+          <button class="np-btn np-btn-wide" onmousedown="event.preventDefault()" onclick="np('000')">000</button>
+        </div>
+      </div>
+      
+      <!-- ផ្នែកខាងស្តាំ: Form បញ្ចូល និងប្រវត្តិ -->
+      <div class="g-sheet-right">
+        <div class="curr-tog">
+          <button class="cBtn active" id="cBtnKHR" onclick="setCurr('KHR')">រៀល ៛</button>
+          <button class="cBtn" id="cBtnUSD" onclick="setCurr('USD')">ដុល្លា $</button>
+        </div>
+        <div class="amt-wrap">
+          <span class="curr-sym" id="cSym">៛</span>
+          <input type="number" id="amtIn" placeholder="0" min="0" inputmode="numeric" oninput="updateKhmerDisplay(this.value)" onkeyup="handleAmtEnter(event)">
+        </div>
+        <div id="amtDisplay" style="text-align:center;font-size:20px;color:var(--gold);margin-bottom:12px;font-family:'Khmer OS Muol Light',sans-serif;"></div>
+        <div class="quick-row" id="quickRow"></div>
+        
+        <div class="quick-note-row">
+          <button class="qnBtn" onclick="setNote('សាច់ប្រាក់')">💵 សាច់ប្រាក់</button>
+          <button class="qnBtn" onclick="setNote('KH-QR')">📱 KH-QR</button>
+        </div>
+        <input type="text" class="note-in" id="noteIn" placeholder="កំណត់ចំណាំផ្សេងៗ (ជាជម្រើស)" onkeyup="handleAmtEnter(event)">
+        
+        <button class="save-btn" onclick="saveGift()">💾 រក្សាទុក</button>
+        <div id="prevSection"></div>
+      </div>
     </div>
-    <input type="text" class="note-in" id="noteIn" placeholder="កំណត់ចំណាំផ្សេងៗ (ជាជម្រើស)" onkeyup="handleAmtEnter(event)">
-    
-    <button class="save-btn" onclick="saveGift()">💾 រក្សាទុក</button>
-    <div id="prevSection"></div>
   </div>
 </div>
 
@@ -1044,7 +1099,6 @@ async function saveSettings() {
 // ═══════════════════════════════════════════════
 //  FIRESTORE LISTENERS & DB HELPERS
 // ═══════════════════════════════════════════════
-// អនុគមន៍ជំនួយសម្រាប់ទាញយកទិន្នន័យដាច់ដោយឡែកតាមគណនី
 function getUserCol(colName) {
   if (!auth.currentUser) throw new Error("Not logged in");
   return db.collection('users').doc(auth.currentUser.uid).collection(colName);
@@ -1080,13 +1134,11 @@ function initFS(){
 //  NAVIGATION
 // ═══════════════════════════════════════════════
 function nav(page){
-  // បិទកាមេរ៉ាស្វ័យប្រវត្តិពេលចាកចេញពីទំព័រស្កេនកាមេរ៉ា
   if(S.page === 'cam-scan' && page !== 'cam-scan' && typeof stopMobileCamera === 'function'){
     stopMobileCamera();
   }
 
   S.page=page;
-  // កំណត់ Class នៅលើ body ដើម្បីងាយស្រួលគ្រប់គ្រង CSS តាមទំព័រនីមួយៗ (ពិសេសសម្រាប់ Scanner Mode)
   document.body.className = 'mode-' + page;
 
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -1225,7 +1277,6 @@ function renderRecentGifts() {
     return;
   }
 
-  // បង្ហាញ ១៥ នាក់ចុងក្រោយដែលទើបនឹងកត់ចំណង ជួរដេក ព្រមទាំងមានសញ្ញាធីកពណ៌បៃតង
   c.innerHTML = S.gifts.slice(0, 15).map(g => {
     const guest = guestById(g.guestId);
     const role = (guest && guest.org) ? guest.org : 'ភ្ញៀវកិត្តិយស';
@@ -1373,7 +1424,6 @@ function renderSum(){
   document.getElementById('sum-rem-usd').textContent=fmtUSD(remUSD);
   document.getElementById('sum-rem-usd').style.color = remUSD >= 0 ? 'var(--gold-dk)' : 'var(--err)';
 
-  
   // Calculate Data for Chart and Grid
   const inviterMap={};
   guests.forEach(g=>{
@@ -1433,7 +1483,6 @@ function renderChart(sortedInviters) {
     const dataTotal = [];
     const dataGave = [];
 
-    // Limit to top 10 for cleaner chart
     const topInviters = sortedInviters.slice(0, 10);
 
     topInviters.forEach(([name, stats]) => {
@@ -1505,7 +1554,7 @@ function filterRec(q){
 function filterGst(q){S.gstQ=q;renderGst();}
 
 // ═══════════════════════════════════════════════
-//  GIFT SHEET
+//  GIFT SHEET & NUMPAD FUNCTIONS
 // ═══════════════════════════════════════════════
 function openGiftSheet(id){
   const g=guestById(id);if(!g)return;
@@ -1524,7 +1573,6 @@ function closeGiftSheet(){
   document.getElementById('g-overlay').classList.remove('open');
   S.selId=null;
   setTimeout(()=>{
-    // ដាក់ Focus លើប្រអប់ Scan តែនៅពេលដែលយើងនៅទំព័រ Recording ប៉ុណ្ណោះ
     if (S.page === 'recording') {
         const s=document.getElementById('smart-input');
         if(s) s.focus();
@@ -1560,6 +1608,32 @@ function updateKhmerDisplay(val){
   }
 }
 
+// ── NUMPAD LOGIC ──
+function np(val) {
+  const el = document.getElementById('amtIn');
+  if(el.value === '0' && val !== '0' && val !== '00' && val !== '000') {
+    el.value = val;
+  } else {
+    el.value += val;
+  }
+  updateKhmerDisplay(el.value);
+  el.focus();
+}
+
+function npDel() {
+  const el = document.getElementById('amtIn');
+  el.value = el.value.slice(0, -1);
+  updateKhmerDisplay(el.value);
+  el.focus();
+}
+
+function npClear() {
+  const el = document.getElementById('amtIn');
+  el.value = '';
+  updateKhmerDisplay(el.value);
+  el.focus();
+}
+
 function handleAmtEnter(e) {
   if (e.key === 'Enter') saveGift();
 }
@@ -1570,7 +1644,6 @@ async function saveGift(){
   const g=guestById(S.selId);if(!g)return;
   const guestName=displayName(g);
   
-  // រៀបចំអត្ថបទសម្រាប់បង្ហាញ
   const amtStr = S.curr === 'KHR' ? fmtKHR(amt) + ' ៛' : fmtUSD(amt) + ' $';
 
   try{
@@ -1583,15 +1656,12 @@ async function saveGift(){
       recordedAt:firebase.firestore.FieldValue.serverTimestamp()
     });
     
-    // Reset values
     document.getElementById('amtIn').value='';
     document.getElementById('amtDisplay').textContent='';
     document.getElementById('noteIn').value='';
     
-    // បិទផ្ទាំងភ្លាមៗដោយគ្មានការរង់ចាំ និងមិនបង្ហាញសារអរគុណ ដើម្បីភាពរហ័ស
     closeGiftSheet();
     
-    // Clear search and refocus
     if (document.getElementById('smart-input')) document.getElementById('smart-input').value = '';
     if (document.getElementById('mobile-rec-srch')) document.getElementById('mobile-rec-srch').value = '';
     S.recQ = '';
@@ -1601,7 +1671,6 @@ async function saveGift(){
       const s = document.getElementById('smart-input');
       if(s) s.focus();
     } else if (S.page === 'cam-scan') {
-      // បង្ហាញសារ ឈ្មោះ និងទឹកប្រាក់ ជាមួយនឹងសញ្ញា ✅ ឲ្យឃើញច្បាស់ៗលើទំព័រ Mobile
       const mobStatus = document.getElementById('mobile-cam-status-text');
       if (mobStatus) {
         mobStatus.innerHTML = `✅ បានរក្សាទុកជោគជ័យ<br><span style="color:var(--gold); font-size:18px; font-family:'Khmer OS Muol Light', sans-serif; display:inline-block; margin-top:6px;">${escapeHTML(guestName)}</span><br><span style="color:var(--ok); font-size:20px;">${amtStr}</span>`;
@@ -1643,12 +1712,11 @@ function openAddModal(){
   document.getElementById('gm-id').value='';
   document.getElementById('gm-src').value='custom';
   
-  // មុខងារស្វែងរក ល.រ ឆ្លាតវៃ (រកចន្លោះប្រហោង ឬយកលេខធំបំផុត + 1)
   const guests = allGuests();
   const numbers = guests.map(g => parseInt(g.no)).filter(n => !isNaN(n) && n > 0).sort((a, b) => a - b);
   let nextNo = 1;
   for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] > nextNo) break; // រកឃើញចន្លោះប្រហោង
+    if (numbers[i] > nextNo) break; 
     if (numbers[i] === nextNo) nextNo++;
   }
   
@@ -1690,12 +1758,11 @@ async function saveGuest(){
   const enteredNo = document.getElementById('gm-no').value.trim();
   const id=document.getElementById('gm-id').value;
   
-  // ឆែកមើលក្រែងលោមានការវាយលេខរៀងស្ទួន
   if (enteredNo) {
     const duplicate = allGuests().find(g => String(g.no) === String(enteredNo) && g.id !== id);
     if (duplicate) {
       showToast(`⚠️ ល.រ "${toKhmerNum(enteredNo)}" ស្ទួនជាមួយ៖ ${escapeHTML(displayName(duplicate))}`);
-      return; // ផ្អាកការរក្សាទុក
+      return; 
     }
   }
 
@@ -1959,14 +2026,12 @@ async function changeQrColor() {
   
   const user = auth.currentUser;
   if(user) {
-      // រក្សាទុកការកំណត់ពណ៌ទៅកាន់គណនីផ្ទាល់ខ្លួន (Background save)
       db.collection('userSettings').doc(user.uid).set({
           qrColorDark: dark,
           qrColorLight: light
       }, {merge: true}).catch(e => console.warn("Failed to save color:", e));
   }
   
-  // បើកំពុងបង្ហាញ QR ស្រាប់ ឲ្យវា Generate ថ្មីភ្លាមៗដើម្បីឃើញពណ៌ថ្មី
   const container = document.getElementById('qr-container');
   if(container && !container.innerHTML.includes('empty-ic')) {
       generateAllQRs();
@@ -1983,7 +2048,7 @@ async function generateAllQRs() {
   }
 
   showToast('⏳ កំពុងបង្កើត QR Code ទាំងអស់...');
-  container.innerHTML = ''; // លុបទិន្នន័យចាស់
+  container.innerHTML = ''; 
 
   if (typeof QRCode === 'undefined') {
     showToast('❌ មិនមានបណ្ណាល័យ qrcode.min.js ទេ');
@@ -1993,12 +2058,10 @@ async function generateAllQRs() {
   const hasModernApi = (typeof QRCode.toDataURL === 'function');
   const hasConstructorApi = (typeof QRCode === 'function') && !hasModernApi;
 
-  // ទាញយកពណ៌បច្ចុប្បន្នពី State
   const cDark = S.qrColorDark || '#000000';
   const cLight = S.qrColorLight || '#ffffff';
 
   for (const g of guests) {
-    // ប្តូរមកប្រើលេខរៀងភ្ញៀវវិញ (WG:លេខរៀង ឬ WG:ID បើគ្មានលេខរៀង)
     const qrValue = g.no ? `WG:${g.no}` : `WG:${g.id}`;
     let qrUrl = '';
 
@@ -2009,7 +2072,7 @@ async function generateAllQRs() {
                 type: 'image/png',
                 width: 400,
                 margin: 2,
-                color: { dark: cDark, light: cLight } // ប្រើប្រាស់ពណ៌ដែលបានជ្រើសរើស
+                color: { dark: cDark, light: cLight } 
             });
         } else if (hasConstructorApi) {
             const tmp = document.createElement('div');
@@ -2018,17 +2081,15 @@ async function generateAllQRs() {
             tmp.style.top = '-10000px';
             document.body.appendChild(tmp);
 
-            // បញ្ចូលតម្លៃអក្សរផ្ទាល់ ដោយមិនបាច់បំប្លែង ព្រោះ Library ស្គាល់ស្រាប់
             new QRCode(tmp, {
                 text: qrValue,
                 width: 400,
                 height: 400,
-                colorDark : cDark,   // ប្រើប្រាស់ពណ៌ដែលបានជ្រើសរើស
-                colorLight : cLight, // ប្រើប្រាស់ពណ៌ផ្ទៃដែលបានជ្រើសរើស
+                colorDark : cDark,   
+                colorLight : cLight, 
                 correctLevel : QRCode.CorrectLevel.M
             });
 
-            // រង់ចាំបន្តិចដើម្បីឱ្យ Browser ទាញយករូបភាពទាន់
             await new Promise(r => setTimeout(r, 15));
 
             const canvas = tmp.querySelector('canvas');
@@ -2045,20 +2106,16 @@ async function generateAllQRs() {
         console.error('QR Generate Error for', qrValue, ':', err);
     }
 
-    // បង្កើត Container សំរាប់ QR មួយ
     const card = document.createElement('div');
     card.className = 'qr-card';
 
-    // លេខរៀង
     const noDiv = document.createElement('div');
     noDiv.className = 'qr-guest-no';
     noDiv.innerText = `ល.រ: ${g.no || '—'}`;
 
-    // កន្លែងដាក់រូប QR
     const qrDiv = document.createElement('div');
     qrDiv.className = 'qr-code-img';
     
-    // បង្ហាញជារូបភាព (img tag) ដែលមានស្ថេរភាពជាង Canvas ពេល Print
     if (qrUrl) {
         const imgEl = document.createElement('img');
         imgEl.src = qrUrl;
@@ -2069,7 +2126,6 @@ async function generateAllQRs() {
         qrDiv.innerHTML = '<span style="font-size:10px;color:red;">Error</span>';
     }
 
-    // ឈ្មោះភ្ញៀវ
     const nameDiv = document.createElement('div');
     nameDiv.className = 'qr-guest-name';
     nameDiv.innerText = displayName(g);
@@ -2087,12 +2143,10 @@ async function generateAllQRs() {
 //  SMART SCANNER & SEARCH INPUT (USB PC)
 // ═══════════════════════════════════════════════
 function handleSmartInput(val) {
-  // ត្រងបញ្ជីភ្ញៀវភ្លាមៗនៅពេលវាយបញ្ចូលឈ្មោះ
   filterRec(val);
 }
 
 function handleSmartKey(e) {
-  // ប្រសិនបើចុច Enter (ឬ USB Scanner បាញ់បញ្ចូលហើយលោត Enter)
   if (e.key === 'Enter') {
     e.preventDefault();
     const val = e.target.value.trim();
@@ -2100,7 +2154,6 @@ function handleSmartKey(e) {
   }
 }
 
-// អនុគមន៍កណ្តាលសម្រាប់ដំណើរការពេលស្កេន ឬពេល Enter
 function processScanOrSearch(text, inputId = null, statusId = null, isMobile = false) {
   const input = inputId ? document.getElementById(inputId) : null;
   const status = statusId ? document.getElementById(statusId) : null;
@@ -2108,10 +2161,8 @@ function processScanOrSearch(text, inputId = null, statusId = null, isMobile = f
   const guests = allGuests();
   let found = null;
 
-  // លុបចន្លោះប្រហោង (Space) ទាំងអស់ចេញពីអត្ថបទដែលបានបញ្ចូល
   const cleanScanText = text.replace(/\s+/g, '');
 
-  // 1. ស្វែងរកតាមការគិតថាជាកូដស្កេនចំៗ (WG: លេខរៀង, ឬលេខរៀងចំៗ)
   if (cleanScanText.startsWith('WG:')) {
     found = guests.find(g => (g.no || '') === cleanScanText.slice(3));
   } else if (cleanScanText.includes(':')) {
@@ -2120,13 +2171,10 @@ function processScanOrSearch(text, inputId = null, statusId = null, isMobile = f
     found = guests.find(g => (g.no || '') === cleanScanText);
   }
   
-  // 2. ស្វែងរកតាមការផ្គូផ្គងឈ្មោះពេញ (ពិតប្រាកដ១០០%)
   if (!found) {
     found = guests.find(g => displayName(g).replace(/\s+/g, '') === cleanScanText);
   }
 
-  // 3. (មុខងារឆ្លាតវៃ) ប្រសិនបើអត់មានទិន្នន័យផ្គូផ្គងចំៗទេ យើងឆែកមើលបញ្ជីដែលទើបនឹងវាយអក្សរត្រង
-  // ប្រសិនបើវាសល់តែភ្ញៀវ ១ នាក់គត់ នោះប្រព័ន្ធនឹងចាប់យកភ្ញៀវនោះតែម្តង!
   if (!found) {
     const q = text.toLowerCase();
     const filtered = guests.filter(g => (g.fullName + g.title + g.org + g.inviter + g.companion).toLowerCase().includes(q));
@@ -2135,7 +2183,6 @@ function processScanOrSearch(text, inputId = null, statusId = null, isMobile = f
     }
   }
 
-  // ឆ្លើយតបទៅនឹងលទ្ធផល
   if (found) {
     const name = displayName(found);
     if (status) {
@@ -2150,7 +2197,7 @@ function processScanOrSearch(text, inputId = null, statusId = null, isMobile = f
         input.value = '';
       }
       if (status) status.textContent = isMobile ? 'សូមចុចបើកកាមេរ៉ា ដើម្បីស្កេន QR ភ្ញៀវ' : '';
-      filterRec(''); // Reset បញ្ជីត្រឡប់មកដើមវិញពេលលោតផ្ទាំង
+      filterRec(''); 
       openGiftSheet(found.id);
     }, 400);
   } else {
@@ -2193,11 +2240,9 @@ async function startMobileCamera() {
   document.getElementById('mobile-cam-status-text').textContent = 'កំពុងស្វែងរក QR Code...';
   document.getElementById('mobile-cam-status-text').style.color = 'var(--gold)';
 
-  // កំណត់ទំហំស៊ុមស្កេន និងល្បឿន
   const config = { fps: 10, qrbox: { width: 250, height: 250 } };
   
   try {
-    // ប្រើកាមេរ៉ាក្រោយ (environment) ជាជម្រើសដំបូង
     await html5QrCodeMobile.start({ facingMode: "environment" }, config, onMobileCamScanSuccess);
   } catch (err) {
     console.error(err);
@@ -2220,16 +2265,12 @@ async function stopMobileCamera() {
 }
 
 function onMobileCamScanSuccess(decodedText, decodedResult) {
-  // ១. បិទកាមេរ៉ាសិនពេលស្កេនត្រូវ ដើម្បីកុំឲ្យវាស្កេនផ្ទួនៗ
   stopMobileCamera();
-  
-  // ២. លេងសំឡេងរំញ័រ (ប្រសិនបើទូរស័ព្ទ Support)
   if ("vibrate" in navigator) navigator.vibrate(200);
 
   document.getElementById('mobile-cam-status-text').textContent = '✅ បានស្កេន...';
   document.getElementById('mobile-cam-status-text').style.color = 'var(--ok)';
   
-  // ៣. បញ្ជូនទិន្នន័យអក្សរទៅកាន់អនុគមន៍ Process ទូទៅ (បញ្ជាក់ថាជា Mobile)
   processScanOrSearch(decodedText, null, 'mobile-cam-status-text', true);
 }
 
@@ -2237,10 +2278,7 @@ function onMobileCamScanSuccess(decodedText, decodedResult) {
 //  INIT
 // ═══════════════════════════════════════════════
 async function init(){
-  nav('recording'); // Default start on PC recording
-  
-  // ឥឡូវការទាញ CSV គឺត្រូវចាំ Auth ដំណើរការសិន ដើម្បីដឹងថាត្រូវទាញ Link មួយណា
-  // ដូច្នេះមិនហៅ fetchCSV() ទីនេះទេ
+  nav('recording'); 
   initFS();
   setTimeout(()=>{
     if(S.page === 'recording'){
@@ -2281,8 +2319,8 @@ function doLogout(){
     S.mainTitle = 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល';
     S.subTitle = '❧ Sem Mardy & Vong Bophol ❧';
     S.qrImgUrl = '';
-    S.qrColorDark = '#000000'; // Reset color
-    S.qrColorLight = '#ffffff'; // Reset color
+    S.qrColorDark = '#000000'; 
+    S.qrColorLight = '#ffffff'; 
     S.csvGuests = [];
     applySettings();
     renderAll();
@@ -2321,7 +2359,6 @@ auth.onAuthStateChanged(async user=>{
     document.getElementById('login-overlay').style.display='none';
     document.getElementById('app').classList.remove('locked');
     
-    // ទាញយកការកំណត់ (Settings) របស់ User ផ្ទាល់
     try {
       const doc = await db.collection('userSettings').doc(user.uid).get();
       if(doc.exists) {
@@ -2331,10 +2368,9 @@ auth.onAuthStateChanged(async user=>{
         S.mainTitle = d.mainTitle || 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល';
         S.subTitle = d.subTitle || '❧ Sem Mardy & Vong Bophol ❧';
         S.qrImgUrl = d.qrImgUrl || '';
-        S.qrColorDark = d.qrColorDark || '#000000'; // ទាញយកពណ៌ QR
-        S.qrColorLight = d.qrColorLight || '#ffffff'; // ទាញយកពណ៌ផ្ទៃ
+        S.qrColorDark = d.qrColorDark || '#000000'; 
+        S.qrColorLight = d.qrColorLight || '#ffffff'; 
       } else {
-        // Default បើមិនទាន់មាន
         S.csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuFQ27f8RvO5T6NMJfN-2e4oA9pbRDzqNx_0tWuiHGX3kWoFlK5xSqVykRN1rMMZlaOAy-zN608t67/pub?output=csv';
         S.sheetUrl = '';
         S.mainTitle = 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល';
@@ -2344,7 +2380,6 @@ auth.onAuthStateChanged(async user=>{
         S.qrColorLight = '#ffffff';
       }
       
-      // Update Inputs
       const eCsv = document.getElementById('st-csv-link');
       if(eCsv) eCsv.value = S.csvUrl;
       const eSheet = document.getElementById('st-sheet-link');
@@ -2356,7 +2391,6 @@ auth.onAuthStateChanged(async user=>{
       const eQrImg = document.getElementById('st-qr-img-link');
       if(eQrImg) eQrImg.value = S.qrImgUrl;
       
-      // Update Color Dropdowns
       const eQrDark = document.getElementById('sel-qr-dark');
       if(eQrDark) eQrDark.value = S.qrColorDark;
       const eQrLight = document.getElementById('sel-qr-light');
@@ -2366,7 +2400,7 @@ auth.onAuthStateChanged(async user=>{
     } catch(e) { console.log("Load settings error:", e); }
 
     init();
-    fetchCSV(false); // ទាញទិន្នន័យដោយស្វ័យប្រវត្តិ
+    fetchCSV(false); 
   }else{
     document.getElementById('login-overlay').style.display='flex';
     document.getElementById('app').classList.add('locked');
