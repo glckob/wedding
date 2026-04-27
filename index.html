@@ -43,7 +43,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 /* ─── HEADER ─── */
 #hdr{padding:12px 20px 10px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:16px;flex-wrap:nowrap;}
-.hdr-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold);letter-spacing:1px;white-space:nowrap;}
+.hdr-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);letter-spacing:1px;white-space:nowrap;}
 .hdr-stats{display:flex;gap:12px;flex-wrap:nowrap;margin-left:auto;}
 .hdr-stat{cursor:pointer;padding:4px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border);transition:all .15s;}
 .hdr-stat:hover{background:var(--card2);border-color:var(--gold);}
@@ -51,10 +51,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .hdr-stat.active .num{color:#fff;}
 .hdr-stat.active .lbl{color:#fff;}
 .hdr-stat{text-align:center;white-space:nowrap;}
-.hdr-stat .num{font-size:18px;font-weight:700;color:var(--gold);font-family:'Cormorant Garamond',serif;}
+.hdr-stat .num{font-size:18px;color:var(--gold);font-family:'Cormorant Garamond',serif;}
 .hdr-stat .lbl{font-size:10px;color:var(--muted);}
-#reload-csv-btn{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:13px;padding:8px 12px;cursor:pointer;font-family:'Battambang',sans-serif;min-height:36px;touch-action:manipulation;white-space:nowrap;flex-shrink:0;}
-#reload-csv-btn:active{color:var(--gold);background:var(--card2);}
 
 /* ─── PAGES ─── */
 #pages{flex:1;overflow:hidden;position:relative;}
@@ -63,9 +61,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 /* ─── SEARCH ─── */
 .srch-wrap{position:relative;flex-shrink:0;}
-.srch-wrap input{width:100%;padding:16px 20px 16px 50px;background:var(--surface);border:2px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Battambang',sans-serif;font-size:20px;font-weight:600;outline:none;transition:border-color .2s;}
+.srch-wrap input{width:100%;padding:16px 20px 16px 50px;background:var(--surface);border:2px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Battambang',sans-serif;font-size:20px;outline:none;transition:border-color .2s;}
 .srch-wrap input:focus{border-color:var(--gold);}
-.srch-wrap input::placeholder{color:var(--muted);font-weight:400;}
+.srch-wrap input::placeholder{color:var(--muted);}
 .srch-ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:22px;pointer-events:none;}
 
 /* ─── PAGE HEADER ROW ─── */
@@ -78,16 +76,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 /* ─── GUEST CARD ─── */
 .gi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .15s;user-select:none;flex-shrink:0;}
 .gi:active{background:var(--card2);transform:scale(0.99);}
-.gi-no{width:42px;height:42px;border-radius:50%;background:var(--surface);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gold);flex-shrink:0;font-family:'Cormorant Garamond',serif;font-weight:600;}
+.gi-no{width:42px;height:42px;border-radius:50%;background:var(--surface);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gold);flex-shrink:0;font-family:'Cormorant Garamond',serif;}
 .gi-info{flex:1;min-width:0;}
-.gi-name{font-size:22px;font-weight:400;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Khmer OS Muol Light','Muol Light','Battambang',sans-serif;}
+.gi-name{font-size:22px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Khmer OS Muol Light','Muol Light','Battambang',sans-serif;}
 .gi-full{display:flex;align-items:center;gap:12px;white-space:nowrap;overflow:hidden;}
 .gi-full .gi-name{flex:0 auto;}
 .gi-full .gi-details{font-size:13px;color:var(--muted);display:flex;gap:16px;flex:1;min-width:0;overflow:hidden;}
 .gi-full .gi-details span{white-space:nowrap;}
-.gi-full .gi-details .val{color:var(--gold-dk);font-weight:600;}
+.gi-full .gi-details .val{color:var(--gold-dk);}
 .gi-badge{flex-shrink:0;text-align:right;}
-.g-amt{font-size:13px;font-weight:700;color:var(--gold);background:rgba(212,160,58,0.1);border:1px solid rgba(212,160,58,0.2);border-radius:8px;padding:4px 10px;line-height:1.5; white-space:nowrap;}
+.g-amt{font-size:13px;color:var(--gold);background:rgba(212,160,58,0.1);border:1px solid rgba(212,160,58,0.2);border-radius:8px;padding:4px 10px;line-height:1.5; white-space:nowrap;}
 .g-empty{width:28px;height:28px;border-radius:50%;border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:16px;}
 .edit-btn{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:6px;flex-shrink:0;transition:color .2s;}
 .edit-btn:active{color:var(--gold);}
@@ -97,34 +95,34 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 /* ─── TOP NAV ─── */
 #bnav{display:flex;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;order:-1;padding:8px 12px;gap:8px;align-items:center;flex-wrap:nowrap;overflow-x:auto; transition:all .3s;}
-.nav-brand{flex:1;padding-right:12px;}
+.nav-brand{flex:1;padding-right:12px;flex-shrink:0;}
 .nav-brand .main-title{font-family:'Khmer OS Muol Light','Muol Light','Khmer OS Muol',serif;font-size:16px;color:var(--gold);padding:6px 10px;border-right:1px solid var(--border);white-space:nowrap;}
-.nb{background:none;border:none;font-family:'Battambang',sans-serif;font-size:14px;padding:10px 12px;cursor:pointer;color:var(--text);transition:all .15s;white-space:nowrap;touch-action:manipulation;flex-shrink:0;}
-.nb .ni{font-size:24px;}
-.nb .nl{font-size:13px;color:var(--muted);font-family:'Battambang',sans-serif;font-weight:600;}
-.nb.active .nl{color:var(--gold);font-weight:700;}
-.nb.active{background:linear-gradient(135deg,var(--gold),var(--gold-lt));border-color:var(--gold);}
+.nb{background:none;border:none;font-family:'Battambang',sans-serif;font-size:14px;padding:10px 12px;cursor:pointer;color:var(--text);transition:all .15s;white-space:nowrap;touch-action:manipulation;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.nb .ni{font-size:22px;}
+.nb .nl{font-size:12px;color:var(--muted);font-family:'Battambang',sans-serif;}
+.nb.active .nl{color:var(--gold);}
+.nb.active{background:linear-gradient(135deg,var(--gold),var(--gold-lt));border-color:var(--gold);border-radius:8px;}
 .nb.active .nl{color:#fff;}
 
-/* ─── GIFT SLIDE-UP SHEET ─── */
+/* ─── GIFT & EXPENSE SLIDE-UP SHEET ─── */
 #g-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-end;backdrop-filter:blur(2px);}
 #g-overlay.open{display:flex;}
 #g-sheet{width:100%;max-width:480px;margin:0 auto;background:var(--surface);border-top-left-radius:24px;border-top-right-radius:24px;border-top:1px solid var(--border2);padding:18px 20px 24px;animation:slideUp .28s ease;max-height:92vh;overflow-y:auto;}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
 .sh-handle{width:38px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
-.sh-name{font-size:19px;font-weight:600;color:var(--gold-lt);text-align:center;font-family:'Cormorant Garamond',serif;line-height:1.3;}
+.sh-name{font-size:19px;color:var(--gold-lt);text-align:center;font-family:'Cormorant Garamond',serif;line-height:1.3;}
 .sh-sub{font-size:12px;color:var(--muted);text-align:center;margin-top:4px;margin-bottom:18px;}
 
 /* Currency toggle */
-.curr-tog{display:flex;background:var(--card);border-radius:var(--r);padding:4px;margin-bottom:14px;}
+.curr-tog{display:flex;background:var(--card);border-radius:var(--r);padding:4px;margin-bottom:14px;border:1px solid var(--border);}
 .cBtn{flex:1;padding:8px;border:none;background:none;border-radius:8px;color:var(--muted);font-family:'Battambang',sans-serif;transition:all .2s;}
-.cBtn.active{background:var(--gold);color:var(--bg);font-weight:700;}
+.cBtn.active{background:var(--gold);color:var(--bg);}
 
 /* Amount input */
 .amt-wrap{display:flex;align-items:center;background:var(--card);border:2px solid var(--border);border-radius:var(--r);padding:4px 14px;margin-bottom:12px;transition:border-color .2s;}
 .amt-wrap:focus-within{border-color:var(--gold);}
 .curr-sym{font-size:24px;color:var(--gold);margin-right:8px;font-family:'Cormorant Garamond',serif;}
-.amt-wrap input{flex:1;background:none;border:none;outline:none;font-size:34px;font-weight:700;color:var(--cream);font-family:'Khmer OS Muol Light','Battambang',sans-serif;text-align:right;min-width:0;}
+.amt-wrap input{flex:1;background:none;border:none;outline:none;font-size:34px;color:var(--cream);font-family:'Khmer OS Muol Light','Battambang',sans-serif;text-align:right;min-width:0;}
 .amt-wrap input::placeholder{color:var(--muted);}
 
 /* Quick amounts */
@@ -135,13 +133,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 /* Note & save */
 .note-in{width:100%;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Battambang',sans-serif;font-size:13px;outline:none;margin-bottom:14px;}
 .note-in::placeholder{color:var(--muted);}
-.save-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-lt));border:none;border-radius:var(--r);color:var(--bg);font-family:'Battambang',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;margin-bottom:16px;}
+.save-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-lt));border:none;border-radius:var(--r);color:var(--bg);font-family:'Battambang',sans-serif;font-size:16px;cursor:pointer;transition:all .2s;margin-bottom:16px;}
 .save-btn:active{transform:scale(0.98);opacity:.9;}
 
 /* Previous gifts */
 .prev-ttl{font-size:11px;color:var(--muted);text-align:center;margin-bottom:7px;letter-spacing:.5px;}
 .prev-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card);border-radius:8px;margin-bottom:6px;}
-.prev-amt{font-size:14px;font-weight:700;color:var(--gold);}
+.prev-amt{font-size:14px;color:var(--gold);}
 .prev-meta{font-size:11px;color:var(--muted);margin-top:2px;}
 .del-btn{background:none;border:none;color:var(--err);font-size:15px;cursor:pointer;padding:5px;}
 
@@ -149,7 +147,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 #gm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;align-items:center;justify-content:center;padding:18px;}
 #gm-overlay.open{display:flex;}
 #gm-box{width:100%;max-width:440px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:22px;max-height:90vh;overflow-y:auto;}
-.gm-title{font-size:18px;color:var(--gold-lt);font-family:'Cormorant Garamond',serif;font-weight:600;margin-bottom:18px;text-align:center;}
+.gm-title{font-size:18px;color:var(--gold-lt);font-family:'Cormorant Garamond',serif;margin-bottom:18px;text-align:center;}
 .ff{margin-bottom:12px;}
 .fl{display:block;font-size:10px;color:var(--muted);margin-bottom:4px;letter-spacing:.5px;}
 .fi{width:100%;padding:9px 13px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Battambang',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
@@ -157,16 +155,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .fi:disabled{opacity:.4;}
 .gm-actions{display:flex;gap:10px;margin-top:18px;}
 .btn-cancel{flex:1;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--muted);font-family:'Battambang',sans-serif;font-size:13px;cursor:pointer;}
-.btn-save{flex:2;padding:12px;background:var(--gold);border:none;border-radius:var(--r);color:var(--bg);font-family:'Battambang',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.btn-save{flex:2;padding:12px;background:var(--gold);border:none;border-radius:var(--r);color:var(--bg);font-family:'Battambang',sans-serif;font-size:14px;cursor:pointer;}
 .del-guest-btn{width:100%;padding:10px;background:none;border:1px solid rgba(192,64,64,.3);border-radius:var(--r);color:var(--err);font-family:'Battambang',sans-serif;font-size:12px;cursor:pointer;margin-top:8px;}
 
-/* ─── SUMMARY NEW STYLE ─── */
+/* ─── SUMMARY NEW STYLE (FINANCIALS) ─── */
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex-shrink:0;margin-bottom: 20px;}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:20px 14px;text-align:center;box-shadow: 0 4px 12px rgba(0,0,0,0.03);}
-.stat-lbl{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700;}
-.stat-val{font-size:28px;font-weight:700;color:var(--gold-lt);font-family:'Cormorant Garamond',serif;word-break:break-all;line-height:1.2;}
-.stat-unit{font-size:12px;color:var(--gold-dk);margin-top:4px;}
-.sec-ttl{font-size:13px;color:var(--text);font-weight:700;letter-spacing:0.5px;padding:12px 0 8px;flex-shrink:0;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:16px 10px;text-align:center;box-shadow: 0 4px 12px rgba(0,0,0,0.03);}
+.stat-lbl{font-size:13px;color:var(--text);margin-bottom:8px;}
+.stat-val{font-size:24px;font-family:'Cormorant Garamond',serif;word-break:break-all;line-height:1.2;}
+.sec-ttl{font-size:14px;color:var(--text);letter-spacing:0.5px;padding:12px 0 8px;flex-shrink:0; border-bottom: 2px solid var(--border); margin-bottom:12px;}
 
 .chart-container {
     background: var(--card);
@@ -181,10 +178,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 .inviter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:20px;}
 .inviter-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;box-shadow: 0 2px 6px rgba(0,0,0,0.02);}
-.inviter-name{font-size:15px;font-weight:700;color:var(--gold-dk);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;font-family:'Khmer OS Muol Light','Battambang',sans-serif;}
+.inviter-name{font-size:15px;color:var(--gold-dk);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;font-family:'Khmer OS Muol Light','Battambang',sans-serif;}
 .inviter-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .inviter-stat{text-align:center;padding:10px 8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;}
-.inviter-val{font-size:18px;font-weight:700;color:var(--gold);font-family:'Cormorant Garamond',serif;}
+.inviter-val{font-size:18px;color:var(--gold);font-family:'Cormorant Garamond',serif;}
 .inviter-lbl{font-size:11px;color:var(--muted);}
 .inviter-count{font-size:12px;color:var(--text);text-align:center;margin-top:12px;padding-top:8px;border-top: 1px dashed var(--border);}
 
@@ -196,29 +193,46 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .empty-ic{font-size:36px;margin-bottom:10px;}
 
 /* Toast */
-#toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-40%);background:#fff;border:2px solid #d32f2f;color:#d32f2f;padding:24px 32px;border-radius:var(--r);font-size:16px;z-index:999;opacity:0;transition:all .28s;pointer-events:none;white-space:normal;max-width:500px;width:90%;text-align:center;line-height:1.6;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.3);}
+#toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-40%);background:#fff;border:2px solid #d32f2f;color:#d32f2f;padding:24px 32px;border-radius:var(--r);font-size:16px;z-index:999;opacity:0;transition:all .28s;pointer-events:none;white-space:normal;max-width:500px;width:90%;text-align:center;line-height:1.6;box-shadow:0 8px 32px rgba(0,0,0,.3);}
 #toast.show{opacity:1;transform:translate(-50%,-50%);}
 
 /* ─── LOGIN OVERLAY ─── */
 #login-overlay{position:fixed;inset:0;background:linear-gradient(135deg,var(--bg),var(--card));z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;}
-#login-box{width:100%;max-width:400px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:40px 32px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.1);}
-.login-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);margin-bottom:8px;}
+#login-box{width:100%;max-width:480px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:40px 32px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.1);}
+.login-title{font-family:'Khmer OS Muol Light',sans-serif;font-size:28px;color:var(--gold);margin-bottom:8px;}
 .login-sub{color:var(--muted);font-size:13px;margin-bottom:28px;}
 .login-input{width:100%;padding:14px 16px;background:var(--card);border:2px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Battambang',sans-serif;font-size:16px;text-align:center;outline:none;margin-bottom:16px;transition:border-color .2s;}
 .login-input:focus{border-color:var(--gold);}
-.login-btn{width:100%;padding:14px;background:var(--gold);border:none;border-radius:var(--r);color:#fff;font-family:'Battambang',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:opacity .2s;}
+.login-btn{width:100%;padding:14px;background:var(--gold);border:none;border-radius:var(--r);color:#fff;font-family:'Battambang',sans-serif;font-size:16px;cursor:pointer;transition:opacity .2s;}
 .login-btn:active{opacity:.9;}
 .login-error{color:var(--err);font-size:12px;margin-top:12px;display:none;}
 .login-error.show{display:block;}
 #app.locked{filter:blur(5px);pointer-events:none;}
 
-/* ─── SETTINGS PAGE ─── */
-.st-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-top:20px;}
-.st-title{font-size:22px;font-weight:700;color:var(--gold);margin-bottom:20px;text-align:center;font-family:'Khmer OS Muol Light',sans-serif;}
-.st-btn{width:100%;padding:16px;margin-bottom:12px;background:var(--surface);border:2px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Battambang',sans-serif;font-size:16px;cursor:pointer;transition:all .15s;}
-.st-btn:hover{background:var(--card2);border-color:var(--gold);}
-.st-btn:active{background:var(--gold);color:#fff;}
-.st-info{text-align:center;color:var(--muted);font-size:13px;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);}
+/* ─── SETTINGS PAGE (NEW UI) ─── */
+.set-wrap { max-width: 600px; margin: 0 auto; width: 100%; padding-bottom: 20px; }
+.set-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--rl); padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+.set-title { font-size: 15px; color: var(--gold-dk); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px dashed var(--border); padding-bottom: 12px; font-family:'Khmer OS Muol Light', sans-serif;}
+.set-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.set-row:last-child { margin-bottom: 0; }
+.set-lbl { font-size: 13px; color: var(--text); }
+.set-input-group { display: flex; gap: 8px; align-items: stretch; }
+.set-input-group .fi { margin-bottom: 0; flex: 1; }
+.set-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.set-btn { flex: 1; padding: 12px 16px; border-radius: var(--r); font-family: 'Battambang', sans-serif; font-size: 14px; border: none; cursor: pointer; transition: all .2s; min-width: 140px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.set-btn:active { transform: scale(0.98); }
+.set-btn.primary { background: var(--gold); color: #fff; }
+.set-btn.secondary { background: var(--surface); color: var(--text); border: 2px solid var(--border); }
+.set-btn.danger { background: rgba(234,67,53,.08); color: var(--err); border: 2px solid rgba(234,67,53,.2); }
+.st-info{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
+
+/* ─── EXPENSE PAGE (OUTCOME) ─── */
+.exp-form { background: var(--card); border: 1px solid var(--border); border-radius: var(--rl); padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+.exp-item { display: flex; justify-content: space-between; align-items: center; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--err); border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+.exp-info { display: flex; flex-direction: column; gap: 4px; }
+.exp-title { font-size: 15px; color: var(--text); }
+.exp-meta { font-size: 11px; color: var(--muted); }
+.exp-amt { font-size: 16px; color: var(--err); }
 
 /* ─── PRINT A4 PAGE ─── */
 #page-print .print-wrap{padding:0;}
@@ -230,19 +244,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .print-table th{background:var(--gold);color:#fff;padding:8px 6px;text-align:left;font-family:'Battambang',sans-serif;font-size:11px;border:1px solid var(--gold-dk);}
 .print-table td{padding:7px 6px;border:1px solid var(--border2);vertical-align:middle;font-family:'Battambang',sans-serif;}
 .print-table tr:nth-child(even) td{background:rgba(212,160,58,0.06);}
-.print-table .td-name{font-family:'Khmer OS Muol Light','Muol Light',sans-serif;font-size:11px;font-weight:600;}
-.print-table .td-amt{text-align:right;color:var(--gold-dk);font-weight:700;white-space:nowrap;}
+.print-table .td-name{font-family:'Khmer OS Muol Light','Muol Light',sans-serif;font-size:11px;}
+.print-table .td-amt{text-align:right;color:var(--gold-dk);white-space:nowrap;}
 .print-table .td-no{text-align:center;color:var(--muted);width:36px;}
 .print-total{display:flex;justify-content:flex-end;gap:20px;padding:10px 14px;background:rgba(212,160,58,0.1);border-radius:8px;margin-top:8px;}
 .print-total-item{text-align:right;}
 .print-total-lbl{font-size:10px;color:var(--muted);}
-.print-total-val{font-size:16px;font-weight:700;color:var(--gold);font-family:'Cormorant Garamond',serif;}
+.print-total-val{font-size:16px;color:var(--gold);font-family:'Cormorant Garamond',serif;}
 .print-btn-row{display:flex;gap:10px;margin-bottom:12px;flex-shrink:0;}
 .print-action-btn{padding:10px 18px;border:1px solid var(--gold);border-radius:8px;background:var(--gold);color:#fff;font-family:'Battambang',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;}
 .print-action-btn.outline{background:none;color:var(--gold);}
 
 /* ─── QR PAGE ─── */
-.qr-action-bar { display: flex; gap: 10px; margin-bottom: 15px; flex-shrink: 0; }
+.qr-action-bar { display: flex; gap: 10px; margin-bottom: 15px; flex-shrink: 0; align-items: center; flex-wrap: wrap; }
+.qr-color-sel { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-family: 'Battambang', sans-serif; font-size: 12px; outline: none; background: var(--surface); color: var(--text); cursor: pointer;}
 .qr-grid { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-start; align-items: flex-start; overflow-y: auto; padding-bottom: 30px; }
 .qr-card {
   display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
@@ -251,7 +266,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   page-break-inside: avoid;
   border-radius: 4px;
 }
-.qr-guest-no { font-size: 9px; color: var(--muted); margin-bottom: 2px; font-weight: bold; }
+.qr-guest-no { font-size: 9px; color: var(--muted); margin-bottom: 2px; }
 .qr-code-img { 
   width: 2cm; height: 2cm; 
   display: flex; justify-content: center; align-items: center;
@@ -260,16 +275,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .qr-code-img img, .qr-code-img canvas { width: 2cm !important; height: 2cm !important; }
 .qr-guest-name { 
   font-family: 'Battambang', sans-serif; font-size: 10px; text-align: center; 
-  line-height: 1.3; font-weight: 600; color: #000; 
+  line-height: 1.3; color: #000; 
   width: 100%; word-wrap: break-word; 
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* ─── PRINT MEDIA ─── */
+/* ─── PRINT MEDIA (Narrow Margins & No Gaps for QR) ─── */
 @media print{
+  @page { margin: 5mm; } /* Narrow Margins */
+
   /* Default: hide all nav & UI */
   #bnav,#hdr,#login-overlay,.nb,.edit-btn,.del-btn,.pill-btn,#reload-csv-btn,.st-btn,
-  .print-btn-row,.qr-action-bar,.srch-wrap,.phdr{display:none!important;}
+  .print-btn-row,.qr-action-bar,.srch-wrap,.phdr,.qr-color-sel,#print-mode-sel{display:none!important;}
   #app{height:auto;overflow:visible;}
   .page{position:static;overflow:visible; display:none!important;}
   body{height:auto;overflow:visible;background:#fff;}
@@ -280,18 +297,30 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   /* A4 Print page (List) */
   #page-print .print-table{font-size:10px;}
   #page-print .print-table th,#page-print .print-table td{padding:5px 4px;}
-  #page-print{padding:12mm 14mm!important;}
+  #page-print{padding:0!important;}
 
-  /* A4 Print page (QR Codes) */
-  #page-qr { padding: 10mm !important; }
-  #page-qr .qr-grid { gap: 2mm; justify-content: flex-start; }
-  #page-qr .qr-card { border: 1px solid #000; padding: 4px; margin-bottom: 0; }
+  /* A4 Print page (QR Codes) តម្រឹមឲ្យនៅកណ្តាល */
+  #page-qr { padding: 0 !important; }
+  #page-qr .qr-grid { 
+      gap: 0; 
+      justify-content: center; /* តម្រឹម QR ឲ្យមកនៅកណ្តាលក្រដាស */
+      margin: 0 auto; 
+  }
+  #page-qr .qr-card { 
+      border: 1px solid #000; 
+      padding: 2px; 
+      margin-bottom: -1px; /* Collapse borders ត្រួតស៊ុមចូលគ្នា */
+      margin-right: -1px;  /* Collapse borders ត្រួតស៊ុមចូលគ្នា */
+      border-radius: 0; 
+      width: 2.8cm;
+      box-sizing: border-box;
+  }
 }
 
 /* ─── RECORDING PC (Original Clean Layout with Smart Input & Live Feed) ─── */
 .rec-layout{display:flex;flex:1;gap:0;overflow:hidden;}
 .rec-left{flex:0 0 70%;display:flex;flex-direction:column;min-width:0;padding:16px;}
-.rec-right{flex:0 0 30%;display:flex;flex-direction:column;padding:0px;background:#fff;border-left:0px solid var(--border);align-items:center;justify-content:center;overflow:hidden;}
+.rec-right{flex:0 0 30%;display:flex;flex-direction:column;padding:0px;background:#fff;border-left:1px solid var(--border);align-items:center;justify-content:center;overflow:hidden;}
 .rec-list-wrap{flex:1;overflow-y:auto;margin-top:8px;padding-right:8px;}
 
 /* ការពាររូប QR កុំអោយរីកធំខុសខ្នាតនៅលើ PC (Original Right Column) */
@@ -310,11 +339,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   width:100%;padding:16px 16px 16px 44px;
   background:var(--surface);border:2px solid var(--border);
   border-radius:var(--r);color:var(--text);
-  font-family:'Battambang',sans-serif;font-size:18px;font-weight:600;
+  font-family:'Battambang',sans-serif;font-size:18px;
   outline:none;transition:border-color .2s, box-shadow .2s;
   text-align:left;
 }
-#smart-input::placeholder{color:var(--muted);font-weight:400;}
+#smart-input::placeholder{color:var(--muted);}
 #smart-input:focus{
   border-color:var(--gold);
   box-shadow:0 0 0 3px rgba(212,160,58,.15);
@@ -339,11 +368,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .live-feed-header {
   display: flex; justify-content: space-between; align-items: center; margin-top: 12px;
 }
-.lf-title { font-size: 13px; font-weight: 700; color: var(--gold-dk); font-family: 'Battambang', sans-serif; }
+.lf-title { font-size: 13px; color: var(--gold-dk); font-family: 'Battambang', sans-serif; }
 .lf-toggle { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; font-size: 11px; cursor: pointer; color: var(--muted); font-family: 'Battambang', sans-serif; transition: all .2s;}
 .lf-toggle:active { background: var(--card2); }
 
-/* Live Feed (Horizontal Tray below Search Box) */
 .recent-gifts-tray {
   display: flex;
   gap: 10px;
@@ -373,8 +401,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
-.rg-chip-name { font-size: 13px; font-weight: 700; color: var(--text); font-family: 'Khmer OS Muol Light', sans-serif;}
-.rg-chip-amt { font-size: 14px; font-weight: 700; color: var(--gold); margin-top: 2px; display: flex; align-items: center; gap: 4px;}
+.rg-chip-name { font-size: 13px; color: var(--text); font-family: 'Khmer OS Muol Light', sans-serif;}
+.rg-chip-amt { font-size: 14px; color: var(--gold); margin-top: 2px; display: flex; align-items: center; gap: 4px;}
 
 /* Desktop Styles General */
 @media(min-width:481px){
@@ -430,7 +458,7 @@ body.mode-cam-scan #mobile-reader {
   box-shadow: 0 0 30px rgba(212,160,58,0.2);
 }
 body.mode-cam-scan .mobile-cam-actions { display: flex; gap: 10px; width: 100%; max-width: 400px; margin-top: 24px; }
-body.mode-cam-scan .mobile-cam-btn { flex: 1; padding: 14px; border-radius: var(--r); font-family: 'Battambang', sans-serif; font-size: 16px; font-weight: 700; border: none; cursor: pointer; transition: all .2s; }
+body.mode-cam-scan .mobile-cam-btn { flex: 1; padding: 14px; border-radius: var(--r); font-family: 'Battambang', sans-serif; font-size: 16px; border: none; cursor: pointer; transition: all .2s; }
 body.mode-cam-scan .mobile-cam-btn.start { background: var(--gold); color: #fff; }
 body.mode-cam-scan .mobile-cam-btn.start:active { transform: scale(0.98); }
 body.mode-cam-scan .mobile-cam-btn.stop { background: #333; color: #ff6b6b; border: 2px solid rgba(255,107,107,0.3); }
@@ -443,7 +471,7 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
 <!-- LOGIN OVERLAY -->
 <div id="login-overlay">
   <div id="login-box">
-    <div class="login-title">❧ ចំណងដៃ ❧</div>
+    <div class="login-title" style="font-family:'Khmer OS Muol Light', sans-serif;">❧ កម្មវិធីកត់ចំណងដៃ ❧</div>
     <div class="login-sub">ចាប់ផ្តើមកត់ត្រា ដោយបញ្ចូលពាក្យសម្ងាត់</div>
     <input type="email" class="login-input" id="login-email" placeholder="អ៊ីមែល" onkeyup="checkLoginEnter(event)">
     <input type="password" class="login-input" id="login-pass" placeholder="ពាក្យសម្ងាត់" onkeyup="checkLoginEnter(event)">
@@ -456,8 +484,7 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
 
   <!-- HEADER -->
   <div id="hdr">
-    <div class="hdr-title" style="font-family:'Khmer OS Muol Light'">ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល</div>
-    <button id="reload-csv-btn" onclick="fetchCSV(true)" title="ទាញ CSV ម្ដងទៀត">↺ ទាញCSV</button>
+    <div class="hdr-title" id="app-hdr-title" style="font-family:'Khmer OS Muol Light'">ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល</div>
     <div class="hdr-stats" id="hdr-stats"></div>
   </div>
 
@@ -496,7 +523,7 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
         <!-- រក្សា QR.PNG នៅខាងស្តាំដូចដើម -->
         <div class="rec-right">
           <div class="qr-box">
-            <img src="QR.PNG" alt="QR Code" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img id="main-qr-img" src="QR.PNG" alt="QR Code" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="qr-placeholder" style="display:none;">📱</div>
           </div>
         </div>
@@ -527,15 +554,81 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
       </div>
     </div>
 
+    <!-- PAGE: EXPENSE (OUTCOME) -->
+    <div class="page" id="page-outcome">
+      <div class="exp-form">
+        <div class="sec-ttl" style="border:none; padding-top:0; font-size:16px;">💸 បញ្ចូលការចំណាយថ្មី</div>
+        <input type="text" id="exp-title" class="fi" placeholder="គោលបំណង (ឧ. ថ្លៃម្ហូប, ធុងបាស, ថ្លៃរោង...)" style="margin-bottom:12px;">
+        <div class="curr-tog" style="border: 1px solid var(--border);">
+          <button class="cBtn active" id="exp-cBtnKHR" onclick="setExpCurr('KHR')">រៀល ៛</button>
+          <button class="cBtn" id="exp-cBtnUSD" onclick="setExpCurr('USD')">ដុល្លា $</button>
+        </div>
+        <div class="amt-wrap" style="border-color: var(--err);">
+          <span class="curr-sym" id="exp-cSym" style="color: var(--err);">៛</span>
+          <input type="number" id="exp-amt" placeholder="0" min="0" oninput="updateExpDisplay(this.value)">
+        </div>
+        <div id="exp-amt-display" style="text-align:center;font-size:20px;color:var(--err);margin-bottom:16px;font-family:'Khmer OS Muol Light',sans-serif;"></div>
+        <button class="save-btn" style="background:var(--err); color:#fff;" onclick="saveExpense()">💾 កត់ត្រាចំណាយ</button>
+      </div>
+
+      <div class="sec-ttl">📋 ប្រវត្តិការចំណាយ</div>
+      <div id="expense-list"></div>
+    </div>
+
     <!-- PAGE: SETTINGS -->
     <div class="page" id="page-settings">
-      <div class="st-section">
-        <div class="st-title">⚙️ ការកំណត់</div>
-        <button class="st-btn" onclick="doLogout()">🚪 ចាកចេញ</button>
+      <div class="set-wrap">
+        
+        <!-- កាតទី១៖ ព័ត៌មានមង្គលការ -->
+        <div class="set-card">
+          <div class="set-title"><span>💒</span> ព័ត៌មានមង្គលការ</div>
+          <div class="set-row">
+            <label class="set-lbl">ចំណងជើងធំ (Main Title)</label>
+            <input type="text" id="st-main-title" class="fi" placeholder="ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល">
+          </div>
+          <div class="set-row">
+            <label class="set-lbl">ចំណងជើងតូច (Sub Title)</label>
+            <input type="text" id="st-sub-title" class="fi" placeholder="❧ Sem Mardy & Vong Bophol ❧">
+          </div>
+        </div>
+
+        <!-- កាតទី២៖ Google Sheets -->
+        <div class="set-card">
+          <div class="set-title"><span>🔗</span> ទិន្នន័យបញ្ជីភ្ញៀវ (Google Sheets)</div>
+          <div class="set-row">
+            <label class="set-lbl">Link ទាញយកទិន្នន័យ (CSV ពី Publish to web)</label>
+            <input type="url" id="st-csv-link" class="fi" placeholder="https://docs.google.com/spreadsheets/.../pub?output=csv">
+          </div>
+          <div class="set-row">
+            <label class="set-lbl">Link សម្រាប់ចូលកែប្រែ (Copy ពី Browser)</label>
+            <div class="set-input-group">
+              <input type="url" id="st-sheet-link" class="fi" placeholder="https://docs.google.com/spreadsheets/d/.../edit">
+              <button class="set-btn secondary" style="flex: 0 0 auto; min-width: auto; padding: 0 16px; color: var(--gold); border-color: var(--gold);" onclick="openGoogleSheet()" title="បើកកែប្រែក្នុង Google Sheet">📝 កែប្រែ</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- កាតទី៣៖ រូបភាព QR -->
+        <div class="set-card">
+          <div class="set-title"><span>🖼️</span> រូបភាព QR (សម្រាប់ទំព័រ PC)</div>
+          <div class="set-row">
+            <label class="set-lbl">Link រូបភាព (Image URL)</label>
+            <input type="url" id="st-qr-img-link" class="fi" placeholder="បញ្ចូល Link រូបភាព QR ឬទុកទទេប្រើ QR.PNG លំនាំដើម">
+          </div>
+        </div>
+
+        <!-- ប៊ូតុងបញ្ជា -->
+        <div class="set-actions">
+          <button class="set-btn primary" onclick="saveSettings()">💾 រក្សាទុកការកំណត់</button>
+          <button class="set-btn secondary" onclick="fetchCSV(true)">↺ ទាញទិន្នន័យ</button>
+          <button class="set-btn danger" onclick="doLogout()">🚪 ចាកចេញ</button>
+        </div>
+
         <div class="st-info">
           <div>📱 កម្មវិធីកត់ចំណងដៃ</div>
           <div>សម្រាប់កត់ត្រាចំណងដៃអាពាហ៍ពិពាហ៍</div>
         </div>
+
       </div>
     </div>
 
@@ -552,24 +645,36 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
       <div id="gst-list"><div class="ld"><div class="spin"></div><span>...</span></div></div>
     </div>
 
-    <!-- PAGE: SUMMARY (Bar Chart) -->
+    <!-- PAGE: SUMMARY (Financial Overview) -->
     <div class="page" id="page-summary">
+      <div class="sec-ttl" style="border:none; padding-top:0;">💰 របាយការណ៍ហិរញ្ញវត្ថុរួម</div>
       <div class="stats-grid">
+        <!-- ចំណូល -->
         <div class="stat-card">
-          <div class="stat-lbl">💰 សរុបរៀល (៛)</div>
-          <div class="stat-val" id="s-khr">0</div>
+          <div class="stat-lbl" style="color:var(--ok);">ចំណូល (៛)</div>
+          <div class="stat-val" id="sum-in-khr" style="color:var(--ok);">0</div>
         </div>
         <div class="stat-card">
-          <div class="stat-lbl">💵 សរុបដុល្លា ($)</div>
-          <div class="stat-val" id="s-usd">0</div>
+          <div class="stat-lbl" style="color:var(--ok);">ចំណូល ($)</div>
+          <div class="stat-val" id="sum-in-usd" style="color:var(--ok);">0</div>
+        </div>
+        <!-- ចំណាយ -->
+        <div class="stat-card">
+          <div class="stat-lbl" style="color:var(--err);">ចំណាយ (៛)</div>
+          <div class="stat-val" id="sum-out-khr" style="color:var(--err);">0</div>
         </div>
         <div class="stat-card">
-          <div class="stat-lbl">👥 ភ្ញៀវសរុបអញ្ជើញ</div>
-          <div class="stat-val" id="s-total">0</div>
+          <div class="stat-lbl" style="color:var(--err);">ចំណាយ ($)</div>
+          <div class="stat-val" id="sum-out-usd" style="color:var(--err);">0</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-lbl">✅ ចំណងដៃហើយ</div>
-          <div class="stat-val" id="s-gave">0</div>
+        <!-- សល់ -->
+        <div class="stat-card" style="background: rgba(212,160,58,0.1); border-color: var(--gold);">
+          <div class="stat-lbl" style="color:var(--gold-dk);">ប្រាក់នៅសល់ (៛)</div>
+          <div class="stat-val" id="sum-rem-khr" style="color:var(--gold-dk);">0</div>
+        </div>
+        <div class="stat-card" style="background: rgba(212,160,58,0.1); border-color: var(--gold);">
+          <div class="stat-lbl" style="color:var(--gold-dk);">ប្រាក់នៅសល់ ($)</div>
+          <div class="stat-val" id="sum-rem-usd" style="color:var(--gold-dk);">0</div>
         </div>
       </div>
       
@@ -585,7 +690,12 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
     <!-- PAGE: PRINT A4 -->
     <div class="page" id="page-print">
       <div class="print-btn-row">
-        <button class="print-action-btn" onclick="renderPrintPage(); setTimeout(() => window.print(), 500);">🖨️ បោះពុម្ពបញ្ជី A4</button>
+        <button class="print-action-btn" onclick="setTimeout(() => window.print(), 500);">🖨️ បោះពុម្ព (A4)</button>
+        <select id="print-mode-sel" class="qr-color-sel" style="display:block; margin-left:auto; font-size:13px; padding:8px 12px;" onchange="renderPrintPage()">
+          <option value="gifts">បញ្ជីចំណងដៃ</option>
+          <option value="expenses">បញ្ជីចំណាយ</option>
+          <option value="summary">របាយការណ៍សង្ខេប</option>
+        </select>
         <button class="print-action-btn outline" onclick="renderPrintPage()">↺ ធ្វើបច្ចុប្បន្នភាព</button>
       </div>
       <div id="print-content"></div>
@@ -596,6 +706,25 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
       <div class="qr-action-bar">
         <button class="print-action-btn" onclick="generateAllQRs()">🔄 បង្កើត QR Code ទាំងអស់</button>
         <button class="print-action-btn outline" onclick="window.print()">🖨️ បោះពុម្ព QR (A4)</button>
+        
+        <!-- មុខងារជ្រើសរើសពណ៌ QR -->
+        <div style="display:flex; gap:8px; align-items:center; margin-left:auto; flex-wrap:wrap;">
+          <span style="font-size:12px; color:var(--muted);">ពណ៌ QR:</span>
+          <select id="sel-qr-dark" class="qr-color-sel" onchange="changeQrColor()">
+            <option value="#000000">⬛ ខ្មៅ</option>
+            <option value="#d4a03a">🟨 មាស</option>
+            <option value="#C0C0C0">⬜ ទឹកប្រាក់</option>
+            <option value="#0033CC">🟦 ខៀវ</option>
+            <option value="#CC0000">🟥 ក្រហម</option>
+            <option value="#008000">🟩 បៃតង</option>
+          </select>
+          <span style="font-size:12px; color:var(--muted); margin-left:4px;">ពណ៌ផ្ទៃ:</span>
+          <select id="sel-qr-light" class="qr-color-sel" onchange="changeQrColor()">
+            <option value="#ffffff">⬜ ស</option>
+            <option value="#f8f9fa">🔲 ប្រផេះស្រាល</option>
+            <option value="#fcf5e5">🟨 ពណ៌ក្រែម</option>
+          </select>
+        </div>
       </div>
       <div id="qr-container" class="qr-grid">
         <div class="empty">
@@ -611,13 +740,16 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
   <div id="bnav">
     <div class="nav-brand">
       <span class="main-title">សិរីសួស្តី អាពាហ៍ពិពាហ៍</span>
-      <span class="sub-title">❧ Sem Mardy & Vong Bophol ❧</span>
+      <span class="sub-title" id="app-nav-sub">❧ Sem Mardy & Vong Bophol ❧</span>
     </div>
     <button class="nb active" onclick="nav('recording')" id="nb-recording">
       <span class="ni">💻</span><span class="nl">កត់ចំណង(PC)</span>
     </button>
     <button class="nb" onclick="nav('cam-scan')" id="nb-cam-scan">
       <span class="ni">📱</span><span class="nl">កត់ចំណង(Phone)</span>
+    </button>
+    <button class="nb" onclick="nav('outcome')" id="nb-outcome">
+      <span class="ni">💸</span><span class="nl">ចំណាយ</span>
     </button>
     <button class="nb" onclick="nav('guests')" id="nb-guests">
       <span class="ni">👥</span><span class="nl">ភ្ញៀវ</span>
@@ -650,11 +782,11 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
     </div>
     <div class="amt-wrap">
       <span class="curr-sym" id="cSym">៛</span>
-      <input type="number" id="amtIn" placeholder="0" min="0" inputmode="numeric" oninput="updateKhmerDisplay(this.value)">
+      <input type="number" id="amtIn" placeholder="0" min="0" inputmode="numeric" oninput="updateKhmerDisplay(this.value)" onkeyup="handleAmtEnter(event)">
     </div>
     <div id="amtDisplay" style="text-align:center;font-size:20px;color:var(--gold);margin-bottom:12px;font-family:'Khmer OS Muol Light',sans-serif;"></div>
     <div class="quick-row" id="quickRow"></div>
-    <input type="text" class="note-in" id="noteIn" placeholder="កំណត់ចំណាំ (ជាជម្រើស)">
+    <input type="text" class="note-in" id="noteIn" placeholder="កំណត់ចំណាំ (ជាជម្រើស)" onkeyup="handleAmtEnter(event)">
     <button class="save-btn" onclick="saveGift()">💾 រក្សាទុក</button>
     <div id="prevSection"></div>
   </div>
@@ -704,24 +836,41 @@ const db = firebase.firestore();
 // ═══════════════════════════════════════════════
 //  STATE
 // ═══════════════════════════════════════════════
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuFQ27f8RvO5T6NMJfN-2e4oA9pbRDzqNx_0tWuiHGX3kWoFlK5xSqVykRN1rMMZlaOAy-zN608t67/pub?output=csv';
-
 const S = {
+  csvUrl: '',     // Link CSV ផ្ទាល់ខ្លួនសម្រាប់គណនីនិមួយៗ
+  sheetUrl: '',   // Link សម្រាប់បើកកែប្រែ Google Sheet
+  mainTitle: 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល',
+  subTitle: '❧ Sem Mardy & Vong Bophol ❧',
+  qrImgUrl: '',   // Link រូបភាព QR សម្រាប់ PC
+  qrColorDark: '#000000', // លំនាំដើមពណ៌ខ្មៅ
+  qrColorLight: '#ffffff', // លំនាំដើមពណ៌ស
   csvGuests:[],
   customGuests:[],
   edits:{},       // guestId → edit object
   gifts:[],
+  expenses:[],    // សម្រាប់ផ្ទុកទិន្នន័យចំណាយ
   page:'recording',
   recQ:'', gstQ:'',
   selId:null,
   curr:'KHR',
+  expCurr:'KHR',
   showLiveAmt: false, // លំនាំដើមគឺលាក់ទឹកប្រាក់
-  ld:{ csv:true, cg:true, edits:true, gifts:true }
+  ld:{ csv:true, cg:true, edits:true, gifts:true, exp:true }
 };
 
 // ═══════════════════════════════════════════════
 //  COMPUTED HELPERS & NUMBER FORMATTING
 // ═══════════════════════════════════════════════
+function escapeHTML(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function allGuests(){
   const csvEdited = S.csvGuests.map(g => S.edits[g.id] ? {...g,...S.edits[g.id]} : g);
   return [...csvEdited, ...S.customGuests];
@@ -763,7 +912,7 @@ function fmtTS(ts){
 function displayName(g){ return [g.title,g.fullName].filter(Boolean).join(' ') || '(គ្មានឈ្មោះ)'; }
 
 // ═══════════════════════════════════════════════
-//  CSV
+//  CSV & USER SETTINGS
 // ═══════════════════════════════════════════════
 function parseRow(row){
   const r=[];let cur='',inQ=false;
@@ -794,11 +943,15 @@ function parseCSV(txt){
 }
 
 async function fetchCSV(manual=false){
-  if(manual) showToast('↺ ទាញ CSV...');
+  if(!S.csvUrl) {
+    if(manual) showToast('⚠️ សូមបញ្ចូល Link CSV ក្នុងការកំណត់');
+    return;
+  }
+  if(manual) showToast('↺ កំពុងទាញទិន្នន័យ CSV...');
   S.ld.csv=true;
   const tryUrls=[
-    CSV_URL,
-    'https://corsproxy.io/?'+encodeURIComponent(CSV_URL)
+    S.csvUrl,
+    'https://corsproxy.io/?'+encodeURIComponent(S.csvUrl)
   ];
   for(const url of tryUrls){
     try{
@@ -815,29 +968,101 @@ async function fetchCSV(manual=false){
   S.ld.csv=false;
   S.csvGuests=[];
   renderAll();
-  showToast('⚠️ មិនអាចទាញ CSV – ពិនិត្យ Internet');
+  showToast('⚠️ មិនអាចទាញ CSV ពិនិត្យ Link ឬ Internet');
+}
+
+function openGoogleSheet() {
+  const editLink = document.getElementById('st-sheet-link').value.trim();
+  if(!editLink) {
+    showToast('⚠️ សូមបញ្ចូល Link សម្រាប់កែប្រែជាមុនសិន');
+    return;
+  }
+  // បើក Link កែប្រែចំៗតែម្តង
+  window.open(editLink, '_blank');
+}
+
+function applySettings() {
+  const elHdr = document.getElementById('app-hdr-title');
+  const elNavSub = document.getElementById('app-nav-sub');
+  if(elHdr) elHdr.textContent = S.mainTitle || 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល';
+  if(elNavSub) elNavSub.textContent = S.subTitle || '❧ Sem Mardy & Vong Bophol ❧';
+  
+  // អាប់ដេតរូបភាព QR នៅទំព័រ PC
+  const qrImg = document.getElementById('main-qr-img');
+  if(qrImg) {
+    qrImg.src = S.qrImgUrl || 'QR.PNG';
+    qrImg.style.display = 'block';
+    if(qrImg.nextElementSibling) qrImg.nextElementSibling.style.display = 'none';
+  }
+}
+
+async function saveSettings() {
+  const user = auth.currentUser;
+  if(!user) return;
+  const link = document.getElementById('st-csv-link').value.trim();
+  const sheetLink = document.getElementById('st-sheet-link').value.trim();
+  const mainT = document.getElementById('st-main-title').value.trim();
+  const subT = document.getElementById('st-sub-title').value.trim();
+  const qrImgL = document.getElementById('st-qr-img-link').value.trim();
+
+  if(!link) { showToast('⚠️ សូមបញ្ចូល Link CSV ជាមុនសិន'); return; }
+
+  try {
+    await db.collection('userSettings').doc(user.uid).set({ 
+      csvUrl: link,
+      sheetUrl: sheetLink,
+      mainTitle: mainT,
+      subTitle: subT,
+      qrImgUrl: qrImgL
+    }, {merge: true});
+    
+    S.csvUrl = link;
+    S.sheetUrl = sheetLink;
+    S.mainTitle = mainT;
+    S.subTitle = subT;
+    S.qrImgUrl = qrImgL;
+    applySettings();
+    
+    showToast('✅ បានរក្សាទុកការកំណត់');
+    fetchCSV(true);
+  } catch(e) {
+    showToast('❌ ' + e.message);
+  }
 }
 
 // ═══════════════════════════════════════════════
-//  FIRESTORE LISTENERS
+//  FIRESTORE LISTENERS & DB HELPERS
 // ═══════════════════════════════════════════════
+// អនុគមន៍ជំនួយសម្រាប់ទាញយកទិន្នន័យដាច់ដោយឡែកតាមគណនី
+function getUserCol(colName) {
+  if (!auth.currentUser) throw new Error("Not logged in");
+  return db.collection('users').doc(auth.currentUser.uid).collection(colName);
+}
+
 function initFS(){
-  db.collection('customGuests').onSnapshot(snap=>{
+  getUserCol('customGuests').onSnapshot(snap=>{
     S.customGuests=snap.docs.map(d=>({id:d.id,source:'custom',...d.data()}));
     S.ld.cg=false;renderAll();
   },e=>{S.ld.cg=false;renderAll();console.warn(e);});
 
-  db.collection('guestEdits').onSnapshot(snap=>{
+  getUserCol('guestEdits').onSnapshot(snap=>{
     S.edits={};snap.docs.forEach(d=>{S.edits[d.id]=d.data();});
     S.ld.edits=false;renderAll();
   },e=>{S.ld.edits=false;renderAll();});
 
-  db.collection('gifts').orderBy('recordedAt','desc').onSnapshot(snap=>{
+  getUserCol('gifts').orderBy('recordedAt','desc').onSnapshot(snap=>{
     S.gifts=snap.docs.map(d=>({id:d.id,...d.data()}));
     S.ld.gifts=false;
     renderAll();
     if(S.selId)renderPrev(S.selId);
   },e=>{S.ld.gifts=false;renderAll();console.warn(e);});
+
+  getUserCol('expenses').orderBy('recordedAt','desc').onSnapshot(snap=>{
+    S.expenses=snap.docs.map(d=>({id:d.id,...d.data()}));
+    S.ld.exp=false;
+    if(S.page === 'outcome') renderExpenses();
+    if(S.page === 'summary') renderSum();
+  },e=>{S.ld.exp=false;console.warn(e);});
 }
 
 // ═══════════════════════════════════════════════
@@ -860,8 +1085,9 @@ function nav(page){
   const nb=document.getElementById('nb-'+page);
   if(nb) nb.classList.add('active');
   
-  if(page === 'summary') renderSum(); // Render chart only when visiting summary
+  if(page === 'summary') renderSum();
   if(page === 'print') renderPrintPage();
+  if(page === 'outcome') renderExpenses();
 }
 
 // ═══════════════════════════════════════════════
@@ -872,10 +1098,11 @@ function renderAll(){
   renderGst(); 
   if(S.page==='summary') renderSum();
   if(S.page==='print') renderPrintPage();
+  if(S.page==='outcome') renderExpenses();
   renderRecentGifts();
 }
 
-// ── Recording Page (Render បញ្ជីភ្ញៀវ) ──
+// ── Recording Page (Render បញ្ជីភ្ញៀវសម្រាប់ទាំង 2 ទំព័រ) ──
 function renderRec(){
   const guests=allGuests();
   const q=S.recQ.toLowerCase();
@@ -903,14 +1130,14 @@ function renderRec(){
       html = '<div class="empty"><div class="empty-ic">😕</div>រកមិនឃើញ</div>';
     } else {
       html = filtered.map(g=>{
-        const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
-        const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
-        const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
+        const cp=g.companion?`<span>ជាមួយ <span class="val">${escapeHTML(g.companion)}</span></span>`:'';
+        const org=g.org?`<span>មុខងារ <span class="val">${escapeHTML(g.org)}</span></span>`:'';
+        const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${escapeHTML(g.inviter)}</span></span>`:'';
         return `<div class="gi" onclick="openGiftSheet('${g.id}')">
           <div class="gi-no">${toKhmerNum(g.no||'—')}</div>
           <div class="gi-info">
             <div class="gi-full">
-              <div class="gi-name">${displayName(g)}</div>
+              <div class="gi-name">${escapeHTML(displayName(g))}</div>
               <div class="gi-details">${cp}${org}${inv}</div>
             </div>
           </div>
@@ -945,14 +1172,14 @@ function filterGuestsByStatus(status){
         let badge=has
           ? `<div class="g-amt">${t.khr>0?fmtKHR(t.khr)+' ៛':''}${t.khr>0&&t.usd>0?'<br>':''}${t.usd>0?fmtUSD(t.usd)+' $':''}</div>`
           : `<div class="g-empty">＋</div>`;
-        const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
-        const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
-        const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
+        const cp=g.companion?`<span>ជាមួយ <span class="val">${escapeHTML(g.companion)}</span></span>`:'';
+        const org=g.org?`<span>មុខងារ <span class="val">${escapeHTML(g.org)}</span></span>`:'';
+        const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${escapeHTML(g.inviter)}</span></span>`:'';
         return `<div class="gi" onclick="openGiftSheet('${g.id}')">
           <div class="gi-no">${toKhmerNum(g.no||'—')}</div>
           <div class="gi-info">
             <div class="gi-full">
-              <div class="gi-name">${displayName(g)}</div>
+              <div class="gi-name">${escapeHTML(displayName(g))}</div>
               <div class="gi-details">${cp}${org}${inv}</div>
             </div>
           </div>
@@ -993,12 +1220,12 @@ function renderRecentGifts() {
     const role = (guest && guest.org) ? guest.org : 'ភ្ញៀវកិត្តិយស';
     const amtStr = S.showLiveAmt 
         ? (g.currency === 'KHR' ? fmtKHR(g.amount) + ' ៛' : fmtUSD(g.amount) + ' $')
-        : role;
+        : escapeHTML(role);
 
     return `
     <div class="rg-chip">
-      <div class="rg-chip-name">${g.guestName || 'ភ្ញៀវ'}</div>
-      <div class="rg-chip-amt">${amtStr} <span style="color:var(--ok); font-size:12px; margin-left:4px;">✅</span></div>
+      <div class="rg-chip-name">${escapeHTML(g.guestName || 'ភ្ញៀវ')}</div>
+      <div class="rg-chip-amt">${amtStr} ${S.showLiveAmt ? '<span style="color:var(--ok); font-size:12px; margin-left:4px;">✅</span>' : ''}</div>
     </div>`;
   }).join('');
 }
@@ -1015,14 +1242,14 @@ function renderGst(){
   c.innerHTML=filtered.map(g=>{
     const sc=g.source==='csv'?'src-csv':'src-custom';
     const sl=g.source==='csv'?'CSV':'ថ្មី';
-    const cp=g.companion?`<span>ជាមួយ <span class="val">${g.companion}</span></span>`:'';
-    const org=g.org?`<span>មុខងារ <span class="val">${g.org}</span></span>`:'';
-    const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${g.inviter}</span></span>`:'';
+    const cp=g.companion?`<span>ជាមួយ <span class="val">${escapeHTML(g.companion)}</span></span>`:'';
+    const org=g.org?`<span>មុខងារ <span class="val">${escapeHTML(g.org)}</span></span>`:'';
+    const inv=g.inviter?`<span>អ្នកហៅ <span class="val">${escapeHTML(g.inviter)}</span></span>`:'';
     return `<div class="gi">
       <div class="gi-no" onclick="openGiftSheet('${g.id}')" style="cursor:pointer">${toKhmerNum(g.no||'—')}</div>
       <div class="gi-info" onclick="openGiftSheet('${g.id}')">
         <div class="gi-full">
-          <div class="gi-name">${displayName(g)}<span class="src-badge ${sc}">${sl}</span></div>
+          <div class="gi-name">${escapeHTML(displayName(g))}<span class="src-badge ${sc}">${sl}</span></div>
           <div class="gi-details">${cp}${org}${inv}</div>
         </div>
       </div>
@@ -1031,20 +1258,110 @@ function renderGst(){
   }).join('');
 }
 
-// ── Summary Page (New Redesign with Chart) ──
+// ── EXPENSES PAGE (OUTCOME) ──
+function setExpCurr(c){
+  S.expCurr=c;
+  document.getElementById('exp-cBtnKHR').classList.toggle('active',c==='KHR');
+  document.getElementById('exp-cBtnUSD').classList.toggle('active',c==='USD');
+  document.getElementById('exp-cSym').textContent=c==='KHR'?'៛':'$';
+  updateExpDisplay(document.getElementById('exp-amt').value);
+}
+
+function updateExpDisplay(val){
+  const num=parseFloat(val)||0;
+  const display=document.getElementById('exp-amt-display');
+  if(num>0){
+    display.textContent=S.expCurr==='KHR'?fmtKHR(num)+' ៛':fmtUSD(num)+' $';
+  }else{
+    display.textContent='';
+  }
+}
+
+async function saveExpense(){
+  const title=document.getElementById('exp-title').value.trim();
+  const amt=parseFloat(document.getElementById('exp-amt').value);
+  if(!title){showToast('⚠️ សូមបញ្ចូលគោលបំណងនៃការចំណាយ');return;}
+  if(!amt||amt<=0){showToast('⚠️ សូមបញ្ចូលចំនួនទឹកប្រាក់ចំណាយ');return;}
+  
+  try{
+    await getUserCol('expenses').add({
+      title: title,
+      amount: amt,
+      currency: S.expCurr,
+      recordedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    
+    document.getElementById('exp-title').value='';
+    document.getElementById('exp-amt').value='';
+    document.getElementById('exp-amt-display').textContent='';
+    showToast('✅ បានកត់ត្រាការចំណាយដោយជោគជ័យ');
+  }catch(e){showToast('❌ '+e.message);}
+}
+
+function renderExpenses(){
+  const c = document.getElementById('expense-list');
+  if(!S.expenses || S.expenses.length === 0){
+      c.innerHTML = '<div class="empty"><div class="empty-ic">💸</div>មិនទាន់មានកំណត់ត្រាចំណាយទេ</div>';
+      return;
+  }
+  
+  c.innerHTML = S.expenses.map(ex => {
+      const a = ex.currency === 'KHR' ? fmtKHR(ex.amount) + ' ៛' : fmtUSD(ex.amount) + ' $';
+      return `
+      <div class="exp-item">
+          <div class="exp-info">
+              <div class="exp-title">${escapeHTML(ex.title)}</div>
+              <div class="exp-meta">${fmtTS(ex.recordedAt)}</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+              <div class="exp-amt">- ${a}</div>
+              <button class="del-btn" onclick="delExpense('${ex.id}')">🗑</button>
+          </div>
+      </div>`;
+  }).join('');
+}
+
+async function delExpense(id){
+  if(!confirm('លុបកំណត់ត្រាចំណាយនេះ?'))return;
+  try{
+    await getUserCol('expenses').doc(id).delete();
+    showToast('🗑 បានលុបការចំណាយ');
+  }catch(e){showToast('❌ '+e.message);}
+}
+
+// ── Summary Page (Financial Overview with Bar Chart) ──
 let summaryChartInstance = null;
 
 function renderSum(){
   const guests=allGuests();
-  const totKHR=S.gifts.filter(g=>g.currency==='KHR').reduce((s,g)=>s+Number(g.amount||0),0);
-  const totUSD=S.gifts.filter(g=>g.currency==='USD').reduce((s,g)=>s+Number(g.amount||0),0);
+  
+  // Total Incomes
+  const inKHR=S.gifts.filter(g=>g.currency==='KHR').reduce((s,g)=>s+Number(g.amount||0),0);
+  const inUSD=S.gifts.filter(g=>g.currency==='USD').reduce((s,g)=>s+Number(g.amount||0),0);
+  
+  // Total Expenses
+  const outKHR=S.expenses.filter(e=>e.currency==='KHR').reduce((s,e)=>s+Number(e.amount||0),0);
+  const outUSD=S.expenses.filter(e=>e.currency==='USD').reduce((s,e)=>s+Number(e.amount||0),0);
+  
+  // Remaining Balance
+  const remKHR = inKHR - outKHR;
+  const remUSD = inUSD - outUSD;
+  
   const gave=new Set(S.gifts.map(g=>g.guestId));
   
   // Update Top Stats
-  document.getElementById('s-khr').textContent=fmtKHR(totKHR);
-  document.getElementById('s-usd').textContent=fmtUSD(totUSD);
-  document.getElementById('s-total').textContent=toKhmerNum(guests.length);
-  document.getElementById('s-gave').textContent=toKhmerNum(gave.size);
+  document.getElementById('sum-in-khr').textContent=fmtKHR(inKHR);
+  document.getElementById('sum-in-usd').textContent=fmtUSD(inUSD);
+  
+  document.getElementById('sum-out-khr').textContent=fmtKHR(outKHR);
+  document.getElementById('sum-out-usd').textContent=fmtUSD(outUSD);
+  
+  document.getElementById('sum-rem-khr').textContent=fmtKHR(remKHR);
+  document.getElementById('sum-rem-khr').style.color = remKHR >= 0 ? 'var(--gold-dk)' : 'var(--err)';
+  
+  document.getElementById('sum-rem-usd').textContent=fmtUSD(remUSD);
+  document.getElementById('sum-rem-usd').style.color = remUSD >= 0 ? 'var(--gold-dk)' : 'var(--err)';
+
   
   // Calculate Data for Chart and Grid
   const inviterMap={};
@@ -1073,7 +1390,7 @@ function renderSum(){
   } else {
       c.innerHTML=sortedInviters.map(([name,stats])=>{
         return `<div class="inviter-card">
-          <div class="inviter-name">${name}</div>
+          <div class="inviter-name">${escapeHTML(name)}</div>
           <div class="inviter-stats">
             <div class="inviter-stat">
               <div class="inviter-val">${fmtKHR(stats.khr)}</div>
@@ -1084,7 +1401,7 @@ function renderSum(){
               <div class="inviter-lbl">ដុល្លា</div>
             </div>
           </div>
-          <div class="inviter-count">ភ្ញៀវអញ្ជើញ: <b>${toKhmerNum(stats.count)}</b> · ចំណងហើយ: <b>${toKhmerNum(stats.gaveCount)}</b></div>
+          <div class="inviter-count">ភ្ញៀវអញ្ជើញ: ${toKhmerNum(stats.count)} · ចំណងហើយ: ${toKhmerNum(stats.gaveCount)}</div>
         </div>`;
       }).join('');
   }
@@ -1229,6 +1546,10 @@ function updateKhmerDisplay(val){
   }
 }
 
+function handleAmtEnter(e) {
+  if (e.key === 'Enter') saveGift();
+}
+
 async function saveGift(){
   const amt=parseFloat(document.getElementById('amtIn').value);
   if(!amt||amt<=0){showToast('⚠️ សូមបញ្ចូលចំនួនទឹកប្រាក់');return;}
@@ -1239,7 +1560,7 @@ async function saveGift(){
   const amtStr = S.curr === 'KHR' ? fmtKHR(amt) + ' ៛' : fmtUSD(amt) + ' $';
 
   try{
-    await db.collection('gifts').add({
+    await getUserCol('gifts').add({
       guestId:S.selId,
       guestName:guestName,
       amount:amt,
@@ -1269,7 +1590,7 @@ async function saveGift(){
       // បង្ហាញសារ ឈ្មោះ និងទឹកប្រាក់ ជាមួយនឹងសញ្ញា ✅ ឲ្យឃើញច្បាស់ៗលើទំព័រ Mobile
       const mobStatus = document.getElementById('mobile-cam-status-text');
       if (mobStatus) {
-        mobStatus.innerHTML = `✅ បានរក្សាទុកជោគជ័យ<br><span style="color:var(--gold); font-size:18px; font-family:'Khmer OS Muol Light', sans-serif; display:inline-block; margin-top:6px;">${guestName}</span><br><span style="color:var(--ok); font-size:20px; font-weight:bold;">${amtStr}</span>`;
+        mobStatus.innerHTML = `✅ បានរក្សាទុកជោគជ័យ<br><span style="color:var(--gold); font-size:18px; font-family:'Khmer OS Muol Light', sans-serif; display:inline-block; margin-top:6px;">${escapeHTML(guestName)}</span><br><span style="color:var(--ok); font-size:20px;">${amtStr}</span>`;
       }
     }
   }catch(e){showToast('❌ '+e.message);}
@@ -1285,7 +1606,7 @@ function renderPrev(id){
     return `<div class="prev-item">
       <div>
         <div class="prev-amt">${a}</div>
-        <div class="prev-meta">${fmtTS(g.recordedAt)}${g.note?' · '+g.note:''}</div>
+        <div class="prev-meta">${fmtTS(g.recordedAt)}${g.note?' · '+escapeHTML(g.note):''}</div>
       </div>
       <button class="del-btn" onclick="delGift('${g.id}')">🗑</button>
     </div>`;
@@ -1295,7 +1616,7 @@ function renderPrev(id){
 async function delGift(id){
   if(!confirm('លុបចំណងដៃនេះ?'))return;
   try{
-    await db.collection('gifts').doc(id).delete();
+    await getUserCol('gifts').doc(id).delete();
     showToast('🗑 បានលុប');
   }catch(e){showToast('❌ '+e.message);}
 }
@@ -1307,7 +1628,20 @@ function openAddModal(){
   document.getElementById('gm-title').textContent='✨ បន្ថែមភ្ញៀវថ្មី';
   document.getElementById('gm-id').value='';
   document.getElementById('gm-src').value='custom';
-  ['no','ttl','fn','cp','org','inv'].forEach(k=>{
+  
+  // មុខងារស្វែងរក ល.រ ឆ្លាតវៃ (រកចន្លោះប្រហោង ឬយកលេខធំបំផុត + 1)
+  const guests = allGuests();
+  const numbers = guests.map(g => parseInt(g.no)).filter(n => !isNaN(n) && n > 0).sort((a, b) => a - b);
+  let nextNo = 1;
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > nextNo) break; // រកឃើញចន្លោះប្រហោង
+    if (numbers[i] === nextNo) nextNo++;
+  }
+  
+  document.getElementById('gm-no').value = nextNo;
+  document.getElementById('gm-no').disabled = false;
+
+  ['ttl','fn','cp','org','inv'].forEach(k=>{
     const el=document.getElementById('gm-'+k);
     el.value=''; el.disabled=false;
   });
@@ -1338,10 +1672,22 @@ function overlayClickGM(e){if(e.target===document.getElementById('gm-overlay'))c
 async function saveGuest(){
   const fn=document.getElementById('gm-fn').value.trim();
   if(!fn){showToast('⚠️ សូមបញ្ចូលឈ្មោះ');return;}
+  
+  const enteredNo = document.getElementById('gm-no').value.trim();
   const id=document.getElementById('gm-id').value;
+  
+  // ឆែកមើលក្រែងលោមានការវាយលេខរៀងស្ទួន
+  if (enteredNo) {
+    const duplicate = allGuests().find(g => String(g.no) === String(enteredNo) && g.id !== id);
+    if (duplicate) {
+      showToast(`⚠️ ល.រ "${toKhmerNum(enteredNo)}" ស្ទួនជាមួយ៖ ${escapeHTML(displayName(duplicate))}`);
+      return; // ផ្អាកការរក្សាទុក
+    }
+  }
+
   const src=document.getElementById('gm-src').value;
   const data={
-    no:document.getElementById('gm-no').value.trim(),
+    no:enteredNo,
     title:document.getElementById('gm-ttl').value.trim(),
     fullName:fn,
     companion:document.getElementById('gm-cp').value.trim(),
@@ -1352,13 +1698,13 @@ async function saveGuest(){
     if(!id){
       data.source='custom';
       data.createdAt=firebase.firestore.FieldValue.serverTimestamp();
-      await db.collection('customGuests').add(data);
+      await getUserCol('customGuests').add(data);
       showToast('✅ បន្ថែមភ្ញៀវថ្មីរួច');
     } else if(src==='custom'){
-      await db.collection('customGuests').doc(id).update(data);
+      await getUserCol('customGuests').doc(id).update(data);
       showToast('✅ កែប្រែរួច');
     } else {
-      await db.collection('guestEdits').doc(id).set(data,{merge:true});
+      await getUserCol('guestEdits').doc(id).set(data,{merge:true});
       showToast('✅ រក្សាទុករួច');
     }
     closeGM();
@@ -1371,7 +1717,7 @@ async function deleteGuest(){
   const g=guestById(id);
   if(!confirm(`លុប "${displayName(g)}" ?\n(ចំណងដៃនឹងនៅឡើយ)`))return;
   try{
-    await db.collection('customGuests').doc(id).delete();
+    await getUserCol('customGuests').doc(id).delete();
     closeGM();showToast('🗑 បានលុបភ្ញៀវ');
   }catch(e){showToast('❌ '+e.message);}
 }
@@ -1380,6 +1726,13 @@ async function deleteGuest(){
 //  PRINT A4 PAGE
 // ═══════════════════════════════════════════════
 function renderPrintPage(){
+  const mode = document.getElementById('print-mode-sel') ? document.getElementById('print-mode-sel').value : 'gifts';
+  if (mode === 'gifts') renderPrintGifts();
+  else if (mode === 'expenses') renderPrintExpenses();
+  else if (mode === 'summary') renderPrintSummary();
+}
+
+function renderPrintGifts(){
   const guests=allGuests();
   const gaveSet=new Set(S.gifts.map(g=>g.guestId));
   const now=new Date().toLocaleDateString('km-KH',{year:'numeric',month:'long',day:'numeric'});
@@ -1394,10 +1747,10 @@ function renderPrintPage(){
     const usdStr=t.usd>0?fmtUSD(t.usd)+' $':'—';
     rows+=`<tr>
       <td class="td-no">${toKhmerNum(g.no||String(i+1))}</td>
-      <td class="td-name">${displayName(g)}</td>
-      <td>${g.companion||'—'}</td>
-      <td>${g.org||'—'}</td>
-      <td>${g.inviter||'—'}</td>
+      <td class="td-name">${escapeHTML(displayName(g))}</td>
+      <td>${escapeHTML(g.companion||'—')}</td>
+      <td>${escapeHTML(g.org||'—')}</td>
+      <td>${escapeHTML(g.inviter||'—')}</td>
       <td class="td-amt" style="color:${t.khr>0?'var(--gold-dk)':'var(--muted)'}">${khrStr}</td>
       <td class="td-amt" style="color:${t.usd>0?'#1a7a3f':'var(--muted)'}">${usdStr}</td>
     </tr>`;
@@ -1405,7 +1758,7 @@ function renderPrintPage(){
 
   document.getElementById('print-content').innerHTML=`
     <div class="print-header">
-      <div class="print-title">❧ ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល ❧</div>
+      <div class="print-title">❧ ${escapeHTML(S.mainTitle || 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល')} ❧</div>
       <div class="print-sub">បញ្ជីចំណងដៃ · អាពាហ៍ពិពាហ៍</div>
       <div class="print-date">ចេញថ្ងៃ: ${now} · ភ្ញៀវសរុប: ${toKhmerNum(guests.length)} · ចំណងហើយ: ${toKhmerNum(gaveCount)}</div>
     </div>
@@ -1440,9 +1793,172 @@ function renderPrintPage(){
   `;
 }
 
+function renderPrintExpenses() {
+  const now=new Date().toLocaleDateString('km-KH',{year:'numeric',month:'long',day:'numeric'});
+  const totKHR=S.expenses.filter(e=>e.currency==='KHR').reduce((s,e)=>s+Number(e.amount||0),0);
+  const totUSD=S.expenses.filter(e=>e.currency==='USD').reduce((s,e)=>s+Number(e.amount||0),0);
+
+  let rows='';
+  S.expenses.forEach((e,i)=>{
+    const khrStr = e.currency === 'KHR' ? fmtKHR(e.amount) + ' ៛' : '—';
+    const usdStr = e.currency === 'USD' ? fmtUSD(e.amount) + ' $' : '—';
+    rows+=`<tr>
+      <td class="td-no">${toKhmerNum(i+1)}</td>
+      <td class="td-name">${escapeHTML(e.title)}</td>
+      <td>${fmtTS(e.recordedAt)}</td>
+      <td class="td-amt" style="color:var(--muted)">${khrStr}</td>
+      <td class="td-amt" style="color:var(--muted)">${usdStr}</td>
+    </tr>`;
+  });
+
+  document.getElementById('print-content').innerHTML=`
+    <div class="print-header">
+      <div class="print-title">❧ ${escapeHTML(S.mainTitle || 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល')} ❧</div>
+      <div class="print-sub">បញ្ជីចំណាយ · អាពាហ៍ពិពាហ៍</div>
+      <div class="print-date">ចេញថ្ងៃ: ${now} · ចំនួនប្រតិបត្តិការ: ${toKhmerNum(S.expenses.length)}</div>
+    </div>
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th style="width:50px;">ល.រ</th>
+          <th>គោលបំណងចំណាយ</th>
+          <th>កាលបរិច្ឆេទ</th>
+          <th style="text-align:right">ចំណាយ (រៀល)</th>
+          <th style="text-align:right">ចំណាយ (ដុល្លា)</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="print-total">
+      <div class="print-total-item">
+        <div class="print-total-lbl">ចំណាយសរុប (រៀល)</div>
+        <div class="print-total-val" style="color:var(--err)">${fmtKHR(totKHR)} ៛</div>
+      </div>
+      <div class="print-total-item">
+        <div class="print-total-lbl">ចំណាយសរុប (ដុល្លា)</div>
+        <div class="print-total-val" style="color:var(--err)">${fmtUSD(totUSD)} $</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderPrintSummary() {
+  const guests = allGuests();
+  const now=new Date().toLocaleDateString('km-KH',{year:'numeric',month:'long',day:'numeric'});
+  
+  const inKHR=S.gifts.filter(g=>g.currency==='KHR').reduce((s,g)=>s+Number(g.amount||0),0);
+  const inUSD=S.gifts.filter(g=>g.currency==='USD').reduce((s,g)=>s+Number(g.amount||0),0);
+  const outKHR=S.expenses.filter(e=>e.currency==='KHR').reduce((s,e)=>s+Number(e.amount||0),0);
+  const outUSD=S.expenses.filter(e=>e.currency==='USD').reduce((s,e)=>s+Number(e.amount||0),0);
+  const remKHR = inKHR - outKHR;
+  const remUSD = inUSD - outUSD;
+  
+  const inviterMap={};
+  guests.forEach(g=>{
+    const inv=g.inviter||'ផ្សេងៗ';
+    if(!inviterMap[inv]) inviterMap[inv]={khr:0,usd:0,count:0,gaveCount:0};
+    inviterMap[inv].count++;
+    const gifts=giftsByGuest(g.id);
+    if(gifts.length>0){
+      inviterMap[inv].gaveCount++;
+      gifts.forEach(gift=>{
+        if(gift.currency==='KHR') inviterMap[inv].khr+=Number(gift.amount||0);
+        else inviterMap[inv].usd+=Number(gift.amount||0);
+      });
+    }
+  });
+  const sortedInviters = Object.entries(inviterMap).sort((a,b)=>b[1].count - a[1].count);
+
+  let invRows = '';
+  sortedInviters.forEach(([name, stats], i) => {
+     invRows += `<tr>
+        <td class="td-no">${toKhmerNum(i+1)}</td>
+        <td class="td-name">${escapeHTML(name)}</td>
+        <td style="text-align:center">${toKhmerNum(stats.count)}</td>
+        <td style="text-align:center">${toKhmerNum(stats.gaveCount)}</td>
+        <td class="td-amt" style="color:var(--gold-dk)">${fmtKHR(stats.khr)} ៛</td>
+        <td class="td-amt" style="color:#1a7a3f">${fmtUSD(stats.usd)} $</td>
+     </tr>`;
+  });
+
+  document.getElementById('print-content').innerHTML=`
+    <div class="print-header">
+      <div class="print-title">❧ ${escapeHTML(S.mainTitle || 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល')} ❧</div>
+      <div class="print-sub">របាយការណ៍សង្ខេប · អាពាហ៍ពិពាហ៍</div>
+      <div class="print-date">ចេញថ្ងៃ: ${now}</div>
+    </div>
+    
+    <h4 style="font-family:'Battambang'; margin-bottom:8px; color:var(--text); font-size:14px;">១. ស្ថានភាពហិរញ្ញវត្ថុរួម</h4>
+    <table class="print-table" style="margin-bottom:24px;">
+      <thead>
+        <tr>
+          <th>ប្រភេទ</th>
+          <th style="text-align:right">សរុបរៀល (៛)</th>
+          <th style="text-align:right">សរុបដុល្លារ ($)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-name" style="color:var(--ok)">ចំណូលសរុប (ចំណងដៃ)</td>
+          <td class="td-amt" style="color:var(--ok)">${fmtKHR(inKHR)} ៛</td>
+          <td class="td-amt" style="color:var(--ok)">${fmtUSD(inUSD)} $</td>
+        </tr>
+        <tr>
+          <td class="td-name" style="color:var(--err)">ចំណាយសរុប</td>
+          <td class="td-amt" style="color:var(--err)">- ${fmtKHR(outKHR)} ៛</td>
+          <td class="td-amt" style="color:var(--err)">- ${fmtUSD(outUSD)} $</td>
+        </tr>
+        <tr style="background: rgba(212,160,58,0.1);">
+          <td class="td-name" style="color:var(--gold-dk)">ប្រាក់នៅសល់</td>
+          <td class="td-amt" style="color:var(--gold-dk);">${fmtKHR(remKHR)} ៛</td>
+          <td class="td-amt" style="color:var(--gold-dk);">${fmtUSD(remUSD)} $</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 style="font-family:'Battambang'; margin-bottom:8px; color:var(--text); font-size:14px;">២. របាយការណ៍តាមអ្នកហៅភ្ញៀវ</h4>
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th style="width:40px;">ល.រ</th>
+          <th>អ្នកហៅភ្ញៀវ</th>
+          <th style="text-align:center">អញ្ជើញ(នាក់)</th>
+          <th style="text-align:center">ចូលរួម(នាក់)</th>
+          <th style="text-align:right">ចំណងដៃ (រៀល)</th>
+          <th style="text-align:right">ចំណងដៃ (ដុល្លា)</th>
+        </tr>
+      </thead>
+      <tbody>${invRows}</tbody>
+    </table>
+  `;
+}
+
 // ═══════════════════════════════════════════════
 //  GENERATE QR CODES FOR A4 PRINT
 // ═══════════════════════════════════════════════
+async function changeQrColor() {
+  const dark = document.getElementById('sel-qr-dark').value;
+  const light = document.getElementById('sel-qr-light').value;
+  
+  S.qrColorDark = dark;
+  S.qrColorLight = light;
+  
+  const user = auth.currentUser;
+  if(user) {
+      // រក្សាទុកការកំណត់ពណ៌ទៅកាន់គណនីផ្ទាល់ខ្លួន (Background save)
+      db.collection('userSettings').doc(user.uid).set({
+          qrColorDark: dark,
+          qrColorLight: light
+      }, {merge: true}).catch(e => console.warn("Failed to save color:", e));
+  }
+  
+  // បើកំពុងបង្ហាញ QR ស្រាប់ ឲ្យវា Generate ថ្មីភ្លាមៗដើម្បីឃើញពណ៌ថ្មី
+  const container = document.getElementById('qr-container');
+  if(container && !container.innerHTML.includes('empty-ic')) {
+      generateAllQRs();
+  }
+}
+
 async function generateAllQRs() {
   const container = document.getElementById('qr-container');
   const guests = allGuests();
@@ -1463,6 +1979,10 @@ async function generateAllQRs() {
   const hasModernApi = (typeof QRCode.toDataURL === 'function');
   const hasConstructorApi = (typeof QRCode === 'function') && !hasModernApi;
 
+  // ទាញយកពណ៌បច្ចុប្បន្នពី State
+  const cDark = S.qrColorDark || '#000000';
+  const cLight = S.qrColorLight || '#ffffff';
+
   for (const g of guests) {
     // ប្តូរមកប្រើលេខរៀងភ្ញៀវវិញ (WG:លេខរៀង ឬ WG:ID បើគ្មានលេខរៀង)
     const qrValue = g.no ? `WG:${g.no}` : `WG:${g.id}`;
@@ -1475,7 +1995,7 @@ async function generateAllQRs() {
                 type: 'image/png',
                 width: 400,
                 margin: 2,
-                color: { dark: '#000000', light: '#ffffff' }
+                color: { dark: cDark, light: cLight } // ប្រើប្រាស់ពណ៌ដែលបានជ្រើសរើស
             });
         } else if (hasConstructorApi) {
             const tmp = document.createElement('div');
@@ -1489,8 +2009,8 @@ async function generateAllQRs() {
                 text: qrValue,
                 width: 400,
                 height: 400,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
+                colorDark : cDark,   // ប្រើប្រាស់ពណ៌ដែលបានជ្រើសរើស
+                colorLight : cLight, // ប្រើប្រាស់ពណ៌ផ្ទៃដែលបានជ្រើសរើស
                 correctLevel : QRCode.CorrectLevel.M
             });
 
@@ -1704,7 +2224,9 @@ function onMobileCamScanSuccess(decodedText, decodedResult) {
 // ═══════════════════════════════════════════════
 async function init(){
   nav('recording'); // Default start on PC recording
-  fetchCSV(false);
+  
+  // ឥឡូវការទាញ CSV គឺត្រូវចាំ Auth ដំណើរការសិន ដើម្បីដឹងថាត្រូវទាញ Link មួយណា
+  // ដូច្នេះមិនហៅ fetchCSV() ទីនេះទេ
   initFS();
   setTimeout(()=>{
     if(S.page === 'recording'){
@@ -1740,6 +2262,16 @@ function doLogout(){
   auth.signOut().then(()=>{
     document.getElementById('login-email').value='';
     document.getElementById('login-pass').value='';
+    S.csvUrl = '';
+    S.sheetUrl = '';
+    S.mainTitle = 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល';
+    S.subTitle = '❧ Sem Mardy & Vong Bophol ❧';
+    S.qrImgUrl = '';
+    S.qrColorDark = '#000000'; // Reset color
+    S.qrColorLight = '#ffffff'; // Reset color
+    S.csvGuests = [];
+    applySettings();
+    renderAll();
     showToast('បានចាកចេញដោយជោគជ័យ');
   }).catch(e=>showToast('❌ '+e.message));
 }
@@ -1770,11 +2302,57 @@ function checkLoginEnter(e){
 }
 
 // Auth state listener
-auth.onAuthStateChanged(user=>{
+auth.onAuthStateChanged(async user=>{
   if(user){
     document.getElementById('login-overlay').style.display='none';
     document.getElementById('app').classList.remove('locked');
+    
+    // ទាញយកការកំណត់ (Settings) របស់ User ផ្ទាល់
+    try {
+      const doc = await db.collection('userSettings').doc(user.uid).get();
+      if(doc.exists) {
+        const d = doc.data();
+        S.csvUrl = d.csvUrl || '';
+        S.sheetUrl = d.sheetUrl || '';
+        S.mainTitle = d.mainTitle || 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល';
+        S.subTitle = d.subTitle || '❧ Sem Mardy & Vong Bophol ❧';
+        S.qrImgUrl = d.qrImgUrl || '';
+        S.qrColorDark = d.qrColorDark || '#000000'; // ទាញយកពណ៌ QR
+        S.qrColorLight = d.qrColorLight || '#ffffff'; // ទាញយកពណ៌ផ្ទៃ
+      } else {
+        // Default បើមិនទាន់មាន
+        S.csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuFQ27f8RvO5T6NMJfN-2e4oA9pbRDzqNx_0tWuiHGX3kWoFlK5xSqVykRN1rMMZlaOAy-zN608t67/pub?output=csv';
+        S.sheetUrl = '';
+        S.mainTitle = 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល';
+        S.subTitle = '❧ Sem Mardy & Vong Bophol ❧';
+        S.qrImgUrl = '';
+        S.qrColorDark = '#000000';
+        S.qrColorLight = '#ffffff';
+      }
+      
+      // Update Inputs
+      const eCsv = document.getElementById('st-csv-link');
+      if(eCsv) eCsv.value = S.csvUrl;
+      const eSheet = document.getElementById('st-sheet-link');
+      if(eSheet) eSheet.value = S.sheetUrl;
+      const eMain = document.getElementById('st-main-title');
+      if(eMain) eMain.value = S.mainTitle;
+      const eSub = document.getElementById('st-sub-title');
+      if(eSub) eSub.value = S.subTitle;
+      const eQrImg = document.getElementById('st-qr-img-link');
+      if(eQrImg) eQrImg.value = S.qrImgUrl;
+      
+      // Update Color Dropdowns
+      const eQrDark = document.getElementById('sel-qr-dark');
+      if(eQrDark) eQrDark.value = S.qrColorDark;
+      const eQrLight = document.getElementById('sel-qr-light');
+      if(eQrLight) eQrLight.value = S.qrColorLight;
+      
+      applySettings();
+    } catch(e) { console.log("Load settings error:", e); }
+
     init();
+    fetchCSV(false); // ទាញទិន្នន័យដោយស្វ័យប្រវត្តិ
   }else{
     document.getElementById('login-overlay').style.display='flex';
     document.getElementById('app').classList.add('locked');
