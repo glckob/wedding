@@ -463,24 +463,37 @@ body.mode-cam-scan #page-cam-scan.active {
   background: #111; /* Dark Background for scanner */
   overflow: hidden; /* Prevent scrolling */
 }
-body.mode-cam-scan .mobile-list-section { display: none !important; }
+body.mode-cam-scan .mobile-list-section { 
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+  background: var(--bg); 
+  border-top-left-radius: 20px; 
+  border-top-right-radius: 20px; 
+  padding: 16px; 
+  overflow: hidden; 
+}
+body.mode-cam-scan .mobile-list-wrap {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 10px;
+}
 body.mode-cam-scan .mobile-cam-section { 
   flex-shrink: 0; 
   width: 100%; 
   background: transparent; 
   border: none; 
   border-radius: 0; 
-  padding: 20px; 
+  padding: 16px; 
   box-shadow: none; 
   display: flex; 
   flex-direction: column; 
   align-items: center; 
   justify-content: center;
-  height: 100%;
 }
 body.mode-cam-scan #mobile-reader { 
   width: 100%; 
-  max-width: 400px; 
+  max-width: 300px; 
   border-radius: 20px; 
   overflow: hidden; 
   border: 2px solid var(--gold); 
@@ -491,12 +504,12 @@ body.mode-cam-scan #mobile-reader {
   justify-content: center; 
   box-shadow: 0 0 30px rgba(212,160,58,0.2);
 }
-body.mode-cam-scan .mobile-cam-actions { display: flex; gap: 10px; width: 100%; max-width: 400px; margin-top: 24px; }
-body.mode-cam-scan .mobile-cam-btn { flex: 1; padding: 14px; border-radius: var(--r); font-family: 'Battambang', sans-serif; font-size: 16px; border: none; cursor: pointer; transition: all .2s; }
+body.mode-cam-scan .mobile-cam-actions { display: flex; gap: 10px; width: 100%; max-width: 300px; margin-top: 16px; }
+body.mode-cam-scan .mobile-cam-btn { flex: 1; padding: 12px; border-radius: var(--r); font-family: 'Battambang', sans-serif; font-size: 15px; border: none; cursor: pointer; transition: all .2s; }
 body.mode-cam-scan .mobile-cam-btn.start { background: var(--gold); color: #fff; }
 body.mode-cam-scan .mobile-cam-btn.start:active { transform: scale(0.98); }
 body.mode-cam-scan .mobile-cam-btn.stop { background: #333; color: #ff6b6b; border: 2px solid rgba(255,107,107,0.3); }
-body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color: #fff; text-align: center; font-family: 'Battambang', sans-serif; min-height: 20px; line-height: 1.5; }
+body.mode-cam-scan .mobile-cam-status { margin-top: 10px; font-size: 13px; color: #fff; text-align: center; font-family: 'Battambang', sans-serif; min-height: 20px; line-height: 1.5; }
 
 </style>
 </head>
@@ -576,7 +589,7 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
       </div>
 
       <div class="mobile-list-section">
-        <!-- ផ្នែកនេះត្រូវបានលាក់នៅក្នុង Scanner Mode (មើល CSS) -->
+        <!-- ផ្នែកស្វែងរកឈ្មោះ សម្រាប់ករណីកាមេរ៉ាស្កេនមិនបាន -->
         <div class="srch-wrap">
           <span class="srch-ico">🔍</span>
           <input type="text" id="mobile-rec-srch" placeholder="ស្វែងរកភ្ញៀវ..." oninput="filterRec(this.value)">
