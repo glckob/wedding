@@ -131,6 +131,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .qBtn:active{background:rgba(201,150,58,.2);border-color:var(--gold);color:var(--gold);}
 
 /* Note & save */
+.quick-note-row { display: flex; gap: 8px; margin-bottom: 8px; }
+.qnBtn { flex: 1; padding: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'Battambang', sans-serif; font-size: 11px; cursor: pointer; transition: all .15s; }
+.qnBtn:active { background: rgba(201,150,58,.1); border-color: var(--gold); color: var(--gold); }
 .note-in{width:100%;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Battambang',sans-serif;font-size:13px;outline:none;margin-bottom:14px;}
 .note-in::placeholder{color:var(--muted);}
 .save-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-lt));border:none;border-radius:var(--r);color:var(--bg);font-family:'Battambang',sans-serif;font-size:16px;cursor:pointer;transition:all .2s;margin-bottom:16px;}
@@ -261,21 +264,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .qr-grid { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-start; align-items: flex-start; overflow-y: auto; padding-bottom: 30px; }
 .qr-card {
   display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  background: #fff; border: 1px solid #333; padding: 4px; 
-  width: 2.8cm; 
+  background: #fff; border: 1px solid #333; padding: 2px; 
+  width: 1.6cm; 
   page-break-inside: avoid;
   border-radius: 4px;
 }
-.qr-guest-no { font-size: 9px; color: var(--muted); margin-bottom: 2px; }
+.qr-guest-no { font-size: 7px; color: var(--muted); margin-bottom: 1px; }
 .qr-code-img { 
-  width: 2cm; height: 2cm; 
+  width: 1.4cm; height: 1.4cm; 
   display: flex; justify-content: center; align-items: center;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
-.qr-code-img img, .qr-code-img canvas { width: 2cm !important; height: 2cm !important; }
+.qr-code-img img, .qr-code-img canvas { width: 1.4cm !important; height: 1.4cm !important; }
 .qr-guest-name { 
-  font-family: 'Battambang', sans-serif; font-size: 10px; text-align: center; 
-  line-height: 1.3; color: #000; 
+  font-family: 'Battambang', sans-serif; font-size: 7px; text-align: center; 
+  line-height: 1.2; color: #000; 
   width: 100%; word-wrap: break-word; 
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
@@ -308,11 +311,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   }
   #page-qr .qr-card { 
       border: 1px solid #000; 
-      padding: 2px; 
+      padding: 1px; 
       margin-bottom: -1px; /* Collapse borders ត្រួតស៊ុមចូលគ្នា */
       margin-right: -1px;  /* Collapse borders ត្រួតស៊ុមចូលគ្នា */
       border-radius: 0; 
-      width: 2.8cm;
+      width: 1.6cm;
       box-sizing: border-box;
   }
 }
@@ -712,11 +715,11 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
           <span style="font-size:12px; color:var(--muted);">ពណ៌ QR:</span>
           <select id="sel-qr-dark" class="qr-color-sel" onchange="changeQrColor()">
             <option value="#000000">⬛ ខ្មៅ</option>
-            <option value="#d4a03a">🟨 មាស</option>
-            <option value="#C0C0C0">⬜ ទឹកប្រាក់</option>
-            <option value="#0033CC">🟦 ខៀវ</option>
-            <option value="#CC0000">🟥 ក្រហម</option>
-            <option value="#008000">🟩 បៃតង</option>
+            <option value="#5c4033">🟫 មាសចាស់ (ងាយស្កេន)</option>
+            <option value="#404040">⬜ ប្រផេះចាស់ (ទឹកប្រាក់)</option>
+            <option value="#000080">🟦 ខៀវចាស់</option>
+            <option value="#800000">🟥 ក្រហមចាស់</option>
+            <option value="#004d00">🟩 បៃតងចាស់</option>
           </select>
           <span style="font-size:12px; color:var(--muted); margin-left:4px;">ពណ៌ផ្ទៃ:</span>
           <select id="sel-qr-light" class="qr-color-sel" onchange="changeQrColor()">
@@ -786,7 +789,13 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 20px; font-size: 15px; color
     </div>
     <div id="amtDisplay" style="text-align:center;font-size:20px;color:var(--gold);margin-bottom:12px;font-family:'Khmer OS Muol Light',sans-serif;"></div>
     <div class="quick-row" id="quickRow"></div>
-    <input type="text" class="note-in" id="noteIn" placeholder="កំណត់ចំណាំ (ជាជម្រើស)" onkeyup="handleAmtEnter(event)">
+    
+    <div class="quick-note-row">
+      <button class="qnBtn" onclick="setNote('សាច់ប្រាក់')">💵 សាច់ប្រាក់</button>
+      <button class="qnBtn" onclick="setNote('KH-QR')">📱 KH-QR</button>
+    </div>
+    <input type="text" class="note-in" id="noteIn" placeholder="កំណត់ចំណាំផ្សេងៗ (ជាជម្រើស)" onkeyup="handleAmtEnter(event)">
+    
     <button class="save-btn" onclick="saveGift()">💾 រក្សាទុក</button>
     <div id="prevSection"></div>
   </div>
@@ -1535,6 +1544,9 @@ function setCurr(c){
 function setQ(v,displayVal){
   document.getElementById('amtIn').value=v;
   document.getElementById('amtDisplay').textContent=displayVal||fmtKHR(v);
+}
+function setNote(text) {
+  document.getElementById('noteIn').value = text;
 }
 function updateKhmerDisplay(val){
   const num=parseFloat(val)||0;
