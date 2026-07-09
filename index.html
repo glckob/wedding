@@ -739,7 +739,8 @@ body.mode-cam-scan .mobile-cam-status { margin-top: 10px; font-size: 13px; color
       <div class="print-btn-row">
         <button class="print-action-btn" onclick="setTimeout(() => window.print(), 500);">🖨️ បោះពុម្ព (A4)</button>
         <select id="print-mode-sel" class="qr-color-sel" style="display:block; margin-left:auto; font-size:13px; padding:8px 12px;" onchange="renderPrintPage()">
-          <option value="gifts">បញ្ជីចំណងដៃ</option>
+          <option value="gifts-gave" selected>អ្នកបានចងដៃរួច</option>
+          <option value="gifts-all">បញ្ជីចំណងដៃទាំងអស់</option>
           <option value="expenses">បញ្ជីចំណាយ</option>
           <option value="summary">របាយការណ៍សង្ខេប</option>
         </select>
@@ -1820,19 +1821,26 @@ async function deleteGuest(){
 //  PRINT A4 PAGE
 // ═══════════════════════════════════════════════
 function renderPrintPage(){
-  const mode = document.getElementById('print-mode-sel') ? document.getElementById('print-mode-sel').value : 'gifts';
-  if (mode === 'gifts') renderPrintGifts();
+  const mode = document.getElementById('print-mode-sel') ? document.getElementById('print-mode-sel').value : 'gifts-gave';
+  if (mode === 'gifts-gave') renderPrintGifts(true);
+  else if (mode === 'gifts-all') renderPrintGifts(false);
   else if (mode === 'expenses') renderPrintExpenses();
   else if (mode === 'summary') renderPrintSummary();
 }
 
-function renderPrintGifts(){
-  const guests=allGuests();
-  const gaveSet=new Set(S.gifts.map(g=>g.guestId));
-  const now=new Date().toLocaleDateString('km-KH',{year:'numeric',month:'long',day:'numeric'});
-  const totKHR=S.gifts.filter(g=>g.currency==='KHR').reduce((s,g)=>s+Number(g.amount||0),0);
-  const totUSD=S.gifts.filter(g=>g.currency==='USD').reduce((s,g)=>s+Number(g.amount||0),0);
-  const gaveCount=gaveSet.size;
+function renderPrintGifts(onlyGave = false){
+  let guests = allGuests();
+  const gaveSet = new Set(S.gifts.map(g => g.guestId));
+  
+  if (onlyGave) {
+    guests = guests.filter(g => gaveSet.has(g.id));
+  }
+  
+  const now = new Date().toLocaleDateString('km-KH',{year:'numeric',month:'long',day:'numeric'});
+  const totKHR = S.gifts.filter(g=>g.currency==='KHR').reduce((s,g)=>s+Number(g.amount||0),0);
+  const totUSD = S.gifts.filter(g=>g.currency==='USD').reduce((s,g)=>s+Number(g.amount||0),0);
+  const gaveCount = gaveSet.size;
+  const listTitle = onlyGave ? 'បញ្ជីអ្នកបានចងដៃរួច' : 'បញ្ជីចំណងដៃទាំងអស់';
 
   let rows='';
   guests.forEach((g,i)=>{
@@ -1853,8 +1861,8 @@ function renderPrintGifts(){
   document.getElementById('print-content').innerHTML=`
     <div class="print-header">
       <div class="print-title">❧ ${escapeHTML(S.mainTitle || 'ស៊ឹម ម៉ារឌី ❤️ វង្ស បូផល')} ❧</div>
-      <div class="print-sub">បញ្ជីចំណងដៃ · អាពាហ៍ពិពាហ៍</div>
-      <div class="print-date">ចេញថ្ងៃ: ${now} · ភ្ញៀវសរុប: ${toKhmerNum(guests.length)} · ចំណងហើយ: ${toKhmerNum(gaveCount)}</div>
+      <div class="print-sub">${listTitle} · អាពាហ៍ពិពាហ៍</div>
+      <div class="print-date">ចេញថ្ងៃ: ${now} · ភ្ញៀវសរុបក្នុងបញ្ជីនេះ: ${toKhmerNum(guests.length)} · ចំណងហើយសរុប: ${toKhmerNum(gaveCount)}</div>
     </div>
     <table class="print-table">
       <thead>
@@ -1880,8 +1888,8 @@ function renderPrintGifts(){
         <div class="print-total-val">${fmtUSD(totUSD)} $</div>
       </div>
       <div class="print-total-item">
-        <div class="print-total-lbl">✅ ចំណងហើយ</div>
-        <div class="print-total-val">${toKhmerNum(gaveCount)} / ${toKhmerNum(guests.length)} នាក់</div>
+        <div class="print-total-lbl">✅ ចំណងហើយសរុប</div>
+        <div class="print-total-val">${toKhmerNum(gaveCount)} នាក់</div>
       </div>
     </div>
   `;
